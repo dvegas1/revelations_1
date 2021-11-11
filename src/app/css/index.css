@@ -1,0 +1,138 @@
+@font-face {
+  font-family: 'betty_molly_-_personal_useRg';
+  src: url('../../../src/app/fonts/betty_molly_-_personal_use-webfont.woff2') format('woff2'),
+       url('../../../src/app/fonts/betty_molly_-_personal_use-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'the_humble-webfont';
+  src: url('../../../src/app/fonts/the_humble-webfont.woff2') format('woff2'),
+       url('../../../src/app/fonts/the_humble-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.v-overlay {
+  filter: blur(80px);
+  background: #ffffff57;
+}
+
+.transparent {
+  background: transparent !important;
+}
+
+.application {
+  background: transparent !important;
+  color: rgba(0,0,0,0.87) !important;
+}
+.flex {
+    padding-right: 5px;
+    padding-left: 5px;
+    margin-right: -5px;
+}
+
+
+
+.hidden{
+  display:none !important;
+}
+
+
+a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.code {
+  width: 80px;
+  min-width: 80px;
+}
+
+.switchclass {
+  padding-top: 0px;
+}
+
+.img-perfile{
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+}
+
+img.perfil_registro {
+  width: 200px;
+  height: 200px;
+  padding: 20px;
+  margin: 0 auto;
+  border-radius: 120px;
+}
+
+.v-card__title.headline {
+  background-color: orangered;
+}
+
+.file-uploads {
+  width: 90px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #ff000000;
+  top: -25px;
+}
+
+.button {
+   border-radius: 90px !important;
+   }
+
+   .menjErr {
+    animation-name: menjErr;
+    animation-duration: .5s;
+    animation-delay: 0.25s;
+    color: #ef6c00;
+  }
+  
+  .imagen:hover {
+    -webkit-transform:scale(1.2);
+    transform:scale(1.2);
+    transition-duration: 0.5s, 2s, 0.5s, 2s;
+  }
+  
+  @keyframes menjErr {
+      0% {
+        transform: translateX(0px);
+        timing-function: ease-in;
+      }
+      37% {
+        transform: translateX(5px);
+        timing-function: ease-out;
+      }
+      55% {
+        transform: translateX(-5px);
+        timing-function: ease-in;
+      }
+      73% {
+        transform: translateX(4px);
+        timing-function: ease-out;
+      }
+      82% {
+        transform: translateX(-4px);
+        timing-function: ease-in;
+      }
+      91% {
+        transform: translateX(2px);
+        timing-function: ease-out;
+      }
+      96% {
+        transform: translateX(-2px);
+        timing-function: ease-in;
+      }
+      100% {
+        transform: translateX(0px);
+        timing-function: ease-in;
+      }
+    }
+
+.iconTab {
+
+    margin-bottom: -15px !important;
+    padding-top: 22px;    
+}

@@ -1,0 +1,329 @@
+.imgBackg {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  height: auto;
+  margin: 7px;
+}
+.imglogo {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  /* -webkit-transform: scale(0.5); */
+  transform: scale(0.3);
+  /* background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(33 33 33)), to(rgb(33 33 33))), url(https://firebasestorage.googleapis.com/v0/b/fir-gps-f49b1.appspot.com/o/Logo.png?alt=media&token=5a0c7b51-102c-4554-9575-c26f97691d17);
+    background-image: linear-gradient(rgb(255 255 255 / 20%), rgb(195 195 195 / 14%)), url(https://firebasestorage.googleapis.com/v0/b/fir-gps-f49b1.appspot.com/o/Logo.png?alt=media&token=5a0c7b51-102c-4554-9575-c26f97691d17);
+  */
+  top: -70px;
+  left: 2px;
+  padding: 8px;
+  max-width: 200px;
+  border: 1px solid #ffffff00;
+  border-radius: 153px;
+  box-shadow: 1px 6px 1px -3px #212121;
+}
+
+.nota {
+    margin: 0 auto;
+    display: inline-flex;
+    line-height: 40px;
+}
+
+.da_compartir{
+    font-size: 4em;
+}
+
+footer.d-block.justify-center.text-xs-center.theme--light.v-footer {
+    background: #000000;
+    color: white;
+}
+
+.da_queremos{
+    font-size: 26pt;
+}
+.da_compartir,.da_queremos{
+    font-family: 'betty_molly_-_personal_useRg';
+    background: -webkit-linear-gradient(#034bff, #aa20b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #595959a1;
+    text-shadow: 1px 0px 0px #4545450f;
+}
+
+.quierenCompartir__ {
+    text-align: center;
+    margin: 0 auto;
+}
+.theme--light.v-table tbody tr:hover:not(.v-datatable__expand-row) {
+  background: #2cd8ff6b !important;
+}
+
+.Btndelete__ {
+  /* background: #e51919; */
+  border: 1px solid #e51919;
+  border-radius: 5px;
+}
+
+.Btnedit__ {
+  border: 1px solid #af4daf;
+  border-radius: 5px;
+}
+
+
+.fechaHora{
+    font-family: 'betty_molly_-_personal_useRg';
+    font-size: 29pt;
+    text-align: center;
+    text-shadow: 2px 3px 4px #00000012;
+  }
+
+.container_peoples {
+  background-color: rgb(255, 255, 255);
+  background-image: 'https://firebasestorage.googleapis.com/v0/b/fir-gps-f49b1.appspot.com/o/backgroupMax600px.png?alt=media&token=f2f65661-f94d-4fa5-9827-36804abfc1eb';
+}
+
+
+
+.containr_btn_add {
+    display: block;
+}
+
+.container__formText1{
+    padding: 5px !important;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  width: 450px;
+  margin: 0 auto;
+}
+.quierenCompartir {
+  padding: 5px !important;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  height: 179px;
+  background-image: url(https://firebasestorage.googleapis.com/v0/b/fir-gps-f49b1.appspot.com/o/Quierencompartir.png?alt=media&token=81b157e8-bb28-4276-b9d6-b4a93a5a2f51);
+  width: 450px;
+  margin: 0 auto;
+  margin-top: -44px;
+}
+
+.nota {
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.lugar{
+    font-family: 'the_humble-webfont';
+    font-size: 20pt;
+    /* font-weight: 800; */
+    color: #1e1e1e;
+    /* text-shadow: 1px 1px 1px #ededed; */
+    /* background: #a3a3a3b0; */
+    padding: 10px;
+    border-radius: 7px;
+    text-shadow: 1px 1px 27px #fdfdfd;
+    }
+
+.lugar1 {
+  padding: 5px !important;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  height: 179px;
+  background-image: url(https://firebasestorage.googleapis.com/v0/b/fir-gps-f49b1.appspot.com/o/lugar.png?alt=media&token=39c7d0ac-12e1-4f48-bedc-c40e5632ec5e);
+  width: 450px;
+  margin: 0 auto;
+  margin-top: -44px;
+}
+.ninaOnino {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    height: 179px;
+    background-image: url(https://firebasestorage.googleapis.com/v0/b/fir-gps-f49b1.appspot.com/o/ninaoninosera.png?alt=media&token=a43ad535-489e-48a5-a38c-089d8115ec0b);
+    width: 375px;
+    margin: 0 auto;
+    margin-bottom: 34px;
+    height: 248px;
+    padding: 10px;
+    margin-top: 12px;
+    margin-top: 22px;
+    padding-bottom: 22px;
+  }
+
+  .lista_invitado {
+    margin: 0 auto;
+}
+
+.btn_buscar{
+    width: 20%;
+}
+
+.btn_guardar{
+    padding-left: 85px;
+}
+
+.title_ls_invitado {
+    text-align: center;
+    border-bottom: 1px solid #6713cc59;
+    width: 314px;
+    margin: 0 auto;
+    padding-bottom: 6px;
+}
+
+
+
+.Main {
+  background-size: 100px;
+  background-position: top;
+}
+.imageSwap {
+  position: absolute;
+  color: yellow;
+  padding: 150px;
+  bottom: 130px;
+  right: 500px;
+}
+#MakeHappy {
+  color: white;
+  position: absolute;
+  right: 660px;
+}
+#Contact {
+  color: white;
+  position: absolute;
+  right: 660px;
+  bottom: 10px;
+  transform: rotate(180deg);
+}
+#Suscribe {
+  color: white;
+  position: absolute;
+  left: 320px;
+  bottom: 300px;
+  transform: rotate(270deg);
+}
+
+td {
+  cursor: pointer;
+}
+.v-datatable__actions {
+  background: transparent !important;
+}
+
+#Project {
+  color: white;
+  position: absolute;
+  right: 360px;
+  bottom: 300px;
+  transform: rotate(90deg);
+}
+.Main div {
+  color: white;
+  position: fixed;
+}
+
+.v-table,
+.v-datatable {
+  background: transparent !important;
+}
+
+.na {
+    border-radius: 5px;
+    text-align: center;
+    margin: 0 auto;
+    position: relative;
+    border: 1px solid #1369cc99 !important;
+}
+
+.add_people {
+    border-radius: 100%;
+    height: 88px;
+    margin: 0 auto;
+    transform: scale(0.4);
+    top: -27px;
+    background: #0b43cb !important;
+}
+
+
+.containr_btn_add {
+    width: 35px;
+    margin: 0 auto;
+    display: flex;
+    padding: 5px;
+}
+
+
+button.add_people.theme--dark.v-btn {
+    border-radius: 100%;
+    height: 88px;
+    margin: 0 auto;
+    transform: scale(0.4);
+    top: -27px;
+    background: #0b43cb !important;
+    left: -28px;
+}
+
+i.v-icon.mdi.mdi-plus.theme--dark {
+    font-size: 40pt;
+}
+.container_peoples {
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/fir-gps-f49b1.appspot.com/o/backgroupMax992px.png?alt=media&token=d28aa9e4-9b34-41e4-b9cd-c6f9d32132e3');
+
+}
+
+@media only screen and (max-width: 600px) {
+    .container_peoples {
+      background-image: url('https://firebasestorage.googleapis.com/v0/b/fir-gps-f49b1.appspot.com/o/backgroupMax600px.png?alt=media&token=f2f65661-f94d-4fa5-9827-36804abfc1eb');
+    }
+  }
+  
+  @media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .container_peoples {
+      background-image: url('https://firebasestorage.googleapis.com/v0/b/fir-gps-f49b1.appspot.com/o/backgroupMax768px.png?alt=media&token=14b68250-7f4c-4235-952d-a6426f4f32ca');
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .container_peoples {
+      background-image: url('https://firebasestorage.googleapis.com/v0/b/fir-gps-f49b1.appspot.com/o/backgroupMax992px.png?alt=media&token=d28aa9e4-9b34-41e4-b9cd-c6f9d32132e3');
+    }
+  }
+  
+  @media only screen and (max-width: 1200px) {
+    /* For mobile phones: */
+  }
+  
+  @media only screen and (orientation: landscape) {
+    body {
+      background-color: lightblue;
+    }
+  }
+  
+  @media screen and (min-device-width: 1100px) and (max-device-width: 1800px) {
+    .container_peoples {
+      background-image: url('https://firebasestorage.googleapis.com/v0/b/fir-gps-f49b1.appspot.com/o/backgroupMax992px.png?alt=media&token=d28aa9e4-9b34-41e4-b9cd-c6f9d32132e3');
+    }
+  }
+
+  .container_peoples {
+    /* padding: 2px 8px 2px 8px !important; */
+    background-repeat: no-repeat;
+    /* padding: 50px !important; */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    height: auto;
+    
+  }
+

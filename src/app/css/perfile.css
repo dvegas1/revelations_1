@@ -1,0 +1,105 @@
+.flex.xs12 {
+padding-right: 5px !important;
+    padding-left: 5px !important;
+    padding: 10px;
+}
+
+img.perfil_registro {
+margin-top: -152px i !important;
+}
+
+i.v-icon.mdi.mdi-magnify.theme--dark {
+    color: #00000070;
+    cursor: pointer !important;
+    transform: scale(2.7);
+    width: 100px;
+    height: 100px;
+}
+
+i.v-icon.mdi.mdi-magnify.theme--dark:hover {
+    color: #000000   
+}
+
+label {
+    cursor: pointer !important; 
+}
+
+img{cursor:pointer !important}
+
+.perfil {
+    display: flex;
+    left: 0;
+    right: 0;
+    position: absolute;
+    top: 16px !important;
+}
+
+.hidden{
+    display: none !important;
+}
+
+.avatar-edit-image {
+    max-width: 50%;
+    max-height: 50%;
+    margin: 0 auto;
+}
+
+.img-perfile{
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+}
+
+img#myImage {
+    width: 100%
+}
+
+ .image-cropper-crop yui3-dd-draggable yui3-resize{
+    height: 100px;
+    width: 100px;
+    left: 202.667px;
+    top: 93.6667px;
+    background-image: url(https://alloyui.com/image-cropper/img/crop-image.jpg);
+    background-size: 0px 0px;
+    background-position: -204px -95px;
+}
+
+.eltimgTxt.img_cont {
+    float: right;
+    right: 0px;
+    position: fixed;
+    /* padding: 99px; */
+    /* margin: 130px; */
+    top: 49%;
+    padding-right: 12%;
+}
+
+.v-responsive.v-image.img-perfile {
+    border-radius: 100px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    margin: 0 auto;
+    padding: 2px;
+    border: 1px solid #bfbfbf;
+}
+
+.myphone {
+    display: inline-flex;
+    padding-right: 5px;
+    padding-left: 10px;
+}
+
+.v-input {
+    padding-left: 10px;
+}
+
+.accent {
+    background-color: #d6d4bf !important;
+        }
+        
+.headlinedialog {
+    background-color: #d6d4bf !important;
+    border-color: #d6d4bf!important;
+    }
+

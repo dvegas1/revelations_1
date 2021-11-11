@@ -1,0 +1,348 @@
+{
+  "errors": {
+    "BAD_TOKEN": "Bad token",
+    "WRONG_PASSWORD": "Wrong password",
+    "USER_DOES_NOT_EXIST": "User does not exists",
+    "PASSWORDS_DONT_MATCH": "Passwords don´t match",
+    "PASSWORD_TOO_SHORT_MIN_5": "Password too short, minimum 5 characters",
+    "BLOCKED_USER": "Too many failed login attempts, user blocked temporarely",
+    "SERVER_TIMEOUT_CONNECTION_ERROR": "Server is not responding, connection error",
+    "404": "404 Page not found",
+    "EMAIL_IS_NOT_VALID": "E-mail not valid",
+    "IS_EMPTY": "Empty fields",
+    "ERROR": "Error",
+    "MISSING": "Missing fields",
+    "NOT_FOUND_OR_ALREADY_VERIFIED": "Not found or already verified",
+    "NOT_FOUND_OR_ALREADY_USED": "Not found or already used",
+    "NOT_FOUND": "Not found",
+    "UNAUTHORIZED": "Unauthorized",
+    "EMAIL_ALREADY_EXISTS": "E-mail already exists",
+    "ID_MALFORMED": "ID malformed",
+    "ERROR_WITH_FILTER": "Error with filter",
+    "CITY_ALREADY_EXISTS": "City already exists",
+    "NO_RESULTS_FOUND": "No Results Found"
+  },
+  "common": {
+    "DELETE": "Delete",
+    "CANCEL": "Cancel",
+    "WARNING": "Warning",
+    "DO_YOU_REALLY_WANT_TO_DELETE_THIS_ITEM": "Do you really want to delete this item?",
+    "CLOSE": "Close",
+    "SAVED_SUCCESSFULLY": "Saved successfully",
+    "DELETED_SUCCESSFULLY": "Deleted successfully",
+    "CREATED": "Created At",
+    "UPDATED": "Updated At",
+    "GO_BACK": "Go back"
+  },
+  "loading": {
+    "PLEASE_WAIT": "Please wait..."
+  },
+  "menuItems": {
+    "HOME": "Home",
+    "MY_PROFILE": "My Profile",
+    "DOWNLOADTHEAPP": "Download the App",
+    "HISTORY": "History",
+    "FAVORITES": "Favorites",
+    "CATEGORIES": "Categories",
+    "KNOWUS": "Know Us",
+    "SIGNUP": "Sign Up",
+    "LOGIN": "Login",
+    "LOGOUT": "Logout"
+  },
+  "landing": {
+    "TITLE": "Landing",
+    "DESCRIPTION": "This page is publicly available.",
+    "BUY_ME_A_COFFEE": "Buy me a coffee",
+    "BUY_ME_A_COFFEE_DESCRIPTION": "I'm doing my best to provide you a good experience when using my apps, so if you like what I'm doing and wish to say \"thanks!\", please click the button and buy me a coffee.",
+    "DESCRIPTION_VUE": "This project is created to help other web developers create a basic VueJS app in an easy way.",
+    "DESCRIPTION_API": "Demo is also linked to a Node.js express.js MongoDB JWT REST API project that shows how this frontend can be integrated to an API.",
+    "API_DOCUMENTATION": "API documentation",
+    "FRONTEND_DOCUMENTATION": "Frontend documentation"
+  },
+  "home": {
+    "TITLE": "Protected Home",
+    "GREETING": "Welcome %{0}",
+    "DESCRIPTION": "This page is only available privately when the users log in with their credentials",
+    "VERIFY_YOUR_ACCOUNT": "IMPORTANT: Verify your account",
+    "VERIFY_YOUR_ACCOUNT_DESCRIPTION": "You must verify your account by clicking the link sent to your E-mail to be able to enjoy all our app features",
+    "CLOSE": "Close"
+  },
+  "login": {
+    "TITLE": "Login",
+    "DESCRIPTION": "This is a demo. Database resets every 30 mins. So anything you do will be lost after a short time.<br />E-mail: admin@admin.com <br />Password: 12345",
+    "EMAIL": "E-mail",
+    "PASSWORD": "Password",
+    "LOGIN": "Login",
+    "FORGOT_PASSWORD": "Forgot password?"
+  },
+  "forgotPassword": {
+    "TITLE": "Forgot my password",
+    "EMAIL": "E-mail",
+    "DESCRIPTION": "Enter your E-mail address so we can send you a message with instructions to recover your password",
+    "RECOVER": "Recover",
+    "RESET_EMAIL_SENT": "We have sent a message to %{0} with instructions to recover your password"
+  },
+  "resetPassword": {
+    "TITLE": "Change Password",
+    "PASSWORD": "Password",
+    "CONFIRM_PASSWORD": "Confirm Password",
+    "CHANGE_PASSWORD": "Change Password",
+    "PASSWORD_CHANGED": "Password changed successfully"
+  },
+  "signup": {
+    "TITLE": "Signup",
+    "USERNAME": "Username",
+    "EMAIL": "E-mail",
+    "PASSWORD": "Password",
+    "CONFIRMPASSWORD": "Confirm password",
+    "FIRSTNAME": "First name",
+    "SECONDNAME": "Second name",
+    "FIRSTSURNAME": "First surname",
+    "SECONDSURNAME": "Second surname",
+    "BIRTHDAYDATE": "Birthday date",
+    "NROIDENTIFICACION": "Identification number",
+    "CODE": "Code",
+    "MYPHONE": "Phone number",
+    "COUNTRY": "Country",
+    "STATE": "State",
+    "CITY": "City",
+    "POSTALCODE": "Postal code",
+    "ISUSER": "Mode: User",
+    "ISSTORE": "Mode: Store",
+    "STORENAME": "Store name",
+    "RIF": "RIF",
+    "SIGN_ME_UP": "Sign me up",
+    "ALERTMENSSAGE": "Hello! By pressing this button you are registering as a store and user."
+  },
+  "switch1": {
+    "ISUSER": "User",
+    "ISSTORE": "Store",
+    "": ""
+  },
+  "recaptcha": {
+    "HEADER": "To access, please verify that you are not a robot.",
+    "DESCRIPTION": "Remember that it is for security reasons, thank you.",
+    "ACCEPT": "Accept"
+  },
+  "date_of_birth": {
+    "ACCEPT": "Accept",
+    "HEADERBIRTH":"You must be of legal age",
+    "DESCRIPTIONBIRTH":"You must be of legal age to register on this platform",
+    "PROF_DESCRIPTIONBIRTH":"You must be of legal age to belong to this platform"
+  },
+  "verify": {
+    "TITLE": "E-mail verification",
+    "EMAIL_VERIFIED": "E-mail verified successfully"
+  },
+  "profile": {
+    "TITLE": "My Profile",
+    "DATA": "Data",
+    "USERNAME": "Username",
+    "EMAIL": "E-mail",
+    "FIRSTNAME": "First name",
+    "SECONDNAME": "Second name",
+    "FIRSTSURNAME": "First surname",
+    "SECONDSURNAME": "Second surname",
+    "BIRTHDAYDATE": "Birthday date",
+    "NROIDENTIFICACION": "Identification number",
+    "CODE": "Code",
+    "MYPHONE": "Phone number",
+    "COUNTRY": "Country",
+    "STATE": "State",
+    "CITY": "City",
+    "POSTALCODE": "Postal code",
+    "ISUSER": "Mode: User",
+    "ISSTORE": "Mode: Store",
+    "STORENAME": "Store name",
+    "RIF": "RIF",
+    "CATEGORY": "Category",
+    "SAVE": "Save",
+    "ACCEPT": "Accept",
+    "SECURITY": "Segurity",
+    "CHANGE": "Change",
+    "CHANGE_MESSAGE_D": "A link was sent to your email to make your change safely",
+    "CHANGEEMAIL": "Change email address",
+    "CHANGEEMAIL_D": "Mail change",
+    "CHANGEPASSWORD": "Change your password",
+    "CHANGEPASSWORD_D": "Change of password",
+    "PASSWORD": "Password",
+    "CONFIRMPASSWORD": "Confirm password",
+    "CONSULTDIP": "View device history",
+    "CONSULTDIP_D": "Your device history",
+    "CONSULTDIP_DS": " You are logged into:",
+    "CONSULTDIP_DC": " You have disconnected from:",
+    "CONSULT": "Consult",
+    "WALLET": "Wallet"
+  },
+  "favorites": {
+    "TITLE": "Most consulted",
+    "DESCRIPTION": "Preferred Stores"
+  },
+  "categories": {
+    "TITLE": "Categories",
+    "DESCRIPTION": "Product and Service"
+  },
+  "knowus": {
+    "TITLE": "Know Us",
+    "STRUCTURE": "Structure",
+    "STORE": "Store",
+    "GALLERYANDEVENTS": "Gallery",
+    "EDTAEE": "edtaee",
+    "EDTAEETEXT": "Equipo Desarrollador Tecnologico Aplicado a Emprendedores y Empresas (edtaee) Equipo de Desarrollos Tecnologicos Aplicado a Emprendedores y Empresas (edtaee) Equipo en Desarrollos Tecnologicos Aplicados a Emprendedores y Empresas (edtaee)",
+    "MISSION": "Mission",
+    "MISSIONTEXT": "Es el propósito, razón de ser y fin de una organización, define lo que pretende cumplir en un entorno específico.",
+    "VISION": "Vission",
+    "VISIONTEXT": "Es la realidad que le gustaría ver a la empresa entorno al mundo, sus clientes y ella misma.",
+    "PURPOSE": "Purpose",
+    "PURPOSETEXT": "Es la razón de existir de una organización, el porqué haces las cosas.",
+    "VALUES": "Values",
+    "VALUESTEXT": "Son las creencias y conceptos básicos de una organización, forman la médula de su cultura.",
+    "LEADERS": "Leaders",
+    "CEO1": "CEO Darwin Vegas",
+    "CEO1B": "A big brother",
+    "CEO2": "CEO Miguel Angel Mendoza Diaz",
+    "CEO2B": "Philosopher and poet",
+    "BRAND": "Tú Marca presente en Internet",
+    "BRANDTEXT": "Tú Lugar en Internet, establecerte en el mundo digital. Tú Lugar en Internet, establecerte en el mundo digital. Tú Lugar en Internet, establecerte en el mundo digital. Tú Lugar en Internet, establecerte en el mundo digital. Tú Lugar en Internet, establecerte en el mundo digital.",
+    "INCOME": "Aumenta tus Ingresos",
+    "INCOMETEXT": "(Ingreso) Aumenta tus Ingresos",
+    "SCOPE": "Aumenta tu Alcance",
+    "SCOPETEXT": "(Alcance) Aumenta tu Alcance",
+    "SITE": "Tu primer sitio wed",
+    "SITETEXT": "(Sitio) Tu primer sitio wed",
+    "NVISITS": "157.484.464",
+    "VISITS": "VISITS",
+    "NUSERS": "11.582.647",
+    "USERS": "USERS",
+    "NSTORES": "2.355",
+    "STORES": "STORES",
+    "TESTIMONIALS": "Testimonials",
+    "TESTIMONY1": "Testimony",
+    "TESTIMONY2": "Testimony",
+    "TESTIMONY3": "Testimony",
+    "III": "III",
+    "OOO": "OOO"
+  },
+  "downloadapp": {
+    "TITLE": "Download our App",
+    "DESCRIPTION": "Connect with us from wherever you are"
+  },
+  "history": {
+    "MYPURCHASES": "My Shopping",
+    "MYSALES": "My Sales"
+  },
+  "historyItems": {
+    "HISTORY": "History",
+    "PURCHASES": "Shopping",
+    "SALES": "Sales"
+  },
+  "myStoreItems": {
+    "MYSTORE": "My Store",
+    "000": "Compras",
+    "555": "000"
+  },
+  "adminItems": {
+    "ADMIN": "Admin",
+    "USERS": "Users",
+    "COUNTRY": "Country",
+    "STATE": "State",
+    "CITIES": "Cities",
+    "NATION": "Nation",
+    "CONTENTS": "Contents",
+    "COMPONENTS": "Components"
+  },
+  "dataTable": {
+    "NEW_ITEM": "New Registration",
+    "EDIT_ITEM": "Edit Record",
+    "CANCEL": "Cancel",
+    "SAVE": "Save",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "RESET": "Reset",
+    "ACTIONS": "Actions",
+    "ROWS_PER_PAGE": "Rows per page",
+    "NO_DATA": "No data",
+    "NO_RESULTS": "No results",
+    "OF": "of",
+    "SEARCH": "Search"
+  },
+  "roles": {
+    "ADMIN": "Administrator",
+    "STORE": "Store",
+    "USER": "User"
+  },
+  "users": {
+    "TITLE": "Users",
+    "headers": {
+      "NAME": "Name",
+      "EMAIL": "E-mail",
+      "ROLE": "Role",
+      "VERIFIED": "Verified",
+      "FIRSTNAME": "First name",
+      "SECONDNAME": "Second name",
+      "FIRSTSURNAME": "First surname",
+      "SECONDSURNAME": "Second surname",
+      "BIRTHDAYDATE": "Birthday date",
+      "NROIDENTIFICACION": "Identification number",
+      "CODE": "Code",
+      "MYPHONE": "Phone number",
+      "COUNTRY": "Country",
+      "STATE": "State",
+      "CITY": "City",
+      "POSTALCODE": "Postal code",
+      "ISUSER": "Mode: User",
+      "ISSTORE": "Mode: User",
+      "STORENAME": "Store name",
+      "RIF": "RIF"
+    },
+    "PASSWORD": "Password",
+    "CONFIRM_PASSWORD": "Confirm Password"
+  },
+  "country": {
+    "TITLE": "Countries",
+    "headers": {
+      "STATUS": "Status",
+      "COUNTRY": "Country",
+      "COUNTRYID": "Country ID",
+      "CODE": "Code"
+    }
+  },
+  "state": {
+    "TITLE": "States",
+    "headers": {
+      "STATUS": "Status",
+      "STATE": "State",
+      "STATEID": "State ID",
+      "COUNTRYID": "Contry ID"
+    }
+  },
+  "cities": {
+    "TITLE": "Cities",
+    "headers": {
+      "STATUS": "Status",
+      "CITY": "City",
+      "CITYID": "City ID",
+      "STATEID": "State ID"
+    }
+  },
+  "contents": {
+    "TITLE": "Contents",
+    "headers": {
+      "COMPONENT": "Component",
+      "IDCONTENTS": "ID Contents",
+      "CONTENTS": "Contents",
+      "DESCRIPTION": "Description"
+    }
+  },
+  "components": {
+    "TITLE": "Components",
+    "headers": {
+      "COMPONENT": "Component",
+      "DESCRIPTION": "Description"
+    }
+  },
+  "footer": {
+    "MADE_WITH": "Made with",
+    "BY": "by Darwin Vegas, Miguel Angel Mendoza y Osniel Vasquez"
+  }
+}

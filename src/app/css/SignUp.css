@@ -1,0 +1,85 @@
+.flex.xs12,.vue-tel-input-vuetify {
+padding-right: 5px !important;
+    padding-left: 5px !important;
+}
+
+.myphone {
+    display: inline-flex;
+    padding-right: 5px;
+    padding-left: 10px;
+}
+
+.v-input {
+    padding-left: 10px;
+}
+
+.error-input {
+    border-bottom: 1px solid #ff000014;
+  }
+
+
+label {
+    cursor: pointer !important;
+ 
+}
+
+img{cursor:pointer !important}
+
+.perfil {
+    display: flex;
+    left: 0;
+    right: 0;
+    position: absolute;
+    top: 140px;
+    height: 100px;
+}
+
+.hidden{
+    display: none !important;
+}
+
+.avatar-edit-image {
+    max-width: 50%;
+    max-height: 50%;
+    margin: 0 auto;
+}
+
+
+img#myImage {
+    width: 100%
+}
+
+.image-cropper-crop yui3-dd-draggable yui3-resize{
+    height: 100px;
+    width: 100px;
+    left: 202.667px;
+    top: 93.6667px;
+    background-image: url(https://alloyui.com/image-cropper/img/crop-image.jpg);
+    background-size: 0px 0px;
+    background-position: -204px -95px;
+}
+
+.eltimgTxt.img_cont {
+    float: right;
+    right: 0px;
+    position: fixed;
+    /* padding: 99px; */
+    /* margin: 130px; */
+    top: 49%;
+    padding-right: 12%;
+}
+
+.v-responsive.v-image.img-perfile {
+    border-radius: 100px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    margin: 0 auto;
+    padding: 2px;
+    border: 1px solid #bfbfbf;
+}
+
+
+input#storename,input#rif,input#category {
+    border-bottom: 1px solid #a5bcff;
+}

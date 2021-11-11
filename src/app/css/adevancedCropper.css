@@ -1,0 +1,45 @@
+.flex.xs12 {
+padding-right: 5px !important;
+    padding-left: 5px !important;
+}
+.img-perfile{
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+}
+img#myImage {
+    width: 100%
+}
+ .image-cropper-crop yui3-dd-draggable yui3-resize{
+    height: 100px;
+    width: 100px;
+    left: 202.667px;
+    top: 93.6667px;
+    background-image: url(https://alloyui.com/image-cropper/img/crop-image.jpg);
+    background-size: 0px 0px;
+    background-position: -204px -95px;
+}
+.eltimgTxt.img_cont {
+    float: right;
+    right: 0px;
+    position: fixed;
+    /* padding: 99px; */
+    /* margin: 130px; */
+    top: 49%;
+    padding-right: 12%;
+}
+
+.v-responsive.v-image.img-perfile {
+    border-radius: 100px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    margin: 0 auto;
+    padding: 2px;
+    border: 1px solid #bfbfbf;
+}
+
+
+input#storename,input#rif,input#category {
+    border-bottom: 1px solid #a5bcff;
+}

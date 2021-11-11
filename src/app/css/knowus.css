@@ -1,0 +1,43 @@
+.flex.xs12 {
+padding-right: 5px !important;
+    padding-left: 5px !important;
+    padding: 10px;
+}
+
+.accent {
+    background-color: #fff59d !important;
+        }
+        
+        
+.imageceo {
+    height:200px;
+    width:200px;
+    border-radius: 180px;
+    
+        }
+
+.imagemet {
+    height:200px;
+    width:200px;
+    border-radius: 0px;
+    
+        }
+
+.imagetes {
+    height:200px;
+    width:200px;
+    border-radius: 50px;
+    
+        }        
+                
+
+
+             
+
+
+
+
+    
+
+
+  
