@@ -128,10 +128,11 @@ const mutations = {
   }
 }
 
+
 const state = {
   user: null,
   token: JSON.parse(!!localStorage.getItem('token')) || null,
-  isTokenSet: !!localStorage.getItem('token')
+  isTokenSet: !! localStorage.getItem('token')
 }
 
 export default {

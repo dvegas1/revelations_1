@@ -13,11 +13,11 @@
         <div class="ninaOnino"></div>
         <div class="fechaHora">Sábado 11 de Diciembre a la 12:00 pm.</div>
         <div class=" justify-center text-xs-center d-block">
-            <div class="lugar">
-              Lugar: Miranda cúa, urb santa rosa calle nro 15 casa nro 113.
+          <div class="lugar">
+            Lugar: Miranda cúa, urb santa rosa calle nro 15 casa nro 113.
           </div>
         </div>
-        <br><br><br>
+        <br /><br /><br />
 
         <v-flex d-flex flex-row mb-6 transparent class="container__formText1">
           <v-text-field
@@ -171,7 +171,7 @@
                         slot="activator"
                         @click="editItem(props.item)"
                       >
-                        <div class="iconedite" >
+                        <div class="iconedite">
                           <v-icon>mdi-pencil</v-icon>
                         </div>
                       </v-btn>
@@ -448,7 +448,7 @@ export default {
       this.dialog = true
     },
     async deleteItem(item) {
-      console.log("json:" + JSON.stringify(item))
+      console.log('json:' + JSON.stringify(item))
       try {
         const response = await this.$confirm('Confirmar', {
           title: 'alert',
@@ -458,7 +458,7 @@ export default {
           buttonFalseColor: 'yellow lighten3'
         })
 
-         console.log("response:" + JSON.stringify(response))
+        console.log('response:' + JSON.stringify(response))
         if (response) {
           this.dataTableLoading = true
           await this.deletePeople(item._id)
@@ -503,45 +503,25 @@ export default {
             }
           ]
 
-          console.log(
-            'validamos id en cache:' + window.localStorage.getItem('id')
-          )
+          console.log('validamos id en cache:' + this.$store.state.auth.user)
 
           console.log('peoples:' + JSON.stringify(peoples))
 
-          if (
-            window.localStorage.getItem('id') != undefined ||
-            window.localStorage.getItem('id') != null ||
-            window.localStorage.getItem('id') != null
-          ) {
+          if (this.$store.state.auth.user != undefined) {
             data = await this.savePeople({
               peoples: JSON.stringify(peoples),
-              credentialuser: window.localStorage.getItem('id')
+              credentialuser: this.$store.state.auth.user
             })
-
-            data = await this.RspsavePeople()
-
-            //       console.log('credentialuser:' + data.data.user.credentialuser)
           } else {
-            await this.savePeople({
+            data = await this.savePeople({
               peoples: JSON.stringify(peoples)
             })
 
-            data = await this.RspsavePeople()
+            this.revelations.nombre = ''
+            this.revelations.apellido = ''
 
-            window.localStorage.setItem('id', data.data.user.credentialuser)
             console.log('RspsavePeople:' + JSON.stringify(data))
-
-            await this.setCred(data.data.user.credentialuser)
           }
-
-          console.log(
-            'Verificamos id en cache:' +
-              JSON.stringify(window.localStorage.getItem('id'))
-          )
-          await this.getPeoples({
-            id: window.localStorage.getItem('id')
-          })
           this.dataTableLoading = false
         }
         this.close()
@@ -552,31 +532,25 @@ export default {
         this.close()
         console.error(error)
       } finally {
+        this.revelations.nombre = ''
+        this.revelations.apellido = ''
+        this.dataTableLoading = false
       }
     }
   },
   validations: vaalid.validations,
   async mounted() {
     if (
-      window.localStorage.getItem('id') != undefined ||
-      window.localStorage.getItem('id') != ''
+      this.$store.state.auth.user != undefined ||
+      this.$store.state.auth.user != null ||
+      this.$store.state.auth.user != ''
     ) {
-      console.log(
-        "Mounte window.localStorage.getItem('id'):" +
-          JSON.stringify(window.localStorage.getItem('id'))
-      )
-
       await this.getPeoples({
-        id: window.localStorage.getItem('id')
+        id: this.$store.state.auth.user
       })
-    } else {
-      console.log(
-        "Mounte NOT ID USUARIO window.localStorage.getItem('id'):" +
-          JSON.stringify(window.localStorage.getItem('id'))
-      )
     }
-    await this.name_component(this.idcomponent)
 
+    await this.name_component(this.idcomponent)
     // await this.getAllID()
   }
 }

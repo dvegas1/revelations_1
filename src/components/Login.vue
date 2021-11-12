@@ -216,6 +216,7 @@ export default {
   validations: vaalid.validations,
 
   created() {
+    
     if (this.$store.state.auth.isTokenSet) {
       router.push({ name: 'home' })
     }

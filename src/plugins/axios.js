@@ -5,7 +5,7 @@ import { checkForUpdates } from '@/utils/updates.js'
 
 axios.defaults.baseURL = process.env.VUE_APP_API_URL || ''
 axios.defaults.headers.common['Accept-Language'] =
-  JSON.parse(localStorage.getItem('locale')) || 'en'
+  JSON.parse(localStorage.getItem('locale')) || 'es'
 
 axios.interceptors.request.use(
   config => {

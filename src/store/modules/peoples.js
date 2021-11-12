@@ -14,6 +14,8 @@ import * as types from '@/store/mutation-types'
 import api from '@/services/api/peoples'
 import { buildSuccess, handleError } from '@/utils/utils.js'
 import { resolve } from 'core-js/fn/promise'
+import { addMinutes, format } from 'date-fns'
+const MINUTES_TO_CHECK_FOR_TOKEN_REFRESH = 1440
 
 const getters = {
   totalPeoples: state => state.totalPeoples,
@@ -73,6 +75,7 @@ const actions = {
       api
         .savePeople(payload)
         .then(response => {
+          let userCred = ''
           if (response.status === 201) {
             buildSuccess(
               {
@@ -83,10 +86,71 @@ const actions = {
             )
             commit(types.SET_PEOPLE, response)
             console.log("savePeople:" + JSON.stringify(response))
+            console.log("Seteando parametro de session")
+
+            window.localStorage.setItem(
+              'user',
+              JSON.stringify(response.data.responseUser.user)
+            )
+            window.localStorage.setItem(
+              'token',
+              JSON.stringify(response.data.responseUser.token)
+            )
+            window.localStorage.setItem(
+              'tokenExpiration',
+              JSON.stringify(
+                format(
+                  addMinutes(new Date(), MINUTES_TO_CHECK_FOR_TOKEN_REFRESH),
+                  'X'
+                )
+              )
+            )
+            commit(types.SAVE_USER, response.data.responseUser.user)
+            commit(types.SAVE_TOKEN, response.data.responseUser.token)
+            commit(types.EMAIL_VERIFIED, response.data.responseUser.user.verified)
+            userCred = response.data.responseUser.user.credentialuser
             resolve(response)
-          } else {
-            console.log(JSON.stringify(response))
           }
+          if (response.status === 200) {
+            alert('agregado a usuario existente.')
+            buildSuccess(
+              {
+                msg: 'common.PEOPLE_SUCCESSFULLY'
+              },
+              commit,
+              resolve
+            )
+            
+            console.log("savePeople:" + JSON.stringify(response))
+            userCred = payload.credentialuser.credentialuser
+            commit(types.SET_PEOPLE, response)
+            resolve(response)
+          }
+          if (userCred != '') {
+            api
+              .getPeoples({
+                id: userCred
+              })
+              .then(response => {
+                console.log("getPeoples:" + JSON.stringify(response))
+                if (response.status === 200) {
+                  commit(types.PEOPLES, response.data.docs)
+                  commit(types.TOTAL_PEOPLES, response.data.totalDocs)
+                }
+              })
+              .catch(error => {
+                handleError(error, commit, reject)
+              })
+          }
+
+
+
+          if (response.status === 401) {
+            alert('Debe iniciar session.')
+            resolve({})
+          }
+
+
         })
         .catch(error => {
           alert(error)
