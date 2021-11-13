@@ -19,7 +19,9 @@ import DialogText from '@/components/common/DialogText.vue'
 import Store from '@/components/store/Store.vue'
 import Revelations from '@/components/Revelations.vue'
 import Peoples from '@/components/Peoples.vue'
+import LoginRev from '@/components/LoginRev.vue'
 
+Vue.component('LoginRev', LoginRev)
 Vue.component('Peoples', Peoples)
 Vue.component('Revelations', Revelations)
 Vue.component('Store', Store)

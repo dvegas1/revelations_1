@@ -1,5 +1,5 @@
-<template class="transparent">
-  <v-app class="transparent">
+<template class="transparent ">
+  <v-app class="transparent container_peoples">
     <Toolbar class="transparent"/>
     <loading class="transparent"/>
     <transition name="fade" mode="out-in">

@@ -6,7 +6,7 @@
         :title="
           refText.LOGIN !== undefined
             ? refText.LOGIN.title.contents
-            : 'Sin label'
+            : 'Ingrese su clave de acceso.'
         "
       />
       <Description />
@@ -15,44 +15,24 @@
           <v-layout column>
             <v-flex>
               <v-text-field
-                id="email"
-                name="email"
-                type="email"
-                v-model="login.email"
+                id="credentialuser"
+                name="credentialuser"
+                v-model="login.credentialuser"
                 :label="
                   refText.LOGIN !== undefined
-                    ? refText.LOGIN.email.contents
-                    : 'Sin label'
+                    ? refText.LOGIN.credentialuser.contents
+                    : 'Clave de acceso.'
                 "
                 :messages="['']"
-                :error-messages="campoErrors($v.login.email, 'email')"
-                @keyup="osplug($v.login.email, 'email')"
-                @input="$v.login.email.$touch()"
-                @blur="$v.login.email.$touch()"
-                prepend-icon="mdi-email-outline"
-                autocomplete="off"
-              ></v-text-field>
-            </v-flex>
-            <v-flex>
-              <v-text-field
-                id="password"
-                name="password"
-                v-model="login.password"
-                :label="
-                  refText.LOGIN !== undefined
-                    ? refText.LOGIN.password.contents
-                    : 'Sin label'
-                "
-                :messages="['']"
-                :error-messages="campoErrors($v.login.password, 'password')"
+                :error-messages="campoErrors($v.login.credentialuser, 'credentialuser')"
                 :type="show1 ? 'text' : 'password'"
                 :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                @input="$v.login.password.$touch()"
-                @blur="$v.login.password.$touch()"
-                @keyup="osplug($v.login.password, 'password')"
+                @input="$v.login.credentialuser.$touch()"
+                @blur="$v.login.credentialuser.$touch()"
+                @keyup="osplug($v.login.credentialuser, 'credentialuser')"
                 @click:append="show1 = !show1"
                 prepend-icon="mdi-lock-outline"
-                ref="password"
+                ref="credentialuser"
                 autocomplete="off"
               ></v-text-field>
             </v-flex>
@@ -66,7 +46,7 @@
                 :sitekey="this.key"
                 :loadRecaptchaScript="true"
                 theme="dark"
-                class="g-recaptcha"
+                class="g-recaptcha hidden"
                 ref="recaptcha"
               >
               </vue-recaptcha>
@@ -100,23 +80,9 @@
                 :text="
                   refText.LOGIN !== undefined
                     ? refText.LOGIN.login.contents
-                    : 'Sin label'
+                    : 'Ingresar'
                 "
               />
-            </v-flex>
-            <v-flex text-xs-center>
-              <v-btn
-                :to="{ name: 'forgotPassword' }"
-                color="white"
-                small
-                flat
-                class="btnForgotPassword"
-                >{{
-                  refText.LOGIN !== undefined
-                    ? refText.LOGIN.forgot_password.contents
-                    : 'Sin label'
-                }}</v-btn
-              >
             </v-flex>
           </v-layout>
         </form>
@@ -159,7 +125,7 @@ export default {
     return {
       login: {
         email: '',
-        password: '',
+        credentialuser: '',
         recaptcha: null
       },
       refText: '',
@@ -205,8 +171,7 @@ export default {
 
       if (!this.$v.login.$invalid) {
         await this.userLogin({
-          email: this.login.email,
-          password: this.login.password,
+          credentialuser: this.login.credentialuser,
           recaptcha: this.login.recaptcha
         })
       }

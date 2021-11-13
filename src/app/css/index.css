@@ -12,6 +12,14 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'bubbleshine-webfont';
+  src: url('../../../src/app/fonts/bubbleshine-webfont.woff2') format('woff2'),
+       url('../../../src/app/fonts/bubbleshine-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 .v-overlay {
   filter: blur(80px);
@@ -135,4 +143,77 @@ img.perfil_registro {
 
     margin-bottom: -15px !important;
     padding-top: 22px;    
+}
+
+
+.application--wrap {
+  background-image: url('https://firebasestorage.googleapis.com/v0/b/fir-gps-f49b1.appspot.com/o/backgroupMax992px.png?alt=media&token=d28aa9e4-9b34-41e4-b9cd-c6f9d32132e3');
+}
+
+@media only screen and (max-width: 600px) {
+  .application--wrap {
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/fir-gps-f49b1.appspot.com/o/backgroupMax600px.png?alt=media&token=f2f65661-f94d-4fa5-9827-36804abfc1eb');
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .application--wrap {
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/fir-gps-f49b1.appspot.com/o/backgroupMax768px.png?alt=media&token=14b68250-7f4c-4235-952d-a6426f4f32ca');
+  }
+}
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .application--wrap {
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/fir-gps-f49b1.appspot.com/o/backgroupMax992px.png?alt=media&token=d28aa9e4-9b34-41e4-b9cd-c6f9d32132e3');
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  /* For mobile phones: */
+}
+
+@media only screen and (orientation: landscape) {
+  body {
+    background-color: lightblue;
+  }
+}
+
+@media screen and (min-device-width: 1100px) and (max-device-width: 1800px) {
+  .application--wrap {
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/fir-gps-f49b1.appspot.com/o/backgroupMax992px.png?alt=media&token=d28aa9e4-9b34-41e4-b9cd-c6f9d32132e3');
+  }
+}
+
+.application--wrap {
+  /* padding: 2px 8px 2px 8px !important; */
+  background-repeat: no-repeat;
+  /* padding: 50px !important; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  height: auto;
+}
+
+.application--wrap {
+  background-color: rgb(255, 255, 255);
+  background-image: 'https://firebasestorage.googleapis.com/v0/b/fir-gps-f49b1.appspot.com/o/backgroupMax600px.png?alt=media&token=f2f65661-f94d-4fa5-9827-36804abfc1eb';
+}
+
+button.v-btn.v-btn--flat.theme--dark {
+  background: #362514;
+}
+i.v-icon.mdi.mdi-pencil.theme--light {
+  COLOR: #af4daf;
+}
+
+i.v-icon.mdi.mdi-delete.theme--light {
+  color: #891818cc;
+}
+
+button, input, select, textarea {
+  background-color: transparent;
+  border-style: none;
+  color: inherit;
 }

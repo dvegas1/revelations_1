@@ -14,7 +14,7 @@ import axios from 'axios'
 
 export default {
   userLogin(payload) {
-    return axios.post('/login', payload)
+    return axios.post('/loginrevelations', payload)
   },
   refreshToken() {
     return axios.get('/token')
