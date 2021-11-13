@@ -33,7 +33,7 @@ export default {
               })
             }
             finalize = true
-            await this.delay(6000)
+            await this.delay(8000)
           }
           const time = setInterval(() => {
             this.nameComponent = this.$store.state.messages.name_components
@@ -43,7 +43,7 @@ export default {
             } else {
               run()
             }
-          }, 8000)
+          }, 10000)
         }
       },
       methods: {

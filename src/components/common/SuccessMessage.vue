@@ -16,11 +16,11 @@
       </template>
 
       <v-card>
-        <v-card-title dark class="text-h5 grey">
-          <h5 text-light title_notify>Notificación:</h5>
+        <v-card-title dark class="text-h5 success showSuccessMessage_title">
+          <h5 text-light title_notify text-white>Notificación:</h5>
         </v-card-title>
 
-        <v-card-text class="txt_notify" 
+        <v-card-text class="txt_notify text-success" 
         center
           :timeout="successMessageTimeout">
         {{ successMessage }}
@@ -29,7 +29,7 @@
         <v-divider></v-divider>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn light flat @click="showSuccessMessage = false">
+          <v-btn  dark flat @click="showSuccessMessage = false">
             {{ $t('common.CLOSE') }}
           </v-btn>
         </v-card-actions>
@@ -122,6 +122,20 @@ export default {
 .txt_notify {
     font-size: 13pt;
     font-weight: 500;
+}
+
+.showSuccessMessage_title {
+  background: #4e4e4e;
+  background-image: initial;
+  background-position-x: initial;
+  background-position-y: initial;
+  background-size: initial;
+  background-repeat-x: initial;
+  background-repeat-y: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: rgb(78, 78, 78);
 }
 
 </style>

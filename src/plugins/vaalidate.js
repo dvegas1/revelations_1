@@ -408,21 +408,9 @@ export default {
     },
 
     login: {
-      email: {
+      credentialuser: {
         required,
-        email,
-        maxlength: maxLength(30)
-      },
-      password: {
-        required,
-        strongPassword(password) {
-          return (
-            /[a-z]/.test(password) &&
-            /[0-9]/.test(password) &&
-            /\W|_/.test(password) &&
-            password.length >= 8
-          )
-        }
+        maxlength: maxLength(64)
       }
     }
   }

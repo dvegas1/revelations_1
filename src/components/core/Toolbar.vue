@@ -86,51 +86,6 @@
           <v-icon>{{ item.icon }}</v-icon>
           &nbsp;{{ item.title }}
         </v-btn>
-
-        <v-menu v-if="user" offset-y class="hidden-sm-and-down">
-          <v-btn slot="activator" flat class="">
-            <v-icon>mdi-shopping</v-icon>
-            &nbsp;{{ $t('historyItems.HISTORY') }}
-          </v-btn>
-          <v-list>
-            <v-list-tile
-              active-class="white--text"
-              v-for="(item, index) in historyItems"
-              :key="index"
-              :to="{ name: item.link }"
-              exact
-              :class="[item.class]"
-            >
-              <v-list-tile-title>
-                <v-icon>{{ item.icon }}</v-icon>
-                {{ item.title }}
-              </v-list-tile-title>
-            </v-list-tile>
-          </v-list>
-        </v-menu>
-
-        <v-menu v-if="user" offset-y class="hidden-sm-and-down">
-          <v-btn slot="activator" flat class="">
-            <v-icon>mdi-store</v-icon>
-            &nbsp;{{ $t('myStoreItems.MYSTORE') }}
-          </v-btn>
-          <v-list>
-            <v-list-tile
-              active-class="white--text"
-              v-for="(item, index) in myStoreItems"
-              :key="index"
-              :to="{ name: item.link }"
-              exact
-              :class="[item.class]"
-            >
-              <v-list-tile-title>
-                <v-icon>{{ item.icon }}</v-icon>
-                {{ item.title }}
-              </v-list-tile-title>
-            </v-list-tile>
-          </v-list>
-        </v-menu>
-
         <v-menu v-if="admin" offset-y class="hidden-sm-and-down">
           <v-btn slot="activator" flat class="">
             <v-icon>mdi-lock</v-icon>
@@ -163,7 +118,6 @@
           {{ $t('menuItems.LOGOUT') }}
         </v-btn>
         <LocaleChanger />
-        <Swichdark />
       </v-toolbar-items>
     </v-toolbar>
   </div>
@@ -335,12 +289,12 @@ export default {
       if (this.isTokenSet) {
         return [
           {
-            title: this.$t('menuItems.HOME'),
+            title: 'REVELACIÓN',
             link: 'home',
             icon: 'mdi-home',
             class: ''
           },
-          {
+         /* {
             title: this.$t('menuItems.MY_PROFILE'),
             link: 'profile',
             icon: 'mdi-face',
@@ -369,12 +323,12 @@ export default {
             link: 'DownloadTheApp',
             icon: 'mdi-download',
             class: ''
-          }
+          }*/
         ]
       }
       return [
         {
-          title: this.$t('menuItems.HOME'),
+          title: 'REVELACIÓN',
           link: 'revelations',
           icon: 'mdi-home',
           class: ''
@@ -384,7 +338,7 @@ export default {
           link: 'login',
           icon: 'mdi-login',
           class: ''
-        },
+        }
         /*  {
           title: this.$t('menuItems.FAVORITES'),
           link: 'Favorites',
@@ -408,13 +362,13 @@ export default {
           link: 'DownloadTheApp',
           icon: 'mdi-download',
           class: ''
-        },*/
-        {
+        },
+      {
           title: this.$t('menuItems.SIGNUP'),
           link: 'signup',
           icon: 'mdi-plus-circle-outline',
           class: ''
-        }
+        }*/
       ]
     }
   },
@@ -430,3 +384,32 @@ export default {
   }*/
 }
 </script>
+<style>
+.v-btn__content {
+    color: white;
+}
+.v-toolbar__content {
+background: linear-gradient(270deg, #3367d2, #a311bb,#b993d7);
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 21s ease infinite;
+    -moz-animation: AnimationName 21s ease infinite;
+    animation: AnimationName 21s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+</style>

@@ -2,6 +2,7 @@ export default [
   {
     path: '*',
     component: () =>
-      import(/* webpackChunkName: "notfound" */ '@/components/NotFound.vue')
+    import(/* webpackChunkName: "revelacion" */ '@/components/Revelations.vue')
+
   }
 ]

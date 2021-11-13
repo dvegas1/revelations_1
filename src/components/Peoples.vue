@@ -4,13 +4,19 @@
   <v-layout row wrap container_peoples>
     <v-container class="transparent">
       <div class="quierenCompartir__">
-        <div class="da_compartir">Darwin y Andrea</div>
+        <div class="da_compartir">Andrea y Darwin</div>
         <div class="da_queremos">
           Quieren compartir una noticia importante con ustedes.
         </div>
       </div>
       <form @submit.prevent="submit()">
-        <div class="ninaOnino"></div>
+        <!--   <div class="ninaOnino"></div>-->
+        <div class="Sera_ninaOnino__ center">
+          <p class="nino__">Niño</p>
+          <p class="o__">Sera</p>
+          <p class="nina__">Niña</p>
+        </div>
+
         <div class="fechaHora">Sábado 11 de Diciembre a la 12:00 pm.</div>
         <div class=" justify-center text-xs-center d-block">
           <div class="lugar">
@@ -153,12 +159,12 @@
               :headers="headers"
               :items="items"
               :options.sync="pagination"
-              :items-per-page="5"
+              :items-per-page="3"
               :server-items-length="totalItems"
               class="elevation-1 transparent"
               :footer-props="{
                 'items-per-page-text': $t('dataTable.ROWS_PER_PAGE'),
-                'items-per-page-options': [5, 10, 25]
+                'items-per-page-options': [3, 5, 10,20]
               }"
             >
               <template v-slot:items="props" class="transparent na">
@@ -175,7 +181,7 @@
                           <v-icon>mdi-pencil</v-icon>
                         </div>
                       </v-btn>
-                      <span>{{ 'Editar' }}</span>
+                      <span>{{ 'Mofificar' }}</span>
                     </v-tooltip>
                     <v-tooltip top>
                       <v-btn
@@ -195,6 +201,12 @@
                 <!--<td>{{ props.item.status }}</td>-->
                 <td>{{ props.item.nombre }}</td>
                 <td>{{ props.item.apellido }}</td>
+                <td><v-btn
+                      flat
+                      @click="close"
+                      class="btn_votar"
+                      >{{ 'VOTAR' }}</v-btn
+                    ></td>
               </template>
               <template v-slot:pageText="props" class="transparent">
                 {{ props.pageStart }} - {{ props.pageStop }}
@@ -293,17 +305,23 @@ export default {
           width: 10
         },
         {
-          text: 'Nombre',
+          text: 'NOMBRE',
           value: '_id',
           sortable: false,
           width: 5
         },
         {
-          text: 'Apellido',
+          text: 'APELLIDO',
           align: 'left',
           sortable: true,
           value: 'status',
           width: 5
+        },
+        {
+          text: 'VOTAR',
+          sortable: false,
+          value: 'Votar',
+          width: 1
         }
       ]
     },
@@ -382,9 +400,9 @@ export default {
       async handler() {
         try {
           this.dataTableLoading = true
-          await this.getPeoples(
-            buildPayloadPagination(this.pagination, this.buildSearch())
-          )
+          await this.getPeoples({
+            id: this.$store.state.auth.user.credentialuser
+          })
           this.dataTableLoading = false
           // eslint-disable-next-line no-unused-vars
         } catch (error) {
@@ -433,7 +451,9 @@ export default {
     async doSearch() {
       try {
         this.dataTableLoading = true
-        await this.getPeoples({ id: this.buildSearch() })
+        await this.getPeoples({
+          id: this.$store.state.auth.user.credentialuser
+        })
         this.dataTableLoading = false
         // eslint-disable-next-line no-unused-vars
       } catch (error) {
@@ -457,14 +477,12 @@ export default {
           buttonTrueColor: 'red lighten3',
           buttonFalseColor: 'yellow lighten3'
         })
-
-        console.log('response:' + JSON.stringify(response))
         if (response) {
           this.dataTableLoading = true
           await this.deletePeople(item._id)
-          await this.getPeoples(
-            buildPayloadPagination(this.pagination, this.buildSearch())
-          )
+          await this.getPeoples({
+            id: this.$store.state.auth.user.credentialuser
+          })
           this.dataTableLoading = false
         }
         // eslint-disable-next-line no-unused-vars
@@ -488,9 +506,9 @@ export default {
         // Updating item
         if (this.editedItem._id) {
           await this.editPeople(this.editedItem)
-          await this.getPeoples(
-            buildPayloadPagination(this.pagination, this.buildSearch())
-          )
+          await this.getPeoples({
+            id: this.$store.state.auth.user.credentialuser
+          })
           this.dataTableLoading = false
         } else {
           // Creating new item
@@ -540,14 +558,19 @@ export default {
   },
   validations: vaalid.validations,
   async mounted() {
-    if (
-      this.$store.state.auth.user != undefined ||
-      this.$store.state.auth.user != null ||
-      this.$store.state.auth.user != ''
-    ) {
-      await this.getPeoples({
-        id: this.$store.state.auth.user
-      })
+    console.log("dddddddddddddddddddddddddddddddddddd "+ JSON.stringify(this.$store.state.auth))
+    try {
+      if (
+        this.$store.state.auth.user != undefined ||
+        this.$store.state.auth.user != null ||
+        this.$store.state.auth.user != ''
+      ) {
+        await this.getPeoples({
+          id: this.$store.state.auth.user.credentialuser
+        })
+      }
+    } catch (error) {
+      console.error(error)
     }
 
     await this.name_component(this.idcomponent)

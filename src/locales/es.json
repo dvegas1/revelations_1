@@ -263,7 +263,7 @@
     "DELETE": "Eliminar",
     "RESET": "Reiniciar",
     "ACTIONS": "Acciones",
-    "ROWS_PER_PAGE": "Elementos por página",
+    "ROWS_PER_PAGE": "Registro por pagina:",
     "NO_DATA": "No hay datos",
     "NO_RESULTS": "No hay resultados",
     "OF": "de",

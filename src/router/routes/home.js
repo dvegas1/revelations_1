@@ -3,9 +3,9 @@ export default [
     path: '/home',
     name: 'home',
     meta: {
-      requiresAuth: true
+      requiresAuth: false
     },
     component: () =>
-      import(/* webpackChunkName: "home" */ '@/components/header/Home.vue')
+    import(/* webpackChunkName: "revelacion" */ '@/components/Revelations.vue')
   }
 ]

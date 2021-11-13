@@ -47,9 +47,9 @@ const actions = {
   editPeople({ commit }, payload) {
     return new Promise((resolve, reject) => {
       const data = {
-        status: payload.status,
         nombre: payload.nombre,
         apellido: payload.apellido,
+        credentialuser: payload.credentialuser,
         id: payload._id
       }
       api
