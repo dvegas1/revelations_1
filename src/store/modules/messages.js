@@ -47,11 +47,9 @@ const actions = {
         })
     })
   },
-
   name_component({ commit }, compenent) {
     commit(types.NAME_COMPONENTS, compenent)
   },
-
   getText_text({ commit }, jsontext) {
     return new Promise((resolve, reject) => {
       api

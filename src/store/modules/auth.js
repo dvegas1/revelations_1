@@ -108,6 +108,7 @@ const actions = {
     window.localStorage.removeItem('user')
     commit(types.PEOPLES, [])
     commit(types.LOGOUT)
+   // alert(JSON.stringify(router))
     router.push({
       name: 'revelations'
     })

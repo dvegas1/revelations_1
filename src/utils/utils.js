@@ -79,6 +79,7 @@ export const buildPayloadPagination = (pagination, search) => {
 
 // Catches error connection or any other error (checks if error.response exists)
 export const handleError = (error, commit, reject) => {
+  console.error("error:" + JSON.stringify(error))
   let errMsg = ''
   // Resets errors in store
   commit(types.SHOW_LOADING, false)
@@ -101,19 +102,19 @@ export const handleError = (error, commit, reject) => {
   reject(error)
 }
 
-export const handleError_api = (status,errMsg, commit, reject) => {
+export const handleError_api = (error, commit, reject) => {
   // Resets errors in store
   commit(types.SHOW_LOADING, false)
   commit(types.ERROR, null)
 
   // Checks if unauthorized
-  if (status === 401) {
+  if (error.status === 401) {
     store.dispatch('userLogout')
   } else {
     // Any other error
     setTimeout(() => {
-      return errMsg
-        ? commit(types.ERROR, errMsg)
+      return error.response.data.message.message
+        ? commit(types.ERROR, error.response.data.message.message)
         : commit(types.SHOW_ERROR, false)
     }, 0)
   }
