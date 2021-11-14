@@ -145,7 +145,6 @@ p.nina__ {
 }
 p.nino__ {
   text-align: right;
-  opacity: 90%;
   color: #0e52f7;
   width: 50%;
   padding: 0px 5px 70px 0px;
@@ -159,7 +158,6 @@ p.o__ {
   font-family: 'the_humble-webfont';
   font-size: calc(1em + 2vw);
   color: #282626;
-  opacity: 91%;
   margin: 10px;
   border-radius: 68px;
   line-height: 89px;
@@ -200,7 +198,6 @@ p.text_note {
 p.nina__ {
   width: 50%;
   text-align: left;
-  opacity: 90%;
   color: #df0dcf;
   padding: 70px 5px 10px 0px;
   margin: 2px;
