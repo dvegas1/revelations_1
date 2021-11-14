@@ -24,7 +24,7 @@
           </div>
         </div>
         <br /><br /><br />
-
+        <p class="p_invt">Agregar agregado(s):</p>
         <v-flex d-flex flex-row mb-6 transparent class="container__formText1">
           <v-text-field
             name="nombre"
@@ -87,11 +87,6 @@
                 clear-icon="mdi-close"
                 class="btn_buscar hidden"
               ></v-text-field>
-              <div class="btn_guardar text-right">
-                <v-btn rounded color="primary">
-                  Guardar
-                </v-btn>
-              </div>
             </v-flex>
 
             <v-flex xs12 sm6 md4 text-xs-right mb-2 mt-2 pr-2>
@@ -101,8 +96,8 @@
                 content-class="dlgNewEditItem"
               >
                 <v-card>
-                  <v-card-title>
-                    <span class="headline">{{ formTitle }}</span>
+                  <v-card-title class="title_notify">
+                    <span class="headline ">Modificar invitado.</span>
                   </v-card-title>
                   <v-card-text>
                     <v-container grid-list-md>
@@ -135,18 +130,55 @@
                   <v-card-actions class="transparent">
                     <v-spacer></v-spacer>
                     <v-btn
-                      color="red lighten3"
+                      color="alert"
                       flat
                       @click="close"
                       class="btnCancel"
                       >{{ 'Cancelar' }}</v-btn
                     >
+                    <v-btn color="" flat @click="save" class="primary">{{
+                      'Guardar'
+                    }}</v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+            </v-flex>
+            <v-flex xs12 sm6 md4 text-xs-right mb-2 mt-2 pr-2>
+              <v-dialog
+                v-model="dialog_eliminar"
+                max-width="500px"
+                content-class="dlgNewEditItem"
+              >
+                <v-card>
+                  <v-card-title class="title_notify">
+                    <span class="headline ">Eliminar invitado.</span>
+                  </v-card-title>
+                  <v-card-text>
+                    <v-container grid-list-md>
+                      <v-layout wrap>
+                        <template v-if="deleteItem._id"> </template>
+                        <v-flex xs12>
+                          Confirme eliminación de invitado.
+                        </v-flex>
+                      </v-layout>
+                    </v-container>
+                  </v-card-text>
+
+                  <v-card-actions class="transparent">
+                    <v-spacer></v-spacer>
                     <v-btn
-                      color="yellow lighten3"
+                      color="alert"
                       flat
-                      @click="save"
-                      class="btnSave"
-                      >{{ 'Guardar' }}</v-btn
+                      @click="close_delete"
+                      class="btnCancel"
+                      >{{ 'Cancelar' }}</v-btn
+                    >
+                    <v-btn
+                      color=""
+                      flat
+                      @click="deleteItem1()"
+                      class="primary"
+                      >{{ 'Aceptar1' }}</v-btn
                     >
                   </v-card-actions>
                 </v-card>
@@ -164,7 +196,7 @@
               class="elevation-1 transparent"
               :footer-props="{
                 'items-per-page-text': $t('dataTable.ROWS_PER_PAGE'),
-                'items-per-page-options': [3, 5, 10,20]
+                'items-per-page-options': [3, 5, 10, 20]
               }"
             >
               <template v-slot:items="props" class="transparent na">
@@ -201,12 +233,15 @@
                 <!--<td>{{ props.item.status }}</td>-->
                 <td>{{ props.item.nombre }}</td>
                 <td>{{ props.item.apellido }}</td>
-                <td><v-btn
-                      flat
-                      @click="close"
-                      class="btn_votar"
-                      >{{ 'VOTAR' }}</v-btn
-                    ></td>
+                <td class="center">
+                  <v-btn
+                    disabled
+                    flat
+                    @click="close"
+                    class="btn_votar center hidden"
+                    >{{ 'VOTAR' }}</v-btn
+                  >
+                </td>
               </template>
               <template v-slot:pageText="props" class="transparent">
                 {{ props.pageStart }} - {{ props.pageStop }}
@@ -220,7 +255,7 @@
             </v-data-table>
           </v-container>
         </template>
-
+        <ErrorMessage />
         <SuccessMessage />
       </form>
     </v-container>
@@ -266,6 +301,8 @@ export default {
   },
   data() {
     return {
+      dialog_eliminar: false,
+      key: '',
       revelations: {
         nombre: '',
         apellido: ''
@@ -278,6 +315,7 @@ export default {
       search: '',
       pagination: {},
       editedItem: {},
+      deletedItem: {},
       defaultItem: {},
       fieldsToSearch: ['nombre']
     }
@@ -313,15 +351,9 @@ export default {
         {
           text: 'APELLIDO',
           align: 'left',
-          sortable: true,
-          value: 'status',
-          width: 5
-        },
-        {
-          text: 'VOTAR',
           sortable: false,
-          value: 'Votar',
-          width: 1
+          value: 'status',
+          width: '50px'
         }
       ]
     },
@@ -430,6 +462,19 @@ export default {
       'setCred',
       'getAllID'
     ]),
+    copyKey() {
+      var copyText = document.getElementById('myInput')
+      copyText.select()
+      copyText.setSelectionRange(0, 99999)
+      navigator.clipboard.writeText(copyText.value)
+
+      var tooltip = document.getElementById('st_text_copy')
+      tooltip.innerHTML = 'Texto copiado.'
+    },
+    outFunc() {
+      var tooltip = document.getElementById('myTooltip')
+      tooltip.innerHTML = 'Copy to clipboard'
+    },
     async RspsavePeople() {
       console.log(
         'this.$store.state.peoples.RspsavePeople:' +
@@ -467,26 +512,21 @@ export default {
       this.editedItem = Object.assign({}, item)
       this.dialog = true
     },
-    async deleteItem(item) {
-      console.log('json:' + JSON.stringify(item))
+    deleteItem(item) {
+      this.deletedItem = Object.assign({}, item)
+      this.dialog_eliminar = true
+    },
+    async deleteItem1() {
       try {
-        const response = await this.$confirm('Confirmar', {
-          title: 'alert',
-          buttonTrueText: 'Acceptar',
-          buttonFalseText: 'Cancelar',
-          buttonTrueColor: 'red lighten3',
-          buttonFalseColor: 'yellow lighten3'
+        this.dataTableLoading = true
+        await this.deletePeople(this.deletedItem._id)
+        await this.getPeoples({
+          id: this.$store.state.auth.user.credentialuser
         })
-        if (response) {
-          this.dataTableLoading = true
-          await this.deletePeople(item._id)
-          await this.getPeoples({
-            id: this.$store.state.auth.user.credentialuser
-          })
-          this.dataTableLoading = false
-        }
-        // eslint-disable-next-line no-unused-vars
+        this.dataTableLoading = false
+        this.dialog_eliminar = false
       } catch (error) {
+        this.dialog_eliminar = true
         this.dataTableLoading = false
       }
     },
@@ -496,11 +536,16 @@ export default {
         this.editedItem = Object.assign({}, this.defaultItem)
       }, 300)
     },
+    close_delete() {
+      this.dialog_eliminar = false
+      setTimeout(() => {
+        this.deletedItem = Object.assign({}, this.defaultItem)
+      }, 300)
+    },
     async save() {
       try {
         let data = []
         // const valid = await this.$validator.validateAll()
-        this.dataTableLoading = true
         console.log('Guardando')
         console.log('editedItem ' + JSON.stringify(this.editedItem))
         // Updating item
@@ -558,7 +603,10 @@ export default {
   },
   validations: vaalid.validations,
   async mounted() {
-    console.log("dddddddddddddddddddddddddddddddddddd "+ JSON.stringify(this.$store.state.auth))
+    console.log(
+      'dddddddddddddddddddddddddddddddddddd ' +
+        JSON.stringify(this.$store.state.auth)
+    )
     try {
       if (
         this.$store.state.auth.user != undefined ||

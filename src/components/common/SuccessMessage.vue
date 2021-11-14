@@ -16,14 +16,14 @@
       </template>
 
       <v-card>
-        <v-card-title dark class="text-h5 success showSuccessMessage_title">
+        <v-card-title dark class="text-h5  showSuccessMessage_title">
           <h5 text-light title_notify text-white>Notificación:</h5>
         </v-card-title>
 
-        <v-card-text class="txt_notify text-success" 
-        center
+        <v-card-text class="txt_notify text-success__" 
+        center container
           :timeout="successMessageTimeout">
-        {{ successMessage }}
+       <div v-html="successMessage"></div>
         </v-card-text>
         </v-snackbar>
         <v-divider></v-divider>
@@ -84,6 +84,23 @@ export default {
     }
   },
   name: 'SuccessMessage',
+  methods: {
+  copyKey(){
+      var copyText = document.getElementById("myInput");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+  var tooltip = document.getElementById("st_text_copy");
+  tooltip.innerHTML = "Texto copiado.";
+    
+    },
+    outFunc(){
+      var tooltip = document.getElementById("myTooltip");
+  tooltip.innerHTML = "Copy to clipboard";
+
+    }
+  },
   computed: {
     showSuccessMessage: {
       get() {
@@ -116,26 +133,19 @@ export default {
 </script>
 
 <style>
-.title_notify {
-    text-shadow: 1px 1px 1px #f3f3f38c;
-}
 .txt_notify {
     font-size: 13pt;
     font-weight: 500;
 }
 
-.showSuccessMessage_title {
-  background: #4e4e4e;
-  background-image: initial;
-  background-position-x: initial;
-  background-position-y: initial;
-  background-size: initial;
-  background-repeat-x: initial;
-  background-repeat-y: initial;
-  background-attachment: initial;
-  background-origin: initial;
-  background-clip: initial;
-  background-color: rgb(78, 78, 78);
+.showErrorMessage_title {
+   background-color: rgb(151 79 76);
+    color: #f5f8ff;
+    font-weight: 100;
+}
+
+.text-success__ {
+    color: #28a745!important;
 }
 
 </style>

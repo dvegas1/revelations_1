@@ -67,6 +67,8 @@ a:hover {
   border-radius: 100px;
 }
 
+
+
 img.perfil_registro {
   width: 200px;
   height: 200px;
@@ -75,8 +77,8 @@ img.perfil_registro {
   border-radius: 120px;
 }
 
-.v-card__title.headline {
-  background-color: orangered;
+.v-btn.theme--light{
+
 }
 
 .file-uploads {
@@ -202,7 +204,7 @@ img.perfil_registro {
 }
 
 button.v-btn.v-btn--flat.theme--dark {
-  background: #362514;
+  background: #4c6297;
 }
 i.v-icon.mdi.mdi-pencil.theme--light {
   COLOR: #af4daf;

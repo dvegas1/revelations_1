@@ -106,9 +106,10 @@ const actions = {
     window.localStorage.removeItem('token')
     window.localStorage.removeItem('tokenExpiration')
     window.localStorage.removeItem('user')
+    commit(types.PEOPLES, [])
     commit(types.LOGOUT)
     router.push({
-      name: 'login'
+      name: 'revelations'
     })
   }
 }

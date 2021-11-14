@@ -7,6 +7,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <link rel="icon" href="<%= BASE_URL %>favicon.ico">
   <title>vue-skeleton-mvp</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+  rel="stylesheet" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons">
 
@@ -17,7 +19,7 @@
   <link href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/atom-one-light.min.css"
     rel="stylesheet" />
   
-
+ 
 </head>
 
 <body>
@@ -36,6 +38,29 @@
   <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/xkeshi/image-compressor/dist/image-compressor.js"></script>
+
+
+  <script>
+    function copyKey() {
+      var copyText = document.getElementById("myInput");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+  var tooltip = document.getElementById("st_text_copy");
+  tooltip.innerHTML = "Su clave ha sido copiada al portapapeles.";
+
+  setTimeout(function(){ tooltip.innerHTML = ""; }, 7000);
+
+    }
+    
+    function outFunc() {
+      var tooltip = document.getElementById("st_text_copy");
+      tooltip.innerHTML = "";
+    }
+    </script>
+
+
 </body>
 
 </html>

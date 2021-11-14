@@ -12,7 +12,7 @@
 
 import * as types from '@/store/mutation-types'
 import api from '@/services/api/peoples'
-import { buildSuccess, handleError } from '@/utils/utils.js'
+import { buildSuccess, handleError,handleError_api } from '@/utils/utils.js'
 import { resolve } from 'core-js/fn/promise'
 import { addMinutes, format } from 'date-fns'
 const MINUTES_TO_CHECK_FOR_TOKEN_REFRESH = 1440
@@ -46,6 +46,7 @@ const actions = {
   },
   editPeople({ commit }, payload) {
     return new Promise((resolve, reject) => {
+      let response1 = ''
       const data = {
         nombre: payload.nombre,
         apellido: payload.apellido,
@@ -56,17 +57,37 @@ const actions = {
         .editPeople(payload._id, data)
         .then(response => {
           if (response.status === 200) {
-            buildSuccess(
+              response1= response
+           buildSuccess(
               {
                 msg: 'common.SAVED_SUCCESSFULLY'
               },
               commit,
               resolve
             )
+
+          }else if(response.status === 422){
+            console.log("error:" + JSON.stringify(response))
+            if(response.exist.size() > 0){
+            handleError_api(
+              response.status,
+              'Invitado duplicado.',
+              commit,
+              resolve
+            )
+          }
           }
         })
         .catch(error => {
-          handleError(error, commit, reject)
+          console.log("error:" + JSON.stringify(response1))
+            if(response.exist.size() > 0){
+            handleError_api(
+              response.status,
+              'Invitado duplicado.',
+              commit,
+              resolve
+            )
+          }
         })
     })
   },
@@ -76,6 +97,8 @@ const actions = {
         .savePeople(payload)
         .then(response => {
           let userCred = ''
+          let msgNotyfi = ''
+
           if (response.status === 201) {
             buildSuccess(
               {
@@ -109,20 +132,15 @@ const actions = {
             commit(types.SAVE_TOKEN, response.data.responseUser.token)
             commit(types.EMAIL_VERIFIED, response.data.responseUser.user.verified)
             userCred = response.data.responseUser.user.credentialuser
+
+            let key = '<div class="container_key"> <div class="v-input text_key v-text-field v-input--is-label-active v-input--is-dirty theme--light"><div class="v-input__control"><div class="v-input__slot"><div class="v-text-field__slot"><input disabled id="myInput" value=' + userCred.trim() + ' autocomplete="off" type="text"></div></div><p id="st_text_copy"></p></div></div><button type="button" onclick="copyKey()" class="btn_light_copy v-btn--flat v-btn theme--light"><div class="v-btn__content"><i onclick="copyKey()" class="far fa-copy"></i></div></button></div>'
+             msgNotyfi = '<div class="accs"> <p class="text-success">Invitado guardado exitosamente. </p> <p class="yourKey">Su clave de acceso es:</p>' + key + '	<p class="note">NOTA:<p><p class="text_note"> La clave de acceso es necesaria para ingresar en un futuro a la plataforma, debe guardarla ya que la misma no puede ser recuperada.</p></div>'
             resolve(response)
           }
           if (response.status === 200) {
-            alert('agregado a usuario existente.')
-            buildSuccess(
-              {
-                msg: 'common.PEOPLE_SUCCESSFULLY'
-              },
-              commit,
-              resolve
-            )
-            
             console.log("savePeople:" + JSON.stringify(response))
             userCred = payload.credentialuser.credentialuser
+            msgNotyfi = '<div class="accs"> <p class="text-success">Invitado guardado exitosamente.</p></div>'
             commit(types.SET_PEOPLE, response)
             resolve(response)
           }
@@ -145,6 +163,16 @@ const actions = {
 
 
 
+          buildSuccess(
+            {
+              msg: msgNotyfi
+            },
+            commit,
+            resolve
+          )
+
+
+
           if (response.status === 401) {
             alert('Debe iniciar session.')
             resolve({})
@@ -153,8 +181,12 @@ const actions = {
 
         })
         .catch(error => {
-          alert(error)
-          handleError(error, commit, reject)
+          handleError_api(
+            422,
+            'Invitado duplicado.',
+            commit,
+            resolve
+          )
         })
     })
   },
