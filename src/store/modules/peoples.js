@@ -66,28 +66,16 @@ const actions = {
               resolve
             )
 
-          }else if(response.status === 422){
-            console.log("error:" + JSON.stringify(response))
-            if(response.exist.size() > 0){
-            handleError_api(
-              response.status,
-              'Invitado duplicado.',
-              commit,
-              resolve
-            )
-          }
           }
         })
         .catch(error => {
-          console.log("error:" + JSON.stringify(response1))
-            if(response.exist.size() > 0){
             handleError_api(
-              response.status,
+              422,
               'Invitado duplicado.',
               commit,
               resolve
             )
-          }
+     
         })
     })
   },
