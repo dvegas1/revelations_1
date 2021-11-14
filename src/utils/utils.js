@@ -101,6 +101,25 @@ export const handleError = (error, commit, reject) => {
   reject(error)
 }
 
+export const handleError_api = (status,errMsg, commit, reject) => {
+  // Resets errors in store
+  commit(types.SHOW_LOADING, false)
+  commit(types.ERROR, null)
+
+  // Checks if unauthorized
+  if (status === 401) {
+    store.dispatch('userLogout')
+  } else {
+    // Any other error
+    setTimeout(() => {
+      return errMsg
+        ? commit(types.ERROR, errMsg)
+        : commit(types.SHOW_ERROR, false)
+    }, 0)
+  }
+  reject(error)
+}
+
 export const buildSuccess = (
   msg,
   commit,

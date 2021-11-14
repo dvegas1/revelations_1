@@ -218,7 +218,7 @@ export default {
   created() {
     
     if (this.$store.state.auth.isTokenSet) {
-      router.push({ name: 'home' })
+      router.push({ name: 'revelations' })
     }
   },
 
