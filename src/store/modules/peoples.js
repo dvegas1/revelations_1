@@ -70,10 +70,9 @@ const actions = {
         })
         .catch(error => {
             handleError_api(
-              422,
-              'Invitado duplicado.',
+              error,
               commit,
-              resolve
+              reject
             )
      
         })
@@ -86,6 +85,7 @@ const actions = {
         .then(response => {
           let userCred = ''
           let msgNotyfi = ''
+          console.log("response:" + JSON.stringify(response))
 
           if (response.status === 201) {
             buildSuccess(
@@ -149,8 +149,6 @@ const actions = {
               })
           }
 
-
-
           buildSuccess(
             {
               msg: msgNotyfi
@@ -166,15 +164,15 @@ const actions = {
             resolve({})
           }
 
+          if (response.status === 423) {
+            alert('Debe iniciar session.')
+            resolve({})
+          }
 
-        })
-        .catch(error => {
-          handleError_api(
-            422,
-            'Invitado duplicado.',
-            commit,
-            resolve
-          )
+
+        }).catch(error => {
+          console.log(JSON.stringify(error.response))
+          handleError_api(error, commit, reject)
         })
     })
   },

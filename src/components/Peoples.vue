@@ -178,7 +178,7 @@
                       flat
                       @click="deleteItem1()"
                       class="primary"
-                      >{{ 'Aceptar1' }}</v-btn
+                      >{{ 'Aceptar' }}</v-btn
                     >
                   </v-card-actions>
                 </v-card>
@@ -296,7 +296,7 @@ export default {
   metaInfo() {
     return {
       title: 'Revelación',
-      titleTemplate: `${this.$t('city.TITLE')} - %s`
+      titleTemplate: 'Revelación'
     }
   },
   data() {
@@ -462,6 +462,16 @@ export default {
       'setCred',
       'getAllID'
     ]),
+    user() {
+      try {
+        if (this.$store.state.auth.user.credentialuser) {
+          return true
+        }
+      } catch (error) {
+        return false
+      }
+      return true
+    },
     copyKey() {
       var copyText = document.getElementById('myInput')
       copyText.select()
@@ -607,19 +617,11 @@ export default {
       'dddddddddddddddddddddddddddddddddddd ' +
         JSON.stringify(this.$store.state.auth)
     )
-    try {
-      if (
-        this.$store.state.auth.user != undefined ||
-        this.$store.state.auth.user != null ||
-        this.$store.state.auth.user != ''
-      ) {
+      if (this.user()) {
         await this.getPeoples({
           id: this.$store.state.auth.user.credentialuser
         })
       }
-    } catch (error) {
-      console.error(error)
-    }
 
     await this.name_component(this.idcomponent)
     // await this.getAllID()

@@ -29,3 +29,4 @@ yarn-error.log*
 .env.e2e
 *.development
 .env.e2e
+.env.production
