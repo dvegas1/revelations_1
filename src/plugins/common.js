@@ -20,7 +20,10 @@ import Store from '@/components/store/Store.vue'
 import Revelations from '@/components/Revelations.vue'
 import Peoples from '@/components/Peoples.vue'
 import LoginRev from '@/components/LoginRev.vue'
+import notify from '@/components/notify.vue'
 
+
+Vue.component('notify', notify)
 Vue.component('LoginRev', LoginRev)
 Vue.component('Peoples', Peoples)
 Vue.component('Revelations', Revelations)

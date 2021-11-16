@@ -1,26 +1,29 @@
 import Vue from 'vue'
+import Vuelidate from 'vuelidate'
+// import VeeValidate from 'vee-validate'
 import '@/plugins/axios'
 import '@/plugins/vuetify'
-import Vuelidate from 'vuelidate'
-import VeeValidate from 'vee-validate'
 import '@/plugins/common'
 import '@/plugins/googleAnalytics'
 import i18n from '@/plugins/i18n'
 import App from '@/App.vue'
 import router from '@/router'
 import { store } from '@/store'
-import cua from '@/plugins/library'
-// import proof from'@/plugins/proof'
+import vaalid from '@/plugins/vaalidate'
+import plumessag from '@/plugins/plumessag'
+import Vuesax from 'vuesax'
+
+import 'vuesax/dist/vuesax.css' //Vuesax styles
 
 Vue.config.productionTip = false
 
+Vue.use(Vuesax)
+
+
 Vue.use(Vuelidate)
-
-Vue.use(VeeValidate)
-
-Vue.use(cua)
-
-// Vue.use(proof)
+// Vue.use(VeeValidate)
+Vue.use(vaalid)
+Vue.use(plumessag)
 
 const app = new Vue({
   router,

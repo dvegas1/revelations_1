@@ -12,7 +12,7 @@
 
 import * as types from '@/store/mutation-types'
 import api from '@/services/api/peoples'
-import { buildSuccess, handleError,handleError_api } from '@/utils/utils.js'
+import { buildSuccess, handleError, handleError_api } from '@/utils/utils.js'
 import { resolve } from 'core-js/fn/promise'
 import { addMinutes, format } from 'date-fns'
 const MINUTES_TO_CHECK_FOR_TOKEN_REFRESH = 1440
@@ -21,7 +21,8 @@ const getters = {
   totalPeoples: state => state.totalPeoples,
   peoples: state => state.peoples,
   set_User: state => state.set_User,
-  RspsavePeople: state => state.RspsavePeople
+  RspsavePeople: state => state.RspsavePeople,
+  notify: state => state.notify
 
 }
 
@@ -32,7 +33,6 @@ const actions = {
       api
         .getPeoples(payload)
         .then(response => {
-          console.log("getPeoples:" + JSON.stringify(response))
           if (response.status === 200) {
             commit(types.PEOPLES, response.data.docs)
             commit(types.TOTAL_PEOPLES, response.data.totalDocs)
@@ -45,46 +45,97 @@ const actions = {
     })
   },
   editPeople({ commit }, payload) {
+    console.log("payload:edit:" + JSON.stringify(payload))
+
+    commit(types.NOTIFY, {
+      duration: 4000,
+      progress: 'auto',
+      title: 'Modificando invitado.',
+      text: payload.nombre + ' ' + payload.apellido,
+      color: 'dark',
+      position: 'bottom-center'
+    })
+
+    const data = {
+      nombre: payload.nombre,
+      apellido: payload.apellido,
+      credentialuser: payload.credentialuser,
+      id: payload._id
+    }
+
     return new Promise((resolve, reject) => {
-      let response1 = ''
-      const data = {
-        nombre: payload.nombre,
-        apellido: payload.apellido,
-        credentialuser: payload.credentialuser,
-        id: payload._id
-      }
       api
         .editPeople(payload._id, data)
         .then(response => {
           if (response.status === 200) {
-              response1= response
-           buildSuccess(
-              {
-                msg: 'common.SAVED_SUCCESSFULLY'
-              },
-              commit,
-              resolve
-            )
 
+            commit(types.NOTIFY, {
+              duration: 6000,
+              progress: 'auto',
+              title: 'Invitado modificado con éxito.',
+              text: payload.nombre + ' ' + payload.apellido,
+              color: 'success',
+              position: 'bottom-center'
+            })
+            /* buildSuccess(
+                {
+                  msg: 'common.SAVED_SUCCESSFULLY'
+                },
+                commit,
+                resolve
+              )*/
+
+            console.log("data:" + JSON.stringify(data))
+
+            api
+              .getPeoples({
+                id: data.credentialuser
+              })
+              .then(response__ => {
+                if (response__.status === 200) {
+                  commit(types.PEOPLES, response__.data.docs)
+                  commit(types.TOTAL_PEOPLES, response__.data.totalDocs)
+                }
+                resolve({ response__ })
+              })
+
+
+              .catch(error => {
+                handleError_api(
+                  error,
+                  commit,
+                  reject
+                )
+              })
           }
         })
         .catch(error => {
-            handleError_api(
-              error,
-              commit,
-              reject
-            )
-     
+          handleError_api(
+            error,
+            commit,
+            reject
+          )
         })
     })
   },
   async savePeople({ commit }, payload) {
+    console.log("payload:" + JSON.stringify(payload))
+    let payload__ = JSON.parse(payload.peoples)
+    commit(types.NOTIFY, {
+      duration: 4000,
+      progress: 'auto',
+      title: 'Agregando a invitado',
+      text: payload__[0].nombre + ' ' + payload__[0].apellido,
+      color: 'dark',
+      position: 'bottom-center'
+    })
     return new Promise((resolve, reject) => {
       api
         .savePeople(payload)
         .then(response => {
           let userCred = ''
           let msgNotyfi = ''
+          console.log("payload:" + JSON.stringify(payload))
           console.log("response:" + JSON.stringify(response))
 
           if (response.status === 201) {
@@ -96,7 +147,6 @@ const actions = {
               resolve
             )
             commit(types.SET_PEOPLE, response)
-            console.log("savePeople:" + JSON.stringify(response))
             console.log("Seteando parametro de session")
 
             window.localStorage.setItem(
@@ -122,24 +172,56 @@ const actions = {
             userCred = response.data.responseUser.user.credentialuser
 
             let key = '<div class="container_key"> <div class="v-input text_key v-text-field v-input--is-label-active v-input--is-dirty theme--light"><div class="v-input__control"><div class="v-input__slot"><div class="v-text-field__slot"><input disabled id="myInput" value=' + userCred.trim() + ' autocomplete="off" type="text"></div></div><p id="st_text_copy"></p></div></div><button type="button" onclick="copyKey()" class="btn_light_copy v-btn--flat v-btn theme--light"><div class="v-btn__content"><i onclick="copyKey()" class="far fa-copy"></i></div></button></div>'
-             msgNotyfi = '<div class="accs"> <p class="text-success">Invitado guardado exitosamente. </p> <p class="yourKey">Su clave de acceso es:</p>' + key + '	<p class="note">NOTA:<p><p class="text_note"> La clave de acceso es necesaria para ingresar en un futuro a la plataforma, debe guardarla ya que la misma no puede ser recuperada.</p></div>'
+            msgNotyfi = '<p class="yourKey">Su clave de acceso es:</p>' + key + '	<p class="note">NOTA:<p><p class="text_note"> La clave de acceso es necesaria para ingresar en un futuro a la plataforma, debe guardarla ya que la misma no puede ser recuperada.</p></div>'
+                  
+            commit(types.NOTIFY, {
+              duration: 6000,
+              progress: 'auto',
+              title: 'Invitado agregado con éxito.',
+              text: payload__[0].nombre + ' ' + payload__[0].apellido,
+              color: 'success',
+              position: 'bottom-center'
+            })
+
+
+            buildSuccess(
+              {
+                msg: msgNotyfi
+              },
+              commit,
+              resolve
+            )
+
             resolve(response)
           }
           if (response.status === 200) {
-            console.log("savePeople:" + JSON.stringify(response))
-            userCred = payload.credentialuser.credentialuser
-            msgNotyfi = '<div class="accs"> <p class="text-success">Invitado guardado exitosamente.</p></div>'
+            console.log("Response:" + JSON.stringify(response))
+            userCred = response.data.credentialuser
+            response.data.create.forEach(people => {
+              commit(types.NOTIFY, {
+                duration: 6000,
+                progress: 'auto',
+                title: 'Invitado agregado con éxito.',
+                text: people.nombre + ' ' + people.apellido,
+                color: 'success',
+                position: 'bottom-center'
+              })
+
+            });
+
+            // msgNotyfi = '<div class="accs"> <p class="text-success">Invitado guardado exitosamente.</p></div>'
             commit(types.SET_PEOPLE, response)
-            resolve(response)
+
           }
+
           if (userCred != '') {
             api
               .getPeoples({
                 id: userCred
               })
               .then(response => {
-                console.log("getPeoples:" + JSON.stringify(response))
                 if (response.status === 200) {
+                  console.log("responseGet:" + JSON.stringify())
                   commit(types.PEOPLES, response.data.docs)
                   commit(types.TOTAL_PEOPLES, response.data.totalDocs)
                 }
@@ -149,46 +231,86 @@ const actions = {
               })
           }
 
-          buildSuccess(
-            {
-              msg: msgNotyfi
-            },
-            commit,
-            resolve
-          )
-
-
-
           if (response.status === 401) {
-            alert('Debe iniciar session.')
+            console.error('Debe iniciar session.')
             resolve({})
           }
 
           if (response.status === 423) {
-            alert('Debe iniciar session.')
+            console.error('Debe iniciar session.')
             resolve({})
           }
 
 
+          /*
+          
+          buildSuccess(
+                      {
+                        msg: msgNotyfi
+                      },
+                      commit,
+                      resolve
+                    )
+          */
+
+          resolve(response)
         }).catch(error => {
-          console.log(JSON.stringify(error.response))
+          console.error(JSON.stringify(error.response))
           handleError_api(error, commit, reject)
         })
     })
   },
   deletePeople({ commit }, payload) {
+    console.log("deletepayload: " + JSON.stringify(payload))
+
+    commit(types.NOTIFY, {
+      duration: 4000,
+      progress: 'auto',
+      title: 'Eliminando invitado.',
+      text: payload.nombre + ' ' + payload.apellido,
+      color: 'dark',
+      position: 'bottom-center'
+    })
+
     return new Promise((resolve, reject) => {
       api
-        .deletePeople(payload)
+        .deletePeople(payload._id)
         .then(response => {
           if (response.status === 200) {
-            buildSuccess(
-              {
-                msg: 'common.DELETED_SUCCESSFULLY'
-              },
-              commit,
-              resolve
-            )
+
+            commit(types.NOTIFY, {
+              duration: 6000,
+              progress: 'auto',
+              title: 'Invitado eliminado con éxito.',
+              text: payload.nombre + ' ' + payload.apellido,
+              color: 'success',
+              position: 'bottom-center'
+            })
+
+            api
+              .getPeoples({
+                id: payload.cred
+              })
+              .then(response => {
+                if (response.status === 200) {
+                  commit(types.PEOPLES, response.data.docs)
+                  commit(types.TOTAL_PEOPLES, response.data.totalDocs)
+                }
+              })
+              .catch(error => {
+                handleError(error, commit, reject)
+              })
+
+
+            resolve({})
+
+            /*   buildSuccess(
+                 {
+                   msg: 'common.DELETED_SUCCESSFULLY'
+                 },
+                 commit,
+                 resolve
+               )*/
           }
         })
         .catch(error => {
@@ -199,7 +321,13 @@ const actions = {
   setCred({ commit }, payload) {
     return new Promise((resolve, reject) => {
       commit(types.SET_USER, payload)
+
       resolve(true)
+    })
+  },
+  sendNotify({ commit }, payload) {
+    return new Promise((resolve, reject) => {
+      commit(types.NOTIFY, payload)
     })
   }
 }
@@ -216,11 +344,15 @@ const mutations = {
   },
   [types.SET_PEOPLE](state, value) {
     state.RspsavePeople = value
+  },
+  [types.NOTIFY](state, value) {
+    state.notify = value
   }
 }
 
 const state = {
   peoples: [],
+  notify: {},
   set_User: '',
   RspsavePeople: [],
   totalPeoples: 0

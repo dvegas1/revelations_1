@@ -16,14 +16,31 @@
           <p class="o__">Sera</p>
           <p class="nina__">Niña</p>
         </div>
+        <div class="line"></div>
 
-        <div class="fechaHora">Sábado 11 de Diciembre a la 12:00 pm.</div>
-        <div class=" justify-center text-xs-center d-block">
-          <div class="lugar">
-            Lugar: Miranda cúa, urb santa rosa calle nro 15 casa nro 113.
+        <div class="lugar">
+          <div class="cont_flugar">
+            <p class="title_lugar">Fecha:</p>
+            <p class="dir_lugar">Sábado 11 de Diciembre a las 12:00 pm.</p>
+          </div>
+          <div class="cont_flugar">
+            <p class="title_lugar">Lugar:</p>
+            <p class="dir_lugar">
+              Miranda cúa, urb santa rosa calle nro 15 casa nro 113.
+            </p>
           </div>
         </div>
-        <br /><br /><br />
+
+        <p class="title_note hidden" @click="hiddeModal">Nota:</p>
+        <div v-show="this.hiddde_modal__" class="container_nota hidden">
+          <p>
+            Debe agregar cada invitado o acompañante por separadao, escribiendo
+            su nombre y su apellido luego presionar el boton
+            <v-icon class="plus_peoples">
+              mdi-plus
+            </v-icon>
+          </p>
+        </div>
         <p class="p_invt">Agregar agregado(s):</p>
         <v-flex d-flex flex-row mb-6 transparent class="container__formText1">
           <v-text-field
@@ -37,9 +54,15 @@
                 : 'Nombre'
             "
             :messages="['']"
-            :error-messages="campoErrors(this.$v.revelations.nombre, 'nombre')"
-            @keyup="osplug($v.revelations.nombre, 'nombre')"
-            prepend-icon="mdi-email-outline"
+            :class="{ 'is-invalid': $v.revelations.nombre.$error }"
+            @input="$v.revelations.nombre.$touch()"
+            @blur="$v.revelations.nombre.$touch()"
+            :error-messages="
+              campoErrors(
+                this.$v.revelations.nombre,
+                osplug($v.revelations.nombre, 'Nombre')
+              )
+            "
             autocomplete="off"
           ></v-text-field>
           <v-text-field
@@ -53,11 +76,14 @@
                 : 'Apellido'
             "
             :messages="['']"
+            @input="$v.revelations.apellido.$touch()"
+            @blur="$v.revelations.apellido.$touch()"
             :error-messages="
-              campoErrors(this.$v.revelations.apellido, 'apellido')
+              campoErrors(
+                this.$v.revelations.apellido,
+                osplug($v.revelations.apellido, 'Apellido')
+              )
             "
-            @keyup="osplug($v.revelations.apellido, 'apellido')"
-            prepend-icon="mdi-email-outline"
             autocomplete="off"
           ></v-text-field>
           <div class="containr_btn_add">
@@ -96,7 +122,7 @@
                 content-class="dlgNewEditItem"
               >
                 <v-card>
-                  <v-card-title class="title_notify">
+                  <v-card-title class="darken">
                     <span class="headline ">Modificar invitado.</span>
                   </v-card-title>
                   <v-card-text>
@@ -105,21 +131,39 @@
                         <template v-if="editedItem._id"> </template>
                         <v-flex xs12>
                           <v-text-field
-                            id="nombre"
-                            name="nombre"
+                            id="editedItem_nombre"
+                            name="editedItem_nombre"
                             v-model="editedItem.nombre"
                             label="Nombre"
                             data-vv-as="Nombre"
+                            :messages="['']"
+                            @input="$v.editedItem.nombre.$touch()"
+                            @blur="$v.editedItem.nombre.$touch()"
+                            :error-messages="
+                              campoErrors(
+                                this.$v.editedItem.nombre,
+                                osplug($v.editedItem.nombre, 'Nombre')
+                              )
+                            "
                             autocomplete="off"
                           ></v-text-field>
                         </v-flex>
                         <v-flex xs12>
                           <v-text-field
-                            id="apellido"
-                            name="apellido "
+                            id="editedItem_apellido"
+                            name="editedItem_apellido "
                             v-model="editedItem.apellido"
                             label="Apellido"
                             data-vv-as="Apellido"
+                            :messages="['']"
+                            @input="$v.editedItem.apellido.$touch()"
+                            @blur="$v.editedItem.apellido.$touch()"
+                            :error-messages="
+                              campoErrors(
+                                this.$v.editedItem.apellido,
+                                osplug($v.editedItem.apellido, 'Apellido')
+                              )
+                            "
                             autocomplete="off"
                           ></v-text-field>
                         </v-flex>
@@ -150,20 +194,9 @@
                 content-class="dlgNewEditItem"
               >
                 <v-card>
-                  <v-card-title class="title_notify">
-                    <span class="headline ">Eliminar invitado.</span>
+                  <v-card-title class="darken">
+                    <span class="headline ">Desea eliminar este invitado ?</span>
                   </v-card-title>
-                  <v-card-text>
-                    <v-container grid-list-md>
-                      <v-layout wrap>
-                        <template v-if="deleteItem._id"> </template>
-                        <v-flex xs12>
-                          Confirme eliminación de invitado.
-                        </v-flex>
-                      </v-layout>
-                    </v-container>
-                  </v-card-text>
-
                   <v-card-actions class="transparent">
                     <v-spacer></v-spacer>
                     <v-btn
@@ -188,6 +221,7 @@
               :loading="dataTableLoading"
               :no-data-text="$t('dataTable.NO_DATA')"
               :no-results-text="$t('dataTable.NO_RESULTS')"
+              rows-per-page-text="Registro por pagina."
               :headers="headers"
               :items="items"
               :options.sync="pagination"
@@ -245,7 +279,7 @@
               </template>
               <template v-slot:pageText="props" class="transparent">
                 {{ props.pageStart }} - {{ props.pageStop }}
-                {{ 'dddd' }}
+                {{ 'De:' }}
                 {{ props.itemsLength }}
               </template>
               <template v-slot:no-data>{{
@@ -289,8 +323,8 @@
 
 import { mapActions } from 'vuex'
 import { getFormat, buildPayloadPagination } from '@/utils/utils.js'
-import plumessag from '@/plugins/plumessag'
 import vaalid from '@/plugins/vaalidate'
+import plumessag from '@/plugins/plumessag'
 
 export default {
   metaInfo() {
@@ -301,9 +335,14 @@ export default {
   },
   data() {
     return {
+      hiddde_modal__: false,
       dialog_eliminar: false,
       key: '',
       revelations: {
+        nombre: '',
+        apellido: ''
+      },
+      editedItem: {
         nombre: '',
         apellido: ''
       },
@@ -314,13 +353,15 @@ export default {
       dialog: false,
       search: '',
       pagination: {},
-      editedItem: {},
       deletedItem: {},
       defaultItem: {},
       fieldsToSearch: ['nombre']
     }
   },
   computed: {
+    notify() {
+      return this.$store.state.peoples.notify
+    },
     getRspPeopleSave() {
       return this.$store.state.peoples.RspsavePeople
     },
@@ -417,6 +458,10 @@ export default {
     }
   },
   watch: {
+    notify() {
+      this.openNotification(this.$store.state.peoples.notify)
+      return this.$store.state.peoples.notify
+    },
     getCred() {
       console.log('Cambios en set_User:' + this.$store.state.peoples.set_User)
       return this.$store.state.peoples.set_User
@@ -460,8 +505,15 @@ export default {
       'deletePeople',
       'addStatusData',
       'setCred',
-      'getAllID'
+      'getAllID',
+      'sendNotify'
     ]),
+    openNotification() {
+      this.$vs.notification(this.notify)
+    },
+    hiddeModal() {
+      this.hiddde_modal__ = true
+    },
     user() {
       try {
         if (this.$store.state.auth.user.credentialuser) {
@@ -520,6 +572,7 @@ export default {
     },
     editItem(item) {
       this.editedItem = Object.assign({}, item)
+      this.deletedItem['cred'] = this.$store.state.auth.user.credentialuser
       this.dialog = true
     },
     deleteItem(item) {
@@ -529,10 +582,9 @@ export default {
     async deleteItem1() {
       try {
         this.dataTableLoading = true
-        await this.deletePeople(this.deletedItem._id)
-        await this.getPeoples({
-          id: this.$store.state.auth.user.credentialuser
-        })
+        this.dialog_eliminar = false
+        this.deletedItem['cred'] = this.$store.state.auth.user.credentialuser
+        await this.deletePeople(this.deletedItem)
         this.dataTableLoading = false
         this.dialog_eliminar = false
       } catch (error) {
@@ -553,51 +605,88 @@ export default {
       }, 300)
     },
     async save() {
+      // this.sendNotify()
       try {
+        this.dataTableLoading = true
         let data = []
         // const valid = await this.$validator.validateAll()
-        console.log('Guardando')
         console.log('editedItem ' + JSON.stringify(this.editedItem))
         // Updating item
         if (this.editedItem._id) {
-          await this.editPeople(this.editedItem)
-          await this.getPeoples({
-            id: this.$store.state.auth.user.credentialuser
-          })
-          this.dataTableLoading = false
-        } else {
-          // Creating new item
-          console.log('getCred:' + this.getCred())
+          this.$v.editedItem.$reset()
+          this.$v.editedItem.$touch()
 
-          var peoples = [
-            {
-              nombre: this.revelations.nombre,
-              apellido: this.revelations.apellido
-            }
-          ]
-
-          console.log('validamos id en cache:' + this.$store.state.auth.user)
-
-          console.log('peoples:' + JSON.stringify(peoples))
-
-          if (this.$store.state.auth.user != undefined) {
-            data = await this.savePeople({
-              peoples: JSON.stringify(peoples),
-              credentialuser: this.$store.state.auth.user
+          console.log('edit:' + JSON.stringify(this.$v.editedItem))
+          if (
+            this.$v.editedItem.nombre.$invalid ||
+            this.$v.editedItem.apellido.$invalid
+          ) {
+            this.sendNotify({
+              duration: 6000,
+              progress: 'auto',
+              title: 'Advertencia.',
+              text: 'Debe ingresar el Nombre y Apellido correctamente.',
+              color: 'warn',
+              position: 'bottom-center',
+              width: '50%'
             })
+            return
           } else {
-            data = await this.savePeople({
-              peoples: JSON.stringify(peoples)
-            })
-
-            this.revelations.nombre = ''
-            this.revelations.apellido = ''
-
-            console.log('RspsavePeople:' + JSON.stringify(data))
+            await this.editPeople(this.editedItem)
+            this.dataTableLoading = false
+            this.close()
           }
-          this.dataTableLoading = false
+        } else {
+          console.log('SAVE:' + JSON.stringify(this.$v.revelations))
+
+          this.$v.revelations.$reset()
+          this.$v.revelations.$touch()
+
+          if (
+            this.$v.revelations.nombre.$invalid ||
+            this.$v.revelations.apellido.$invalid
+          ) {
+            this.sendNotify({
+              duration: 6000,
+              progress: 'auto',
+              title: 'Advertencia.',
+              text: 'Debe ingresar el Nombre y Apellido correctamente.',
+              color: 'warn ',
+              position: 'bottom-center'
+            })
+            return
+          } else {
+            var peoples = [
+              {
+                nombre: this.revelations.nombre,
+                apellido: this.revelations.apellido
+              }
+            ]
+
+            if (this.$store.state.auth.user != undefined) {
+              data = await this.savePeople({
+                peoples: JSON.stringify(peoples),
+                credentialuser: this.$store.state.auth.user
+              })
+
+              this.$v.revelations.nombre.$reset()
+              this.$v.revelations.apellido.$reset()
+              this.revelations.nombre = ''
+              this.revelations.apellido = ''
+            } else {
+              data = await this.savePeople({
+                peoples: JSON.stringify(peoples)
+              })
+
+              this.$v.revelations.nombre.$reset()
+              this.$v.revelations.apellido.$reset()
+              this.revelations.nombre = ''
+              this.revelations.apellido = ''
+            }
+            this.dataTableLoading = false
+          }
+          this.close()
         }
-        this.close()
 
         // eslint-disable-next-line no-unused-vars
       } catch (error) {
@@ -605,9 +694,9 @@ export default {
         this.close()
         console.error(error)
       } finally {
-        this.revelations.nombre = ''
-        this.revelations.apellido = ''
         this.dataTableLoading = false
+        this.close()
+        this.$v.$reset()
       }
     }
   },
@@ -617,11 +706,11 @@ export default {
       'dddddddddddddddddddddddddddddddddddd ' +
         JSON.stringify(this.$store.state.auth)
     )
-      if (this.user()) {
-        await this.getPeoples({
-          id: this.$store.state.auth.user.credentialuser
-        })
-      }
+    if (this.user()) {
+      await this.getPeoples({
+        id: this.$store.state.auth.user.credentialuser
+      })
+    }
 
     await this.name_component(this.idcomponent)
     // await this.getAllID()

@@ -18,6 +18,7 @@ axios.interceptors.request.use(
       '/register',
       '/reset',
       '/revelations',
+      '/loginrevelations',
       `${window.location.origin}/version.json`
     ]
     if (urlsExcludedForBearerHeader.indexOf(config.url) === -1) {

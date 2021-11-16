@@ -101,11 +101,80 @@ export const handleError = (error, commit, reject) => {
   }
   reject(error)
 }
-
 export const handleError_api = (error, commit, reject) => {
+  // Resets errors in store
+
+  console.info("error.response:" + JSON.stringify(error.response))
+  console.info("error:" + JSON.stringify(error.response))
+  let errMsg = ''
+
+  if (error.response.status === 401) {
+    store.dispatch('userLogout')
+    commit(types.NOTIFY, {
+      duration: 6000,
+      progress: 'auto',
+      title: 'Advertencia.',
+      text: 'Ingrese su clave de acceso para continuar esta operación.',
+      color: 'warn',
+      position: 'bottom-center'
+    })
+  } else {
+    try {
+      if (typeof(error.response.data.errors) != 'undefined') {
+        setTimeout(() => {
+          error.response.data.errors.msg
+            ? commit(types.NOTIFY, {
+              duration: 6000,
+              progress: 'auto',
+              title: 'Advertencia.',
+              text: error.response.data.errors.msg,
+              color: 'warn',
+              position: null,
+              width: '100%',
+              icon: `<i class='bx bx-error' ></i>`
+            })
+            : commit(types.NOTIFY, {
+              duration: 6000,
+              progress: 'auto',
+              title: 'Advertencia.',
+              text: 'No se logro realizar la operación por favor intente de nuevo.',
+              color: 'warn',
+              position: 'center'
+            })
+        }, 0)
+      } else {
+        setTimeout(() => {
+          return error.response.data.message
+            ? commit(types.NOTIFY, {
+              duration: 6000,
+              progress: 'auto',
+              title: 'Advertencia.',
+              text: error.response.data.message,
+              color: 'warn',
+              position: 'bottom-center'
+            })
+            : commit(types.NOTIFY, {
+              duration: 6000,
+              progress: 'auto',
+              title: 'Advertencia.',
+              text: 'No se logro realizar la operación por favor intente de nuevo.',
+              color: 'warn',
+              position: 'bottom-center'
+            })
+        }, 0)
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+  reject(error)
+}
+
+export const handleError_api1 = (error, commit, reject) => {
   // Resets errors in store
   commit(types.SHOW_LOADING, false)
   commit(types.ERROR, null)
+
 
   // Checks if unauthorized
   if (error.status === 401) {

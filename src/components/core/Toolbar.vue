@@ -41,7 +41,16 @@
           </v-list-tile>
         </v-list-group>
 
-        <v-list-tile v-if="isTokenSet" @click="userLogout">
+        <v-list-tile v-if="isTokenSet" @click="view_ca">
+          <v-list-tile-action>
+            <v-icon>key</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            MI CLAVE DE ACCESO
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+      <v-list-tile v-if="isTokenSet" @click="userLogout">
           <v-list-tile-action>
             <v-icon>mdi-exit-to-app</v-icon>
           </v-list-tile-action>
@@ -107,7 +116,15 @@
             </v-list-tile>
           </v-list>
         </v-menu>
-
+      <v-btn
+          flat
+          v-if="isTokenSet"
+          @click="view_ca"
+          class="hidden-sm-and-down btnLogout"
+        >
+          <v-icon left>key</v-icon>
+          MI CLAVE DE ACCESO
+        </v-btn>
         <v-btn
           flat
           v-if="isTokenSet"
@@ -120,7 +137,38 @@
         <LocaleChanger />
       </v-toolbar-items>
     </v-toolbar>
+    <template>
+  <div class="text-center">
+    <v-dialog
+      v-model="modal_ca"
+      width="500"
+    >
+      <v-card>
+        <v-card-title class="text-h5 darken">
+          Clave de acceso:
+        </v-card-title>
+
+        <v-card-text>
+        <div class="key_cont" v-if="this.user !== null">
+      <v-text-field ref="textToCopy" v-model="key" ></v-text-field>
+      <i @click="copyText" class="far fa-copy copyKey"></i>
+      </div>
+
+        <!--<div v-if="this.user !== null">
+          <div v-html="'<div class="container_key"> <div class="v-input text_key v-text-field v-input--is-label-active v-input--is-dirty theme--light"><div class="v-input__control"><div class="v-input__slot"><div class="v-text-field__slot"><input disabled id="myInput"  autocomplete="off" type="text"></div></div><p id="st_text_copy"></p></div></div><button type="button" onclick="copyKey()" class="btn_light_copy v-btn--flat v-btn theme--light"><div class="v-btn__content"><i onclick="copyKey()" class="far fa-copy"></i></div></button></div>'">
+            </div>
+     </div>
+-->
+         
+     </v-card-text>
+        <v-divider></v-divider>
+      </v-card>
+    </v-dialog>
   </div>
+</template>
+
+  </div>
+  
 </template>
 
 <script>
@@ -139,7 +187,9 @@
 import { mapGetters } from 'vuex'
 import LocaleChanger from '@/components/core/LocaleChanger'
 import ResizeText from 'vue-resize-text'
-// import { mapActions } from 'vuex'
+import { buildSuccess, handleError, handleError_api } from '@/utils/utils.js'
+
+import { mapActions } from 'vuex'
 // import plumessag from '@/plugins/plumessag'
 
 export default {
@@ -191,6 +241,9 @@ export default {
   },
   data() {
     return {
+      key:'',
+      disabled_inpKey:true,
+      modal_ca:false,
       sidebar: false,
       refText: '',
       idcomponent: 'TOOLBAR',
@@ -373,15 +426,38 @@ export default {
     }
   },
   methods: {
-    // ...mapActions(['getText_component', 'name_component']),
+    ...mapActions(['sendNotify']),
 
     userLogout() {
       this.$store.dispatch('userLogout')
-    }
+    },
+    view_ca() {
+      this.modal_ca = true
+    },
+    async copyText () {
+          let textToCopy = this.$refs.textToCopy.$el.querySelector('input')
+          textToCopy.select()
+          document.execCommand("copy");
+          this.sendNotify({
+              duration: 6000,
+              progress: 'auto',
+              title: 'Clave de acceso.',
+              text: 'Clave copiada con exito.',
+              color: 'success',
+              position: 'bottom-center',
+              width: '50%'
+            })
+        }
+  },
+   async mounted() {
+ //   await this.name_component(this.idcomponent)
+        const time = setInterval(() => {
+          if(this.user !== null){
+            console.log("key:" + this.key)
+              this.key = this.user.credentialuser
+          }
+          }, 1000)
   }
-  /* async mounted() {
-    await this.name_component(this.idcomponent)
-  }*/
 }
 </script>
 <style>
@@ -389,7 +465,8 @@ export default {
     color: white;
 }
 .v-toolbar__content {
-background: linear-gradient(270deg, #3367d2, #a311bb,#b993d7);
+    background: linear-gradient(
+270deg, #3367d2, #811a92,#6e4390);
     background-size: 400% 400%;
 
     -webkit-animation: AnimationName 21s ease infinite;
@@ -411,5 +488,31 @@ background: linear-gradient(270deg, #3367d2, #a311bb,#b993d7);
     0%{background-position:0% 50%}
     50%{background-position:100% 50%}
     100%{background-position:0% 50%}
+}
+
+.key_cont {
+    display: flex;
+    line-height: 10px;
+    padding: 5px;
+    margin: 4px;
+}
+
+i.far.fa-copy.copyKey {
+    margin: 5px;
+    padding: 7px;
+    width: 30px;
+    height: 32px;
+    background: #f1f1f1;
+    line-height: 18px;
+    border: 1px solid #c1c1c1;
+    border-radius: 5px;
+    font-size: 13pt;
+    color: #5d596e;
+    cursor:pointer !important;
+}
+
+.it__Btn {
+    display: flex;
+    width: 100%;
 }
 </style>

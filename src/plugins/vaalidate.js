@@ -31,13 +31,12 @@ export default {
     Vue.mixin({
       methods: {
         osplug(jsonValidate, Model) {
-          let num = 0
-          let temp = 0
           data = JSON.stringify(jsonValidate)
           try {
             minL = JSON.stringify(jsonValidate.$params.minlength.min)
             maxL = JSON.stringify(jsonValidate.$params.maxlength.max)
-          } catch (error) {}
+          } catch (error) { }
+
 
           const mensaje = [
             `El campo ${Model} es obligatorio`,
@@ -49,88 +48,42 @@ export default {
             `El campo ${Model} debe coincidir con tu contraseña`
           ]
 
-          $("input[type='text'], [type='email'], [type='password']").each(
-            function() {
-              if ($(this).attr('name') === Model) {
-                temp = num
-                $(`.v-messages__message:eq(${temp})`).text('')
-                $(`.v-messages__message:eq(${temp})`).val('')
-              }
-              num++
-            }
-          )
+          let response = ''
 
           JSON.parse(data, (key, value) => {
+
+
             if (
               JSON.stringify(value) !== '{}' &&
               JSON.stringify(value) === 'false'
             ) {
+
               if (key === 'required') {
                 if (JSON.stringify(value) === 'false') {
-                  $(`.v-messages__message:eq(${temp})`)
-                    .addClass('menjErr')
-                    .removeClass('success--text')
-                    .append(mensaje[0])
+                  response = mensaje[0]
                 }
+                return response
               }
 
               if (key === 'minlength') {
                 if (JSON.stringify(value) === 'false') {
-                  $(`.v-messages__message:eq(${temp})`)
-                    .addClass('menjErr')
-                    .removeClass('success--text')
-                    .append(`<div> </div>${mensaje[1]}`)
+                  response = mensaje[1]
                 }
+                return response
               }
 
               if (key === 'maxlength') {
                 if (JSON.stringify(value) === 'false') {
-                  $(`.v-messages__message:eq(${temp})`)
-                    .addClass('menjErr')
-                    .removeClass('success--text')
-                    .append(mensaje[2])
+                  response = mensaje[2]
                 }
-              }
-
-              if (key === 'numeric') {
-                if (JSON.stringify(value) === 'false') {
-                  $(`.v-messages__message:eq(${temp})`)
-                    .addClass('menjErr')
-                    .removeClass('success--text')
-                    .append(mensaje[3])
-                }
-              }
-
-              if (key === 'email') {
-                if (JSON.stringify(value) === 'false') {
-                  $(`.v-messages__message:eq(${temp})`)
-                    .addClass('menjErr')
-                    .removeClass('success--text')
-                    .append(`<div> </div>${mensaje[4]}`)
-                }
-              }
-              if (key === 'strongPassword') {
-                if (JSON.stringify(value) === 'false') {
-                  $(`.v-messages__message:eq(${temp})`)
-                    .addClass('menjErr')
-                    .removeClass('success--text')
-                    .append(`<div> </div>${mensaje[5]}`)
-                }
-              }
-
-              if (key === 'sameAs') {
-                if (JSON.stringify(value) === 'false') {
-                  $(`.v-messages__message:eq(${temp})`)
-                    .addClass('menjErr')
-                    .removeClass('success--text')
-                    .append(`<div> </div>${mensaje[6]}`)
-                }
+                return response
               }
             }
           })
+          return response
         },
         ExistMail(jsonValidate, Model, boll) {
-          let num = 1
+          let num = 0
           let temp = 0
           const mensaje = [
             `El correo electrónico ya existe`,
@@ -139,7 +92,7 @@ export default {
           ]
 
           data = JSON.stringify(jsonValidate)
-          $("[type='email']").each(function() {
+          $("[type='email']").each(function () {
             if ($(this).attr('name') === Model) {
               temp = num
               $(`.v-messages__message:eq(${temp})`).val('')
@@ -177,7 +130,7 @@ export default {
           ]
 
           data = JSON.stringify(jsonValidate)
-          $("input[type='text']").each(function() {
+          $("input[type='text']").each(function () {
             if ($(this).attr('name') === Model) {
               temp = num
               $(`.v-messages__message:eq(${temp})`).val('')
@@ -215,12 +168,17 @@ export default {
           }
           return edad
         },
-        campoErrors(jsonCampo,name) {
-          const errors = []
-          if (name.$invalid && name.$dirty) {
-            errors.push('')
-            return errors
+        campoErrors(jsonValid, msgError) {
+          let errors = []
+          if (jsonValid.$invalid && jsonValid.$dirty) {
+            if (msgError == '') {
+              return
+            }
+            errors.push(msgError)
+          } else {
+            errors = []
           }
+          return errors
         }
       }
     })
@@ -228,7 +186,7 @@ export default {
   },
 
   validations: {
-    revelations:{
+    revelations: {
       nombre: {
         required,
         minlength: minLength(3),
@@ -238,178 +196,35 @@ export default {
         required,
         minlength: minLength(3),
         maxlength: maxLength(30)
-      } 
-    },
-    signup: {
-      username: {
+      },
+      editnombre: {
         required,
         minlength: minLength(3),
         maxlength: maxLength(30)
       },
-      email: {
-        required,
-        email,
-        minlength: minLength(3),
-        maxlength: maxLength(30)
-      },
-      password: {
-        required,
-        strongPassword(password) {
-          return (
-            /[a-z]/.test(password) &&
-            /[0-9]/.test(password) &&
-            /\W|_/.test(password) &&
-            password.length >= 8
-          )
-        }
-      },
-      confirmPassword: {
-        required,
-        sameAs: sameAs(vm => {
-          return vm.password || ''
-        })
-      },
-      firstname: {
+      apellido: {
         required,
         minlength: minLength(3),
         maxlength: maxLength(30)
-      },
-      secondname: {
-        minlength: minLength(3),
-        maxlength: maxLength(30)
-      },
-      firstsurname: {
-        required,
-        minlength: minLength(3),
-        maxlength: maxLength(30)
-      },
-      secondsurname: {
-        minlength: minLength(3),
-        maxlength: maxLength(30)
-      },
-      date: {
-        required
-      },
-      nroidentificacion: {
-        required,
-        minlength: minLength(5),
-        maxlength: maxLength(30)
-      },
-      code: {
-        required
-      },
-      myphone: {
-        required,
-        numeric,
-        minlength: minLength(8),
-        maxlength: maxLength(20)
-      },
-      country: {
-        required
-      },
-      state: {
-        required
-      },
-      city: {
-        required
-      },
-      postalcode: {
-        required,
-        numeric,
-        minlength: minLength(2),
-        maxlength: maxLength(13)
-      },
-      storename: {
-        required: requiredIf(function() {
-          return this.$store.state.switch1.switch1.switch1boll
-        }),
-        minlength: minLength(3),
-        maxlength: maxLength(30)
-      },
-      rif: {
-        minlength: minLength(10),
-        maxlength: maxLength(20)
       }
     },
-
-    profile: {
-      username: {
+    editedItem: {
+      nombre: {
         required,
         minlength: minLength(3),
         maxlength: maxLength(30)
       },
-      email: {
-        required,
-        email,
-        minlength: minLength(3),
-        maxlength: maxLength(30)
-      },
-      firstname: {
+      apellido: {
         required,
         minlength: minLength(3),
         maxlength: maxLength(30)
-      },
-      secondname: {
-        minlength: minLength(3),
-        maxlength: maxLength(30)
-      },
-      firstsurname: {
-        required,
-        minlength: minLength(3),
-        maxlength: maxLength(30)
-      },
-      secondsurname: {
-        minlength: minLength(3),
-        maxlength: maxLength(30)
-      },
-      date: {
-        required
-      },
-      nroidentificacion: {
-        required,
-        minlength: minLength(5),
-        maxlength: maxLength(30)
-      },
-      code: {
-        required
-      },
-      myphone: {
-        required,
-        numeric,
-        minlength: minLength(8),
-        maxlength: maxLength(20)
-      },
-      country: {
-        required
-      },
-      state: {
-        required
-      },
-      city: {
-        required
-      },
-      postalcode: {
-        required,
-        numeric,
-        minlength: minLength(2),
-        maxlength: maxLength(13)
-      },
-      storename: {
-        required: requiredIf(function() {
-          return this.$store.state.switch1.switch1.switch1boll
-        }),
-        minlength: minLength(3),
-        maxlength: maxLength(30)
-      },
-      rif: {
-        minlength: minLength(10),
-        maxlength: maxLength(20)
       }
-    },
 
-    login: {
+    },
+    login:{
       credentialuser: {
         required,
+        minlength: minLength(30),
         maxlength: maxLength(64)
       }
     }
