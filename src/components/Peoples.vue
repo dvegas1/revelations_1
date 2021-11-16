@@ -41,7 +41,7 @@
             </v-icon>
           </p>
         </div>
-        <p class="p_invt">Agregar invitad(s):</p>
+        <p class="p_invt">Agregar invitado(s):</p>
         <v-flex d-flex flex-row mb-6 transparent class="container__formText1">
           <v-text-field
             name="nombre"
