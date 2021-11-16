@@ -17,7 +17,7 @@
 
       <v-card>
         <v-card-title dark class="text-h5  showErrorMessage_title">
-          <h5 text-light title_notify text-white>Alerta:</h5>
+          <h5 text-light darken text-white>Alerta:</h5>
         </v-card-title>
 
         <v-card-text class="txt_notify text-error__" 

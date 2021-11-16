@@ -76,3 +76,9 @@ export const TOTAL_PEOPLES = 'TOTAL_PEOPLES'
 
 export const SET_USER = 'SET_USER'
 export const SET_PEOPLE = 'SET_PEOPLE'
+
+
+
+export const ALERT = 'ALERT'
+export const CLOCEALERT = 'CLOCEALERT'
+export const NOTIFY = 'NOTIFY'

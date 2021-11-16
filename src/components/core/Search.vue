@@ -23,7 +23,7 @@
           <v-data-table
             must-sort
             :loading="dataTableLoading"
-            :rows-per-page-text="$t('dataTable.ROWS_PER_PAGE')"
+            rows-per-page-text="Registro por pagina."
             :no-data-text="$t('dataTable.NO_DATA')"
             :no-results-text="$t('dataTable.NO_RESULTS')"
             :rows-per-page-items="[5, 10, 25]"

@@ -1,6 +1,5 @@
-
-<template  >
-<v-container>
- <Peoples/>
-</v-container>
+<template>
+  <v-container>
+    <Peoples />
+  </v-container>
 </template>

@@ -86,7 +86,6 @@ footer.d-block.justify-center.text-xs-center.theme--light.v-footer {
   text-align: center;
   text-shadow: 2px 3px 4px #00000012;
   padding-top: 16px;
-  border-top: 1px solid;
   border-radius: 14px;
   border-color: #b4b4b4;
 }
@@ -127,9 +126,16 @@ footer.d-block.justify-center.text-xs-center.theme--light.v-footer {
   font-family: 'bubbleshine-webfont';
 }
 
+.line {
+  width: 100%;
+  height: 1px;
+  background: #0939517d;
+  filter: blur(0px);
+  box-shadow: 1px 1px 1px #bcc7df;
+}
+
 .Sera_ninaOnino__ {
   margin: 0 auto;
-  border-bottom: 1px solid;
   border-color: #b3b3b3;
   display: flex;
   border-radius: 11px;
@@ -214,10 +220,64 @@ p.nina__ {
   background: #af4c0f;
 }
 
+.plus_peoples {
+  background: #0b43cb;
+  border-radius: 51px;
+  color: white !important;
+}
+
+.container_nota {
+  background: #e8e8e8d6;
+  padding: 6px;
+  border: 1px solid #d3d3d3;
+  font-weight: 400;
+  -webkit-box-shadow: 0px 2px 1px #dadada7a;
+  box-shadow: 0px 2px 1px #dadada7a;
+  text-shadow: 1px 1px 1px #b9b9b9a1;
+  margin-bottom: 16px;
+  border-radius: 0px 0px 3px 3px;
+}
+
+p.title_note {
+  background: #6c6c6c;
+    color: white;
+    padding: 4px;
+    margin: 0px;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.cont_flugar {
+  padding: 5px;
+  margin: 5px;
+  position: relative;
+  width: 100%;
+  display: inline-block;
+  padding-top: 16px;
+}
+
+p.title_lugar {
+  height: 29px;
+  line-height: 18px;
+  text-shadow: 1px 1px 1px #c4c4c4ed;
+  color: #113e4d;
+  width: 115px;
+  text-align: center;
+  margin: 0 auto;
+  color: #7c1999;
+}
+
+p.dir_lugar {
+  font-weight: 100;
+  /* text-shadow: 0px 0px 1px white; */
+  color: #35250f;
+  -webkit-text-stroke-width: 0.01px;
+  -webkit-text-stroke-color: #fff;
+}
+
+
 .lugar {
   font-family: 'the_humble-webfont';
-  font-size: 20pt;
-  /* font-weight: 800; */
+    /* font-weight: 800; */
   color: #1e1e1e;
   /* text-shadow: 1px 1px 1px #ededed; */
   /* background: #a3a3a3b0; */
@@ -226,7 +286,7 @@ p.nina__ {
   text-shadow: 1px 1px 27px #fdfdfd;
   font-size: calc(0.4em + 2vw);
   padding-top: 17px;
-    padding-bottom: 27px;
+    text-align: center;
 }
 
 .lugar1 {

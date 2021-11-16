@@ -24,12 +24,14 @@
                     : 'Clave de acceso.'
                 "
                 :messages="['']"
-                :error-messages="campoErrors($v.login.credentialuser, 'credentialuser')"
-                :type="show1 ? 'text' : 'password'"
-                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                 @input="$v.login.credentialuser.$touch()"
                 @blur="$v.login.credentialuser.$touch()"
-                @keyup="osplug($v.login.credentialuser, 'credentialuser')"
+                :error-messages="
+                  campoErrors(
+                    this.$v.login.credentialuser,
+                    osplug($v.login.credentialuser, 'Clave de acceso')
+                  )
+                "
                 @click:append="show1 = !show1"
                 prepend-icon="mdi-lock-outline"
                 ref="credentialuser"
@@ -80,12 +82,14 @@
                 :text="
                   refText.LOGIN !== undefined
                     ? refText.LOGIN.login.contents
-                    : 'Ingresar'
+                    : 'INGRESAR'
                 "
               />
             </v-flex>
           </v-layout>
         </form>
+        <ErrorMessage />
+        <SuccessMessage />
       </v-flex>
     </v-layout>
   </v-container>
@@ -137,6 +141,9 @@ export default {
   },
 
   computed: {
+    notify() {
+      return this.$store.state.peoples.notify
+    },
     getJson() {
       return this.$store.state.messages.message
     },
@@ -144,10 +151,18 @@ export default {
       return this.$store.state.messages.name_components
     }
   },
+  watch: {
+    notify() {
+      this.openNotification(this.$store.state.peoples.notify)
+      return this.$store.state.peoples.notify
+    }
+  },
 
   methods: {
-    ...mapActions(['userLogin', 'getText_component', 'name_component']),
-
+    ...mapActions(['userLogin', 'getText_component', 'name_component', 'sendNotify']),
+    openNotification() {
+      this.$vs.notification(this.notify)
+    },
     onVerify(response) {
       this.login.recaptcha = response
     },
@@ -177,11 +192,9 @@ export default {
       }
     }
   },
-
   validations: vaalid.validations,
 
   created() {
-    
     if (this.$store.state.auth.isTokenSet) {
       router.push({ name: 'home' })
     }

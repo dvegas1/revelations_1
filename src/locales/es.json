@@ -29,7 +29,7 @@
     "WARNING": "Advertencia",
     "DO_YOU_REALLY_WANT_TO_DELETE_THIS_ITEM": "¿Realmente deseas eliminar este registro?",
     "CLOSE": "Cerrar",
-    "SAVED_SUCCESSFULLY": "Guardado exitosamente",
+    "SAVED_SUCCESSFULLY": "Guardado exitosamente.",
     "PEOPLE_SUCCESSFULLY": "Invitado guardado exitosamente.",
     "DELETED_SUCCESSFULLY": "Eliminado exitosamente",
     "CREATED": "Fecha de Creación",
@@ -48,7 +48,7 @@
     "CATEGORIES": "Categorías",
     "KNOWUS": "Conócenos",
     "SIGNUP": "Registro",
-    "LOGIN": "Ingresar",
+    "LOGIN": "INGRESAR",
     "LOGOUT": "SALIR"
   },
   "landing": {
@@ -74,7 +74,7 @@
     "DESCRIPTION": "Este es un demo. La base de datos se purga cada 30 minutos. Cualquier cambio que se realice se perderá luego de este tiempo.<br />E-mail: admin@admin.com <br />Password: 12345",
     "EMAIL": "Correo electrónico",
     "PASSWORD": "Contraseña",
-    "LOGIN": "Ingresar",
+    "LOGIN": "INGRESAR",
     "FORGOT_PASSWORD": "¿Olvidaste tu contraseña?"
   },
   "forgotPassword": {

@@ -13,7 +13,7 @@
 import * as types from '@/store/mutation-types'
 import router from '@/router'
 import api from '@/services/api/auth'
-import { buildSuccess, handleError } from '@/utils/utils.js'
+import { buildSuccess, handleError, handleError_api } from '@/utils/utils.js'
 import { addMinutes, format } from 'date-fns'
 
 const MINUTES_TO_CHECK_FOR_TOKEN_REFRESH = 1440
@@ -52,18 +52,33 @@ const actions = {
             commit(types.SAVE_USER, response.data.user)
             commit(types.SAVE_TOKEN, response.data.token)
             commit(types.EMAIL_VERIFIED, response.data.user.verified)
-            buildSuccess(
-              null,
-              commit,
-              resolve,
-              router.push({
-                name: 'home'
-              })
-            )
+            /*  buildSuccess(
+                null,
+                commit,
+                resolve,
+                router.push({
+                  name: 'home'
+                })
+              )*/
+            router.push({
+              name: 'revelations'
+            })
+
+            commit(types.NOTIFY, {
+              duration: 6000,
+              progress: 'auto',
+              title: 'Inicio exitoso.',
+              text: 'Bienvenido.',
+              color: 'success',
+              position: null,
+              width:'100%'
+            })
+            commit(types.SHOW_LOADING, false)
           }
         })
         .catch(error => {
-          handleError(error, commit, reject)
+          commit(types.SHOW_LOADING, false)
+          handleError_api(error, commit, reject)
         })
     })
   },
@@ -108,7 +123,7 @@ const actions = {
     window.localStorage.removeItem('user')
     commit(types.PEOPLES, [])
     commit(types.LOGOUT)
-   // alert(JSON.stringify(router))
+    // alert(JSON.stringify(router))
     router.push({
       name: 'revelations'
     })
@@ -134,7 +149,7 @@ const mutations = {
 const state = {
   user: null,
   token: JSON.parse(!!localStorage.getItem('token')) || null,
-  isTokenSet: !! localStorage.getItem('token')
+  isTokenSet: !!localStorage.getItem('token')
 }
 
 export default {

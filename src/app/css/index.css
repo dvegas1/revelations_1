@@ -67,7 +67,40 @@ a:hover {
   border-radius: 100px;
 }
 
+.vs-notification-parent.vs-notification-parent--bottom-center {
+  padding-bottom: 120px !important;
+}
 
+.darken {
+  background: #2d2020;
+  color: white;
+}
+
+.btnCancel {
+  background: #be4e08;
+  color: white !important;
+}
+
+.primary {
+  background-color: #1c52b6 !important;
+  border-color: #9a9a9a !important;
+}
+
+.v-messages__message {
+ /* background: #233448d9 !important;
+  border-radius: 5px !important;
+  padding: 5px !important;
+  border: 1px solid #5b5b5b !important;
+  color: #ff9e00!important;*/
+}
+
+.v-input {
+  padding: 2px;
+}
+
+.vs-notification.vs-notification--color.vs-notification--warn.notification-enter-to {
+  background: #b25d0e !important;
+}
 
 img.perfil_registro {
   width: 200px;

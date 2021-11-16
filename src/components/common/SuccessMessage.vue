@@ -17,7 +17,7 @@
 
       <v-card>
         <v-card-title dark class="text-h5  showSuccessMessage_title">
-          <h5 text-light title_notify text-white>Notificación:</h5>
+          <h5 text-light darken text-white>Notificación:</h5>
         </v-card-title>
 
         <v-card-text class="txt_notify text-success__" 
