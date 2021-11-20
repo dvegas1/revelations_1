@@ -19,6 +19,9 @@ export default {
   editPeople(id, payload) {
     return axios.patch(`/peoples/${id}`, payload)
   },
+  votePeople(id, payload) {
+    return axios.patch(`/peoples/vote/${id}`, payload)
+  },
   savePeople(payload) {
     return axios.post('/peoples/add_peoples/', payload)
   },

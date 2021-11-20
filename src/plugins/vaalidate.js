@@ -17,7 +17,8 @@ import {
   maxLength,
   numeric,
   sameAs,
-  requiredIf
+  requiredIf,
+  alpha
 } from 'vuelidate/lib/validators'
 import $ from 'jquery'
 
@@ -45,7 +46,8 @@ export default {
             `El campo ${Model} debe tener solo caracteres númericos`,
             `El campo ${Model} debe ser válido`,
             `El campo ${Model} debe tener un número, un carácter especial y tener más de 8 caracteres. Ejemplo: @Yone123`,
-            `El campo ${Model} debe coincidir con tu contraseña`
+            `El campo ${Model} debe coincidir con tu contraseña`,
+            `El campo  ${Model} solo puede contener caracteres alfabéticos.`
           ]
 
           let response = ''
@@ -78,6 +80,14 @@ export default {
                 }
                 return response
               }
+
+              if (key === 'alpha') {
+                if (JSON.stringify(value) === 'false') {
+                  response = mensaje[7]
+                }
+                return response
+              }
+
             }
           })
           return response
@@ -190,34 +200,40 @@ export default {
       nombre: {
         required,
         minlength: minLength(3),
-        maxlength: maxLength(30)
+        maxlength: maxLength(30),
+        alpha
       },
       apellido: {
         required,
         minlength: minLength(3),
-        maxlength: maxLength(30)
+        maxlength: maxLength(30),
+        alpha
       },
       editnombre: {
         required,
         minlength: minLength(3),
-        maxlength: maxLength(30)
+        maxlength: maxLength(30),
+        alpha
       },
       apellido: {
         required,
         minlength: minLength(3),
-        maxlength: maxLength(30)
+        maxlength: maxLength(30),
+        alpha
       }
     },
     editedItem: {
       nombre: {
         required,
         minlength: minLength(3),
-        maxlength: maxLength(30)
+        maxlength: maxLength(30),
+        alpha
       },
       apellido: {
         required,
         minlength: minLength(3),
-        maxlength: maxLength(30)
+        maxlength: maxLength(30),
+        alpha
       }
 
     },

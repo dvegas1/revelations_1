@@ -14,9 +14,11 @@ import * as types from '@/store/mutation-types'
 
 const getters = {
   showSuccessMessage: state => state.successMessage,
+  showSuccessMessageFirstUser: state => state.showSuccessMessageFirstUser,
   successMessage: state => state.successMessage,
   successMessageParams: state => state.successMessageParams,
-  successMessageTimeout: state => state.successMessageTimeout
+  successMessageTimeout: state => state.successMessageTimeout,
+  SuccessMessageFirstUser: state => state.SuccessMessageFirstUser
 }
 
 const mutations = {
@@ -35,13 +37,33 @@ const mutations = {
       }
     }
   },
+  [types.SUCCESS_FIRST_USER](state, payload) {
+    if (payload === null) {
+      state.showSuccessMessageFirstUser = false
+      state.SuccessMessageFirstUser = null
+      state.successMessageParams = []
+    } else {
+      state.showSuccessMessageFirstUser = true
+      state.successMessageTimeout =
+        payload.timeout === 0 ? 0 : payload.timeout || 6000
+      state.SuccessMessageFirstUser = payload.msg
+      if (payload.params) {
+        state.successMessageParams = payload.params
+      }
+    }
+  },
   [types.SHOW_SUCCESS](state, payload) {
     state.showSuccessMessage = !!payload
+  },
+  [types.SHOW_SUCCESS_FIRSUSER](state, payload) {
+    state.showSuccessMessageFirstUser = !!payload
   }
 }
 
 const state = {
   showSuccessMessage: false,
+  showSuccessMessageFirstUser: false,
+  SuccessMessageFirstUser: false,
   successMessage: null,
   successMessageParams: [],
   successMessageTimeout: 0

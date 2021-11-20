@@ -33,6 +33,8 @@
                   )
                 "
                 @click:append="show1 = !show1"
+                :type="show1 ? 'text' : 'password'"
+                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                 prepend-icon="mdi-lock-outline"
                 ref="credentialuser"
                 autocomplete="off"
