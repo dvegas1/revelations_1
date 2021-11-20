@@ -114,7 +114,122 @@
                 class="btn_buscar hidden"
               ></v-text-field>
             </v-flex>
+            <!--DIALOGO VOTAR*/-->
+            <v-flex xs12 sm6 md4 text-xs-right mb-2 mt-2 pr-2>
+              <v-dialog
+                v-model="dialogVote"
+                max-width="100%"
+                content-class="dlgNewEditItem"
+              >
+                <v-card>
+                  <v-card-title class="darken">
+                    <span class="headline ">Elegir team.</span>
+                  </v-card-title>
+                  <v-card-text class="center">
+                    <v-container grid-list-md>
+                      <template>
+                        <div class="text-center">
+                          <v-dialog v-model="dialog_vote_confirm" width="90%">
+                            <template v-slot:activator="{ on, attrs }">
+                            </template>
 
+                            <v-card>
+                              <v-card-title class="text-h5 darken">
+                                Confirme team
+                              </v-card-title>
+
+                              <v-card-text class="text-left">
+                                El team seleccionado no podra ser cambiado.
+                              </v-card-text>
+
+                              <v-divider></v-divider>
+
+                              <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn
+                                  color="primary"
+                                  text
+                                  @click="vote"
+                                >
+                                  VOTAR
+                                </v-btn>
+                              </v-card-actions>
+                            </v-card>
+                          </v-dialog>
+                        </div>
+                      </template>
+                      <v-layout wrap>
+                        <template v-if="voteItem._id">
+                          <div class="container block center">
+                            <div class="cont_nina">
+                              <div class="titlesetNina"><p>Niña</p></div>
+                              <div class="titlesetTeam"></div>
+
+                              <div>
+                                <img
+                                  src="https://firebasestorage.googleapis.com/v0/b/fir-gps-f49b1.appspot.com/o/ef20e2f1e698e5d1be5c3535496382a1.png?alt=media&token=1ed21aa0-f95a-4bb5-bb1a-bb8fc12880c4"
+                                  alt="Girl in a jacket"
+                                  width="200"
+                                  height="200"
+                                  class="team_nina"
+                                  @click="vote_confirm('woman')"
+                                />
+                              </div>
+                            </div>
+                            <div class="cont_nino">
+                              <div class="titlesetNino"><p>Niño</p></div>
+                              <div class="titlesetTeam"></div>
+                              <div>
+                                <img
+                                  src="https://firebasestorage.googleapis.com/v0/b/fir-gps-f49b1.appspot.com/o/fda079d3da8765d15d6d248310fa92ed.png?alt=media&token=42bb8db5-556f-4352-b49a-cc3b7882e563"
+                                  alt="Girl in a jacket"
+                                  width="220px"
+                                  height="220px"
+                                  class="team_nino"
+                                  @click="vote_confirm('man')"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </template>
+                      </v-layout>
+                    </v-container>
+                  </v-card-text>
+                </v-card>
+              </v-dialog>
+            </v-flex>
+            <v-flex xs12 sm6 md4 text-xs-right mb-2 mt-2 pr-2>
+              <v-dialog
+                v-model="dialog_eliminar"
+                max-width="500px"
+                content-class="dlgNewEditItem"
+              >
+                <v-card>
+                  <v-card-title class="darken">
+                    <span class="headline "
+                      >Desea eliminar este invitado ?</span
+                    >
+                  </v-card-title>
+                  <v-card-actions class="transparent">
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      color="alert"
+                      flat
+                      @click="close_delete"
+                      class="btnCancel"
+                      >{{ 'Cancelar' }}</v-btn
+                    >
+                    <v-btn
+                      color=""
+                      flat
+                      @click="deleteItem1()"
+                      class="primary"
+                      >{{ 'Aceptar' }}</v-btn
+                    >
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+            </v-flex>
             <v-flex xs12 sm6 md4 text-xs-right mb-2 mt-2 pr-2>
               <v-dialog
                 v-model="dialog"
@@ -170,7 +285,7 @@
                       </v-layout>
                     </v-container>
                   </v-card-text>
-
+                  <v-flex xs12 text-xs-center mb-2 >
                   <v-card-actions class="transparent">
                     <v-spacer></v-spacer>
                     <v-btn
@@ -184,6 +299,7 @@
                       'Guardar'
                     }}</v-btn>
                   </v-card-actions>
+                  </v-flex>
                 </v-card>
               </v-dialog>
             </v-flex>
@@ -195,7 +311,9 @@
               >
                 <v-card>
                   <v-card-title class="darken">
-                    <span class="headline ">Desea eliminar este invitado ?</span>
+                    <span class="headline "
+                      >Desea eliminar este invitado ?</span
+                    >
                   </v-card-title>
                   <v-card-actions class="transparent">
                     <v-spacer></v-spacer>
@@ -262,19 +380,37 @@
                       </v-btn>
                       <span>{{ 'Eliminar' }}</span>
                     </v-tooltip>
+                    <v-tooltip top v-if="props.item.autorizeVote">
+                      <v-btn
+                        icon
+                        class="Btnedit__ BtnVote__"
+                        slot="activator"
+                        @click="asignPeople(props.item)"
+                      >
+                        <div class="iconedite">
+                        VOTAR
+                        </div>
+                      </v-btn>
+                      <span>{{ 'Votar' }}</span>
+                    </v-tooltip>
                   </v-layout>
                 </td>
                 <!--<td>{{ props.item.status }}</td>-->
                 <td>{{ props.item.nombre }}</td>
                 <td>{{ props.item.apellido }}</td>
-                <td class="center">
-                  <v-btn
-                    disabled
-                    flat
-                    @click="close"
-                    class="btn_votar center hidden"
-                    >{{ 'VOTAR' }}</v-btn
-                  >
+
+                <td v-if="props.item.vote" class="">
+                <H5 class="woman" v-if="props.item.team == 'woman'">
+                  NIÑA
+                  </H5>
+
+<H5 class="man" v-if="props.item.team == 'man'">
+                  NIÑO
+                  </H5>
+
+                </td>
+                <td v-if="!props.item.vote && props.item.team != ''">
+                ----
                 </td>
               </template>
               <template v-slot:pageText="props" class="transparent">
@@ -290,6 +426,7 @@
           </v-container>
         </template>
         <ErrorMessage />
+        <SuccessMessageFirstUser />
         <SuccessMessage />
       </form>
     </v-container>
@@ -335,6 +472,7 @@ export default {
   },
   data() {
     return {
+      dialog_vote_confirm: false,
       hiddde_modal__: false,
       dialog_eliminar: false,
       key: '',
@@ -351,9 +489,12 @@ export default {
       dataTableLoading: false,
       delayTimer: null,
       dialog: false,
+      dialogVote: false,
       search: '',
       pagination: {},
+      arrNotify: {},
       deletedItem: {},
+      voteItem: {},
       defaultItem: {},
       fieldsToSearch: ['nombre']
     }
@@ -394,6 +535,13 @@ export default {
           align: 'left',
           sortable: false,
           value: 'status',
+          width: '50px'
+        },
+        {
+          text: 'Teams',
+          align: 'left',
+          sortable: false,
+          value: 'Teams',
           width: '50px'
         }
       ]
@@ -506,10 +654,31 @@ export default {
       'addStatusData',
       'setCred',
       'getAllID',
-      'sendNotify'
+      'sendNotify',
+      'test__Notify',
+      'votePeople'
     ]),
+    vote_confirm(select) {
+      console.log('select:' + select)
+      this.voteItem['team'] = select
+      console.log('this.voteItem:' + JSON.stringify(this.voteItem))
+      this.dialog_vote_confirm = true
+    },
+    async vote() {
+      console.log('this.voteItem:' + JSON.stringify(this.voteItem))
+      
+      await this.votePeople(this.voteItem)
+      this.dialog_vote_confirm = false
+      this.dialogVote = false
+      this.voteItem = {}
+    },
     openNotification() {
-      this.$vs.notification(this.notify)
+      this.arrNotify[this.notify.id] = this.$vs.notification(this.notify)
+      let num = 0
+      setTimeout(() => {
+       // this.arrNotify.DDSADSAD.close()
+        num++
+      }, 1000)
     },
     hiddeModal() {
       this.hiddde_modal__ = true
@@ -578,6 +747,11 @@ export default {
     deleteItem(item) {
       this.deletedItem = Object.assign({}, item)
       this.dialog_eliminar = true
+    },
+    asignPeople(item) {
+      console.log('asignPeople:' + JSON.stringify(item))
+      this.voteItem = Object.assign({}, item)
+      this.dialogVote = true
     },
     async deleteItem1() {
       try {

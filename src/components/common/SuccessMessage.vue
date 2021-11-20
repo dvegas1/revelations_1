@@ -16,20 +16,20 @@
       </template>
 
       <v-card>
-        <v-card-title dark class="text-h5  showSuccessMessage_title">
-          <h5 text-light darken text-white>Notificación:</h5>
+        <v-card-title dark class="text-h5 darken">
+          <h5 text-light darken text-white >Notificación:</h5>
         </v-card-title>
 
         <v-card-text class="txt_notify text-success__" 
         center container
           :timeout="successMessageTimeout">
-       <div v-html="successMessage"></div>
+       <div class="text-success" v-html="successMessage"></div>
         </v-card-text>
         </v-snackbar>
         <v-divider></v-divider>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn  dark flat @click="showSuccessMessage = false">
+          <v-btn class="primary" flat @click="showSuccessMessage = false">
             {{ $t('common.CLOSE') }}
           </v-btn>
         </v-card-actions>

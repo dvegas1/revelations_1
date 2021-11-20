@@ -205,6 +205,21 @@ export const buildSuccess = (
   resolve(resolveParam)
 }
 
+export const buildSuccessFirst = (
+  msg,
+  commit,
+  resolve,
+  resolveParam
+) => {
+  commit(types.SHOW_SUCCESS_FIRSUSER, false)
+  commit(types.SUCCESS_FIRST_USER, null)
+  setTimeout(() => {
+    return msg ? commit(types.SUCCESS_FIRST_USER, msg) : commit(types.SHOW_SUCCESS_FIRSUSER, false)
+  }, 0)
+  commit(types.ERROR, null)
+  resolve(resolveParam)
+}
+
 // Checks if tokenExpiration in localstorage date is past, if so then trigger an update
 export const checkIfTokenNeedsRefresh = () => {
   // Checks if time set in localstorage is past to check for refresh token

@@ -61,8 +61,8 @@
       </v-list>
     </v-navigation-drawer>
     <v-toolbar app>
-      <span class="hidden-md-and-up">
-        <v-toolbar-side-icon @click="sidebar = !sidebar"></v-toolbar-side-icon>
+      <span class="hidden-md-and-up icon_tolbar">
+        <v-toolbar-side-icon class="icon_tolbar" @click="sidebar = !sidebar"></v-toolbar-side-icon>
       </span>
       <v-toolbar-title class="headline text-uppercase ml-0">
         <div v-resize-text>
@@ -120,7 +120,7 @@
           flat
           v-if="isTokenSet"
           @click="view_ca"
-          class="hidden-sm-and-down btnLogout"
+          class="hidden-sm-and-down btnLogout icon_tolbar"
         >
           <v-icon left>key</v-icon>
           MI CLAVE DE ACCESO
@@ -129,12 +129,12 @@
           flat
           v-if="isTokenSet"
           @click="userLogout"
-          class="hidden-sm-and-down btnLogout"
+          class="hidden-sm-and-down btnLogout icon_tolbar"
         >
           <v-icon left>mdi-exit-to-app</v-icon>
           {{ $t('menuItems.LOGOUT') }}
         </v-btn>
-        <LocaleChanger />
+        <LocaleChanger class="hidden" />
       </v-toolbar-items>
     </v-toolbar>
     <template>
@@ -345,7 +345,7 @@ export default {
             title: 'REVELACIÓN',
             link: 'home',
             icon: 'mdi-home',
-            class: ''
+            class: 'icon_tolbar'
           },
          /* {
             title: this.$t('menuItems.MY_PROFILE'),
@@ -384,13 +384,13 @@ export default {
           title: 'REVELACIÓN',
           link: 'revelations',
           icon: 'mdi-home',
-          class: ''
+          class: 'icon_tolbar'
         },
         {
           title: this.$t('menuItems.LOGIN'),
           link: 'login',
           icon: 'mdi-login',
-          class: ''
+          class: 'icon_tolbar'
         }
         /*  {
           title: this.$t('menuItems.FAVORITES'),
@@ -461,9 +461,6 @@ export default {
 }
 </script>
 <style>
-.v-btn__content {
-    color: white;
-}
 .v-toolbar__content {
     background: linear-gradient(
 270deg, #3367d2, #811a92,#6e4390);

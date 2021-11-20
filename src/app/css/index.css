@@ -71,8 +71,28 @@ a:hover {
   padding-bottom: 120px !important;
 }
 
+
+button.btnCancel.v-btn.v-btn--flat.theme--light.alert--text{
+  background: transparent !important;
+  color: #bf510e !important;
+  -webkit-box-shadow: 0px 0px 1px #bdbdbd !important;
+  box-shadow: 0px 0px 1px #bdbdbd !important;
+  border-radius: 5px;
+  border-bottom: 1px solid #bf510e;
+  border-right: 1px solid #bf510e;
+  
+}
+button.v-btn.theme--light.primary {
+  background: transparent !important;
+  color: #0c4021 !important;
+  box-shadow: 0px 0px 1px #bdbdbd !important;
+  border-radius: 5px;
+  border-bottom: 1px solid #0c4021;
+  border-right: 1px solid #0c4021;
+}
+
 .darken {
-  background: #2d2020;
+  background: #091a40;
   color: white;
 }
 
@@ -220,6 +240,55 @@ img.perfil_registro {
   }
 }
 
+i.far.fa-copy.copyKey {
+  margin: 5px !important;
+  padding: 8px !important;
+  cursor: pointer !important;
+  background: #16993e !important;
+  color: #fbfbfb !important;
+  width: 42px !important;
+  height: 35px !important;
+  text-align: center !important;
+}
+
+.icon_tolbar {
+  color: white !important;
+}
+
+h5.woman {
+  padding: 5px;
+  border: 1px solid #ff17ea;
+  color: #ff17ea;
+  width: 59px;
+  border-radius: 5px;
+  background: #ff17ea05;
+  box-shadow: 1px 1px 1px 1px #ff17ea;
+}
+h5.man {
+  padding: 5px;
+  border: 1px solid #1a62c7;
+  color: #1a62c7;
+  width: 59px;
+  border-radius: 5px;
+  background: #ff17ea05;
+  box-shadow: 1px 1px 1px 1px #1a62c7;
+}
+
+.text-success{
+  color: #0e401a!important;
+}
+
+.BtnVote__.theme--light {
+  width: 70px;
+  /* background: #1f6c2f; */
+  color: #1f6c2f;
+  border-color: #11852b;
+}
+
+.center{
+  margin: 0 auto;
+  text-align:  center;
+}
 .application--wrap {
   /* padding: 2px 8px 2px 8px !important; */
   background-repeat: no-repeat;
