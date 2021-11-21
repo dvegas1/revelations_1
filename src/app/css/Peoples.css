@@ -149,6 +149,11 @@ p.nina__ {
   font-size: calc(3em + 2vw);
   margin: 2px;
 }
+
+p.nina__ {
+  color: #ce21dd;
+}
+
 p.nino__ {
   text-align: right;
   color: #0e52f7;
