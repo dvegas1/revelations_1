@@ -114,7 +114,7 @@ export default {
   watch: {
     successMessage() {
       setTimeout(() => {
-        this.showSuccessMessage = this.successMessage !== ''
+        this.showSuccessMessage = this.successMessage !== null
       }, 100)
     }
   }
