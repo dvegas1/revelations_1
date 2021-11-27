@@ -36,7 +36,7 @@ export default {
   createPeople(payload) {
     return axios.post('/peoples/createPeople/', payload)
   },
-  deletePeople(id,payload) {
+  deletePeople(id, payload) {
     return axios.post(`/peoples/deletePeople/${id}`, payload)
   },
   deletePeople_adm(id) {

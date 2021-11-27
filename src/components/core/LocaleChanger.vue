@@ -73,7 +73,7 @@ export default {
       return this.$i18n.locale
     }
   },
-  async mounted(){
+  async mounted() {
     this.$store.dispatch('setLocale', 'es')
   }
 }

@@ -70,7 +70,7 @@ const actions = {
             })
 
             api
-              .getUsers({sort:'updatedAt',order:-1})
+              .getUsers({ sort: 'updatedAt', order: -1 })
               .then(response => {
                 if (response.status === 200) {
                   commit(types.USERS, response.data.docs)
@@ -79,27 +79,17 @@ const actions = {
                 }
               })
               .catch(error => {
-                handleError_api(
-                  error,
-                  commit,
-                  reject
-                )
+                handleError_api(error, commit, reject)
               })
-              resolve({})
+            resolve({})
           }
         })
         .catch(error => {
-          handleError_api(
-            error,
-            commit,
-            reject
-          )
+          handleError_api(error, commit, reject)
         })
     })
   },
   saveUser_admin({ commit }, payload) {
-
-
     commit(types.NOTIFY, {
       square: true,
       duration: 6000,
@@ -127,7 +117,7 @@ const actions = {
             })
 
             api
-              .getUsers({sort:'createdAt',order:-1})
+              .getUsers({ sort: 'createdAt', order: -1 })
               .then(response => {
                 if (response.status === 200) {
                   commit(types.USERS, response.data.docs)
@@ -136,30 +126,19 @@ const actions = {
                 }
               })
               .catch(error => {
-                handleError_api(
-                  error,
-                  commit,
-                  reject
-                )
+                handleError_api(error, commit, reject)
               })
           }
         })
         .catch(error => {
-          handleError_api(
-            error,
-            commit,
-            reject
-          )
+          handleError_api(error, commit, reject)
         })
     })
   },
-  /*ELIMINACION DE USUARIO PARA ADMINISTRADOR*/
-
+  /* ELIMINACION DE USUARIO PARA ADMINISTRADOR*/
 
   deleteUser_adm({ commit }, payload) {
-
-    let msg = `<p class='p_textNotify' >Id: ${payload._id}. </p>`
-
+    const msg = `<p class='p_textNotify' >Id: ${payload._id}. </p>`
 
     commit(types.NOTIFY, {
       square: true,
@@ -172,13 +151,11 @@ const actions = {
       width: '50%'
     })
 
-
     return new Promise((resolve, reject) => {
       api
         .deleteUser_adm(payload._id)
         .then(response => {
           if (response.status === 200) {
-
             commit(types.NOTIFY, {
               square: true,
               duration: 6000,
@@ -198,7 +175,7 @@ const actions = {
                  resolve
                )*/
             api
-              .getUsers({sort:'createdAt',order:-1})
+              .getUsers({ sort: 'createdAt', order: -1 })
               .then(response => {
                 if (response.status === 200) {
                   commit(types.USERS, response.data.docs)
@@ -207,13 +184,8 @@ const actions = {
                 }
               })
               .catch(error => {
-                handleError_api(
-                  error,
-                  commit,
-                  reject
-                )
+                handleError_api(error, commit, reject)
               })
-
           }
         })
         .catch(error => {

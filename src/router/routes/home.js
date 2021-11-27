@@ -6,6 +6,8 @@ export default [
       requiresAuth: false
     },
     component: () =>
-    import(/* webpackChunkName: "revelacion" */ '@/components/Revelations.vue')
+      import(
+        /* webpackChunkName: "revelacion" */ '@/components/Revelations.vue'
+      )
   }
 ]

@@ -69,18 +69,14 @@ export const TEST = 'TEST'
 export const DELAY = 'DELAY'
 export const NAME_COMPONENTS = 'NAME_COMPONENTS'
 
-
 export const PEOPLES = 'PEOPLES'
 export const TOTAL_PEOPLES = 'TOTAL_PEOPLES'
-
 
 export const SET_USER = 'SET_USER'
 export const SET_PEOPLE = 'SET_PEOPLE'
 
-
 export const ADM_PEOPLE = 'ADM_PEOPLE'
 export const ADM_TOTAL_PEOPLE = 'ADM_TOTAL_PEOPLE'
-
 
 export const ALERT = 'ALERT'
 export const CLOCEALERT = 'CLOCEALERT'

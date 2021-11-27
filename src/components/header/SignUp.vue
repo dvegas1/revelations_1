@@ -942,7 +942,6 @@ export default {
     this.getAllCoutry()
     this.UrlDefault()
     await this.onVerify()
-
   }
 }
 </script>

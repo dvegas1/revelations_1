@@ -9,7 +9,7 @@
           <h5 text-light darken text-white>Alerta:</h5>
         </v-card-title>
 
-        <v-card-text class="txt_notify text-error__" 
+        <v-card-text class="txt_notify text-error__"
         center container
           timeout="0">
        <div v-html="error"></div>

@@ -329,11 +329,7 @@ export default {
   },
   data() {
     return {
-      leng: [
-          'EN',
-          'ES',
-          'CN'
-      ],
+      leng: ['EN', 'ES', 'CN'],
       dataTableLoading: true,
       delayTimer: null,
       dialog: false,

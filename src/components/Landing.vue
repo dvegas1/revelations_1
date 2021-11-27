@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-  <p>HOLASSS</p>
+    <p>HOLASSS</p>
   </v-container>
 </template>
 
@@ -29,7 +29,7 @@ export default {
   },
   data() {
     return {
-     // name: this.$store.state.auth.user.name,
+      // name: this.$store.state.auth.user.name,
       showVerifyDialog: !this.$store.state.verify.emailVerified,
       refText: '',
       idcomponent: 'LANDING'
@@ -46,8 +46,8 @@ export default {
     ...mapActions(['getText_component', 'name_component'])
   },
   async mounted() {
-   await this.name_component(this.idcomponent)
-   this.getNameComponent()
+    await this.name_component(this.idcomponent)
+    this.getNameComponent()
   }
 }
 </script>

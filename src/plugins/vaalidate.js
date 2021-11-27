@@ -36,8 +36,7 @@ export default {
           try {
             minL = JSON.stringify(jsonValidate.$params.minlength.min)
             maxL = JSON.stringify(jsonValidate.$params.maxlength.max)
-          } catch (error) { }
-
+          } catch (error) {}
 
           const mensaje = [
             `El campo ${Model} es obligatorio`,
@@ -53,13 +52,10 @@ export default {
           let response = ''
 
           JSON.parse(data, (key, value) => {
-
-
             if (
               JSON.stringify(value) !== '{}' &&
               JSON.stringify(value) === 'false'
             ) {
-
               if (key === 'required') {
                 if (JSON.stringify(value) === 'false') {
                   response = mensaje[0]
@@ -87,7 +83,6 @@ export default {
                 }
                 return response
               }
-
             }
           })
           return response
@@ -102,7 +97,7 @@ export default {
           ]
 
           data = JSON.stringify(jsonValidate)
-          $("[type='email']").each(function () {
+          $("[type='email']").each(function() {
             if ($(this).attr('name') === Model) {
               temp = num
               $(`.v-messages__message:eq(${temp})`).val('')
@@ -140,7 +135,7 @@ export default {
           ]
 
           data = JSON.stringify(jsonValidate)
-          $("input[type='text']").each(function () {
+          $("input[type='text']").each(function() {
             if ($(this).attr('name') === Model) {
               temp = num
               $(`.v-messages__message:eq(${temp})`).val('')
@@ -235,9 +230,8 @@ export default {
         maxlength: maxLength(30),
         alpha
       }
-
     },
-    login:{
+    login: {
       credentialuser: {
         required,
         minlength: minLength(30),

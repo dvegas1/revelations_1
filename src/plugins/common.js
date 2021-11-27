@@ -23,7 +23,6 @@ import Peoples from '@/components/Peoples.vue'
 import LoginRev from '@/components/LoginRev.vue'
 import notify from '@/components/notify.vue'
 
-
 Vue.component('notify', notify)
 Vue.component('LoginRev', LoginRev)
 Vue.component('Peoples', Peoples)

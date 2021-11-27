@@ -9,7 +9,7 @@
           <h5  text-light darken text-white>Notificación:<br/></h5>
           <h5 class="subtitle_notify" text-light text-white> Usuario creado con éxito.</h5>
 
-          
+
         </v-card-title>
         <v-card>
         <v-card-title class="text-h5 light">
@@ -28,9 +28,9 @@
             </div>
      </div>
 -->
-         
+
      </v-card-text>
-        
+
       </v-card>
         </v-snackbar>
         <v-card-actions>
@@ -75,16 +75,16 @@ export default {
       this.key
     },
      copyToClipboard(text) {
-    var dummy = document.createElement("textarea");
+    const dummy = document.createElement("textarea")
     // to avoid breaking orgain page when copying more words
     // cant copy when adding below this code
     // dummy.style.display = 'none'
-    document.body.appendChild(dummy);
-    //Be careful if you use texarea. setAttribute('value', value), which works with "input" does not work with "textarea". – Eduard
-    dummy.value = text;
-    dummy.select();
-    document.execCommand("copy");
-    document.body.removeChild(dummy);
+    document.body.appendChild(dummy)
+    // Be careful if you use texarea. setAttribute('value', value), which works with "input" does not work with "textarea". – Eduard
+    dummy.value = text
+    dummy.select()
+    document.execCommand("copy")
+    document.body.removeChild(dummy)
 },
      copyText () {
        this.copyToClipboard(this.SuccessMessageFirstUser.key)

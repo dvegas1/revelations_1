@@ -1,9 +1,8 @@
 <template>
   <v-container fluid>
     <v-layout row wrap>
-    <div><p>hola1</p></div>
+      <div><p>hola1</p></div>
     </v-layout>
-      
   </v-container>
 </template>
 
@@ -32,7 +31,7 @@ export default {
   },
   data() {
     return {
-     // name: this.$store.state.auth.user.name,
+      // name: this.$store.state.auth.user.name,
       showVerifyDialog: !this.$store.state.verify.emailVerified,
       refText: '',
       idcomponent: 'HOME'

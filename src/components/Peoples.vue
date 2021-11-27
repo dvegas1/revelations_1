@@ -144,11 +144,7 @@
 
                               <v-card-actions>
                                 <v-spacer></v-spacer>
-                                <v-btn
-                                  color="primary"
-                                  text
-                                  @click="vote"
-                                >
+                                <v-btn color="primary" text @click="vote">
                                   VOTAR
                                 </v-btn>
                               </v-card-actions>
@@ -283,20 +279,20 @@
                       </v-layout>
                     </v-container>
                   </v-card-text>
-                  <v-flex xs12 text-xs-center mb-2 >
-                  <v-card-actions class="transparent">
-                    <v-spacer></v-spacer>
-                    <v-btn
-                      color="alert"
-                      flat
-                      @click="close"
-                      class="btnCancel"
-                      >{{ 'Cancelar' }}</v-btn
-                    >
-                    <v-btn color="" flat @click="save" class="primary">{{
-                      'Guardar'
-                    }}</v-btn>
-                  </v-card-actions>
+                  <v-flex xs12 text-xs-center mb-2>
+                    <v-card-actions class="transparent">
+                      <v-spacer></v-spacer>
+                      <v-btn
+                        color="alert"
+                        flat
+                        @click="close"
+                        class="btnCancel"
+                        >{{ 'Cancelar' }}</v-btn
+                      >
+                      <v-btn color="" flat @click="save" class="primary">{{
+                        'Guardar'
+                      }}</v-btn>
+                    </v-card-actions>
                   </v-flex>
                 </v-card>
               </v-dialog>
@@ -386,7 +382,7 @@
                         @click="asignPeople(props.item)"
                       >
                         <div class="iconedite">
-                        VOTAR
+                          VOTAR
                         </div>
                       </v-btn>
                       <span>{{ 'Votar' }}</span>
@@ -398,17 +394,16 @@
                 <td>{{ props.item.apellido }}</td>
 
                 <td v-if="props.item.vote" class="">
-                <H5 class="woman" v-if="props.item.team == 'woman'">
-                  NIÑA
+                  <H5 class="woman" v-if="props.item.team == 'woman'">
+                    NIÑA
                   </H5>
 
-<H5 class="man" v-if="props.item.team == 'man'">
-                  NIÑO
+                  <H5 class="man" v-if="props.item.team == 'man'">
+                    NIÑO
                   </H5>
-
                 </td>
                 <td v-if="!props.item.vote && props.item.team != ''">
-                ----
+                  ----
                 </td>
               </template>
               <template v-slot:pageText="props" class="transparent">
@@ -550,8 +545,7 @@ export default {
         )}`
       ) */
       console.log(
-        'this.$store.state.peoples.totalPeoples:' +
-          this.$store.state.peoples.totalPeoples
+        `this.$store.state.peoples.totalPeoples:${this.$store.state.peoples.totalPeoples}`
       )
       return this.$store.state.peoples.totalPeoples
     },
@@ -605,7 +599,7 @@ export default {
       return this.$store.state.peoples.notify
     },
     getCred() {
-      console.log('Cambios en set_User:' + this.$store.state.peoples.set_User)
+      console.log(`Cambios en set_User:${this.$store.state.peoples.set_User}`)
       return this.$store.state.peoples.set_User
     },
     getJson() {
@@ -653,14 +647,14 @@ export default {
       'votePeople'
     ]),
     vote_confirm(select) {
-      console.log('select:' + select)
-      this.voteItem['team'] = select
-      console.log('this.voteItem:' + JSON.stringify(this.voteItem))
+      console.log(`select:${select}`)
+      this.voteItem.team = select
+      console.log(`this.voteItem:${JSON.stringify(this.voteItem)}`)
       this.dialog_vote_confirm = true
     },
     async vote() {
-      console.log('this.voteItem:' + JSON.stringify(this.voteItem))
-      
+      console.log(`this.voteItem:${JSON.stringify(this.voteItem)}`)
+
       await this.votePeople(this.voteItem)
       this.dialog_vote_confirm = false
       this.dialogVote = false
@@ -683,29 +677,27 @@ export default {
       return true
     },
     copyKey() {
-      var copyText = document.getElementById('myInput')
+      const copyText = document.getElementById('myInput')
       copyText.select()
       copyText.setSelectionRange(0, 99999)
       navigator.clipboard.writeText(copyText.value)
 
-      var tooltip = document.getElementById('st_text_copy')
+      const tooltip = document.getElementById('st_text_copy')
       tooltip.innerHTML = 'Texto copiado.'
     },
     outFunc() {
-      var tooltip = document.getElementById('myTooltip')
+      const tooltip = document.getElementById('myTooltip')
       tooltip.innerHTML = 'Copy to clipboard'
     },
     async RspsavePeople() {
       console.log(
-        'this.$store.state.peoples.RspsavePeople:' +
-          this.$store.state.peoples.RspsavePeople
+        `this.$store.state.peoples.RspsavePeople:${this.$store.state.peoples.RspsavePeople}`
       )
       return this.$store.state.peoples.RspsavePeople
     },
     getCred() {
       console.log(
-        'this.$store.state.peoples.set_User:' +
-          this.$store.state.peoples.set_User
+        `this.$store.state.peoples.set_User:${this.$store.state.peoples.set_User}`
       )
       return this.$store.state.peoples.set_User
     },
@@ -730,7 +722,7 @@ export default {
     },
     editItem(item) {
       this.editedItem = Object.assign({}, item)
-      this.deletedItem['credentialuser'] = this.$store.state.auth.user.credentialuser
+      this.deletedItem.credentialuser = this.$store.state.auth.user.credentialuser
       this.dialog = true
     },
     deleteItem(item) {
@@ -738,7 +730,7 @@ export default {
       this.dialog_eliminar = true
     },
     asignPeople(item) {
-      console.log('asignPeople:' + JSON.stringify(item))
+      console.log(`asignPeople:${JSON.stringify(item)}`)
       this.voteItem = Object.assign({}, item)
       this.dialogVote = true
     },
@@ -746,7 +738,7 @@ export default {
       try {
         this.dataTableLoading = true
         this.dialog_eliminar = false
-        this.deletedItem['credentialuser'] = this.$store.state.auth.user.credentialuser
+        this.deletedItem.credentialuser = this.$store.state.auth.user.credentialuser
         await this.deletePeople(this.deletedItem)
         this.dataTableLoading = false
         this.dialog_eliminar = false
@@ -773,13 +765,13 @@ export default {
         this.dataTableLoading = true
         let data = []
         // const valid = await this.$validator.validateAll()
-        console.log('editedItem ' + JSON.stringify(this.editedItem))
+        console.log(`editedItem ${JSON.stringify(this.editedItem)}`)
         // Updating item
         if (this.editedItem._id) {
           this.$v.editedItem.$reset()
           this.$v.editedItem.$touch()
 
-          console.log('edit:' + JSON.stringify(this.$v.editedItem))
+          console.log(`edit:${JSON.stringify(this.$v.editedItem)}`)
           if (
             this.$v.editedItem.nombre.$invalid ||
             this.$v.editedItem.apellido.$invalid
@@ -794,13 +786,12 @@ export default {
               width: '50%'
             })
             return
-          } else {
-            await this.editPeople(this.editedItem)
-            this.dataTableLoading = false
-            this.close()
           }
+          await this.editPeople(this.editedItem)
+          this.dataTableLoading = false
+          this.close()
         } else {
-          console.log('SAVE:' + JSON.stringify(this.$v.revelations))
+          console.log(`SAVE:${JSON.stringify(this.$v.revelations)}`)
 
           this.$v.revelations.$reset()
           this.$v.revelations.$touch()
@@ -818,36 +809,36 @@ export default {
               position: 'bottom-center'
             })
             return
-          } else {
-            var peoples = [
-              {
-                nombre: this.revelations.nombre,
-                apellido: this.revelations.apellido
-              }
-            ]
-
-            if (this.$store.state.auth.user != undefined) {
-              data = await this.savePeople({
-                peoples: JSON.stringify(peoples),
-                credentialuser: this.$store.state.auth.user
-              })
-
-              this.$v.revelations.nombre.$reset()
-              this.$v.revelations.apellido.$reset()
-              this.revelations.nombre = ''
-              this.revelations.apellido = ''
-            } else {
-              data = await this.savePeople({
-                peoples: JSON.stringify(peoples)
-              })
-
-              this.$v.revelations.nombre.$reset()
-              this.$v.revelations.apellido.$reset()
-              this.revelations.nombre = ''
-              this.revelations.apellido = ''
-            }
-            this.dataTableLoading = false
           }
+          const peoples = [
+            {
+              nombre: this.revelations.nombre,
+              apellido: this.revelations.apellido
+            }
+          ]
+
+          if (this.$store.state.auth.user != undefined) {
+            data = await this.savePeople({
+              peoples: JSON.stringify(peoples),
+              credentialuser: this.$store.state.auth.user
+            })
+
+            this.$v.revelations.nombre.$reset()
+            this.$v.revelations.apellido.$reset()
+            this.revelations.nombre = ''
+            this.revelations.apellido = ''
+          } else {
+            data = await this.savePeople({
+              peoples: JSON.stringify(peoples)
+            })
+
+            this.$v.revelations.nombre.$reset()
+            this.$v.revelations.apellido.$reset()
+            this.revelations.nombre = ''
+            this.revelations.apellido = ''
+          }
+          this.dataTableLoading = false
+
           this.close()
         }
 

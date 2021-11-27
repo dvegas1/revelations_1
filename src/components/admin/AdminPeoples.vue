@@ -231,9 +231,9 @@
       >
         <template v-slot:items="props">
           <td class="fill-height px-0">
-               <v-layout>
-               <v-tooltip top>
-                 <v-btn
+            <v-layout>
+              <v-tooltip top>
+                <v-btn
                   icon
                   class="mx-0"
                   slot="activator"
@@ -395,10 +395,9 @@ export default {
     },
     formTitle() {
       if (this.editedItem._id != undefined) {
-        return 'id: ' + this.editedItem._id
-      } else {
-        return 'Nuevo registro. '
+        return `id: ${this.editedItem._id}`
       }
+      return 'Nuevo registro. '
     },
     headers() {
       return [
@@ -521,11 +520,10 @@ export default {
     ]),
     user(cred) {
       try {
-        if (this.$store.state.auth.user.credentialuser == cred ) {
+        if (this.$store.state.auth.user.credentialuser == cred) {
           return true
-        }else{
-          return false
         }
+        return false
       } catch (error) {
         return false
       }
@@ -538,7 +536,6 @@ export default {
       try {
         this.dataTableLoading = true
         this.dialog_eliminar = true
-
 
         await this.deletePeople_adm(this.deletedItem)
         this.dataTableLoading = false
@@ -656,7 +653,6 @@ export default {
               credentialuser: this.editedItem.credentialuser
             })
             this.dataTableLoading = false
-            
           }
           this.close()
           resolve({})

@@ -10,17 +10,14 @@
 /* eslint-disable eqeqeq */ /* eslint-disable no-use-before-define */ /* eslint-disable no-empty */ /* eslint-disable no-irregular-whitespace */
 /* eslint-disable no-constant-condition */ /* eslint-disable func-style */
 
-
-const actions = {
-
-}
+const actions = {}
 export default {
   install(Vue, options) {
     Vue.mixin({
       watch: {
         getJson() {
           this.refText = this.$store.state.messages.message
-        }        
+        }
       },
       methods: {
         async delay(ms) {
@@ -31,12 +28,12 @@ export default {
           this.nameComponent = this.$store.state.messages.name_components
           let finalize = true
           let idioma = ''
-  
+
           this.getText_component({
             idcomponent: this.idcomponent,
             lenguage: JSON.parse(window.localStorage.getItem('locale'))
           })
-  
+
           const run = async () => {
             if (finalize) {
               finalize = false
@@ -51,7 +48,7 @@ export default {
           }
           const time = setInterval(() => {
             this.nameComponent = this.$store.state.messages.name_components
-  
+
             if (this.nameComponent !== this.idcomponent) {
               clearTimeout(time)
             } else {
@@ -96,4 +93,3 @@ export default {
   },
   actions
 }
-  

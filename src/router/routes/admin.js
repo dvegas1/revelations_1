@@ -10,7 +10,8 @@ export default [
         /* webpackChunkName: "admin-users" */
         '@/components/admin/AdminUsers.vue'
       )
-  },{
+  },
+  {
     path: '/admin/peoples',
     name: 'admin-peoples',
     meta: {

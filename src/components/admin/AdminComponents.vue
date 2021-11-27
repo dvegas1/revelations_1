@@ -16,8 +16,8 @@
             v-model="search"
             append-icon="mdi-magnify"
             :label="
-             this.refText.ADMINCOMPONENTS !== undefined
-                ?this.refText.ADMINCOMPONENTS.search.contents
+              this.refText.ADMINCOMPONENTS !== undefined
+                ? this.refText.ADMINCOMPONENTS.search.contents
                 : 'Sin label'
             "
             single-line
@@ -39,7 +39,7 @@
                 </div>
                 {{
                   this.refText.ADMINCOMPONENTS !== undefined
-                    ?this.refText.ADMINCOMPONENTS.new_item.contents
+                    ? this.refText.ADMINCOMPONENTS.new_item.contents
                     : 'Sin label'
                 }}
               </v-btn>
@@ -54,8 +54,8 @@
                     <template v-if="editedItem._id">
                       <v-flex xs12 md6>
                         <label for="createdAt">{{
-                         this.refText.ADMINCOMPONENTS !== undefined
-                            ?this.refText.ADMINCOMPONENTS.created.contents
+                          this.refText.ADMINCOMPONENTS !== undefined
+                            ? this.refText.ADMINCOMPONENTS.created.contents
                             : 'Sin label'
                         }}</label>
                         <div name="createdAt">
@@ -64,8 +64,8 @@
                       </v-flex>
                       <v-flex xs12 md6>
                         <label for="updatedAt">{{
-                         this.refText.ADMINCOMPONENTS !== undefined
-                            ?this.refText.ADMINCOMPONENTS.updated.contents
+                          this.refText.ADMINCOMPONENTS !== undefined
+                            ? this.refText.ADMINCOMPONENTS.updated.contents
                             : 'Sin label'
                         }}</label>
                         <div name="updatedAt">
@@ -79,13 +79,13 @@
                         name="components"
                         v-model="editedItem.components"
                         :label="
-                         this.refText.ADMINCOMPONENTS !== undefined
-                            ?this.refText.ADMINCOMPONENTS.component.contents
+                          this.refText.ADMINCOMPONENTS !== undefined
+                            ? this.refText.ADMINCOMPONENTS.component.contents
                             : 'Sin label'
                         "
                         :data-vv-as="
-                         this.refText.ADMINCOMPONENTS !== undefined
-                            ?this.refText.ADMINCOMPONENTS.component.contents
+                          this.refText.ADMINCOMPONENTS !== undefined
+                            ? this.refText.ADMINCOMPONENTS.component.contents
                             : 'Sin label'
                         "
                         autocomplete="off"
@@ -103,8 +103,8 @@
                   @click="close"
                   class="btnCancel"
                   >{{
-                   this.refText.ADMINCOMPONENTS !== undefined
-                      ?this.refText.ADMINCOMPONENTS.cancel.contents
+                    this.refText.ADMINCOMPONENTS !== undefined
+                      ? this.refText.ADMINCOMPONENTS.cancel.contents
                       : 'Sin label'
                   }}</v-btn
                 >
@@ -114,8 +114,8 @@
                   @click="save"
                   class="btnSave"
                   >{{
-                   this.refText.ADMINCOMPONENTS !== undefined
-                      ?this.refText.ADMINCOMPONENTS.save.contents
+                    this.refText.ADMINCOMPONENTS !== undefined
+                      ? this.refText.ADMINCOMPONENTS.save.contents
                       : 'Sin label'
                   }}</v-btn
                 >
@@ -128,18 +128,18 @@
         must-sort
         :loading="dataTableLoading"
         :rows-per-page-text="
-         this.refText.ADMINCOMPONENTS !== undefined
-            ?this.refText.ADMINCOMPONENTS.rows_per_page.contents
+          this.refText.ADMINCOMPONENTS !== undefined
+            ? this.refText.ADMINCOMPONENTS.rows_per_page.contents
             : 'Sin label'
         "
         :no-data-text="
-         this.refText.ADMINCOMPONENTS !== undefined
-            ?this.refText.ADMINCOMPONENTS.no_data.contents
+          this.refText.ADMINCOMPONENTS !== undefined
+            ? this.refText.ADMINCOMPONENTS.no_data.contents
             : 'Sin label'
         "
         :no-results-text="
-         this.refText.ADMINCOMPONENTS !== undefined
-            ?this.refText.ADMINCOMPONENTS.no_result.contents
+          this.refText.ADMINCOMPONENTS !== undefined
+            ? this.refText.ADMINCOMPONENTS.no_result.contents
             : 'Sin label'
         "
         :rows-per-page-items="[5, 10, 25]"
@@ -164,8 +164,8 @@
                   </div>
                 </v-btn>
                 <span>{{
-                 this.refText.ADMINCOMPONENTS !== undefined
-                    ?this.refText.ADMINCOMPONENTS.edit.contents
+                  this.refText.ADMINCOMPONENTS !== undefined
+                    ? this.refText.ADMINCOMPONENTS.edit.contents
                     : 'Sin label'
                 }}</span>
               </v-tooltip>
@@ -181,8 +181,8 @@
                   </div>
                 </v-btn>
                 <span>{{
-                 this.refText.ADMINCOMPONENTS !== undefined
-                    ?this.refText.ADMINCOMPONENTS.delete.contents
+                  this.refText.ADMINCOMPONENTS !== undefined
+                    ? this.refText.ADMINCOMPONENTS.delete.contents
                     : 'Sin label'
                 }}</span>
               </v-tooltip>
@@ -195,20 +195,20 @@
         <template v-slot:pageText="props">
           {{ props.pageStart }} - {{ props.pageStop }}
           {{
-           this.refText.ADMINCOMPONENTS !== undefined
-              ?this.refText.ADMINCOMPONENTS.of.contents
+            this.refText.ADMINCOMPONENTS !== undefined
+              ? this.refText.ADMINCOMPONENTS.of.contents
               : 'Sin label'
           }}
           {{ props.itemsLength }}
         </template>
         <template v-slot:no-data>{{
-         this.refText.ADMINCOMPONENTS !== undefined
-            ?this.refText.ADMINCOMPONENTS.no_data.contents
+          this.refText.ADMINCOMPONENTS !== undefined
+            ? this.refText.ADMINCOMPONENTS.no_data.contents
             : 'Sin label'
         }}</template>
         <template v-slot:no-results>{{
-         this.refText.ADMINCOMPONENTS !== undefined
-            ?this.refText.ADMINCOMPONENTS.no_result.contents
+          this.refText.ADMINCOMPONENTS !== undefined
+            ? this.refText.ADMINCOMPONENTS.no_result.contents
             : 'Sin label'
         }}</template>
       </v-data-table>

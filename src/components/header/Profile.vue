@@ -1170,7 +1170,6 @@ export default {
       get() {
         // console.log(`CitySelect ${this.$store.state.profile.profile.country}`)
         if (this.$store.state.profile.profile.state !== undefined) {
-          
         }
         // eslint-disable-next-line vue/no-side-effects-in-computed-properties
         this.profile.state = this.$store.state.profile.profile.state

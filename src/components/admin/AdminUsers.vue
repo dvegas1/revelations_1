@@ -19,18 +19,18 @@
             clear-icon="mdi-close"
           ></v-text-field>
         </v-flex>
-        <v-flex xs12 sm6 md4 text-xs-right mb-2 mt-2 pr-2 >
+        <v-flex xs12 sm6 md4 text-xs-right mb-2 mt-2 pr-2>
           <v-dialog
             v-model="dialog"
             max-width="800px"
             content-class="dlgNewEditItem "
             class="backmultiPand"
           >
-            <v-card >
+            <v-card>
               <v-card-title class="darken">
                 <span class="headline">{{ formTitle }}</span>
               </v-card-title>
-              <v-card-text > 
+              <v-card-text>
                 <v-container grid-list-md>
                   <v-layout wrap>
                     <template v-if="editedItem._id">
@@ -117,14 +117,13 @@
               </v-card-actions>
             </v-card>
           </v-dialog>
-          <v-flex xs12 sm6 md4 text-xs-right mb-2 mt-2 pr-2 >
+          <v-flex xs12 sm6 md4 text-xs-right mb-2 mt-2 pr-2>
             <v-dialog
               v-model="dialog_eliminar"
               max-width="500px"
               content-class="dlgNewEditItem"
-              
             >
-              <v-card >
+              <v-card>
                 <v-card-title class="darken">
                   <span class="headline ">Desea eliminar este invitado ?</span>
                 </v-card-title>
@@ -189,7 +188,10 @@
       >
         <template v-slot:items="props">
           <td class="fill-height px-0">
-            <v-layout v-if="!user(props.item.credentialuser)" class="justify-center">
+            <v-layout
+              v-if="!user(props.item.credentialuser)"
+              class="justify-center"
+            >
               <v-tooltip top>
                 <v-btn
                   icon
@@ -222,11 +224,9 @@
               </v-tooltip>
             </v-layout>
             <v-layout v-else>
-            <v-btn icon
-                  class="primary center"
-                  disabled
-                  slot="activator">Yo
-            </v-btn>
+              <v-btn icon class="primary center" disabled slot="activator"
+                >Yo
+              </v-btn>
             </v-layout>
           </td>
           <td>{{ props.item._id }}</td>
@@ -352,10 +352,9 @@ export default {
     },
     formTitle() {
       if (this.editedItem._id != undefined) {
-        return 'id: ' + this.editedItem._id
-      } else {
-        return 'Nuevo registro. '
+        return `id: ${this.editedItem._id}`
       }
+      return 'Nuevo registro. '
     },
     headers() {
       return [
@@ -381,7 +380,7 @@ export default {
           text: 'Clave',
           value: 'credentialuser',
           sortable: false,
-          align:'left',
+          align: 'left',
           width: 100
         },
         {
@@ -455,11 +454,10 @@ export default {
     ]),
     user(cred) {
       try {
-        if (this.$store.state.auth.user.credentialuser == cred ) {
+        if (this.$store.state.auth.user.credentialuser == cred) {
           return true
-        }else{
-          return false
         }
+        return false
       } catch (error) {
         return false
       }
@@ -570,7 +568,6 @@ export default {
           this.dataTableLoading = true
           // Updating item
           if (this.editedItem._id) {
-
             await this.editUser_admin(this.editedItem)
             this.dataTableLoading = false
           } else {
@@ -593,16 +590,16 @@ export default {
   },
   async mounted() {
     this.getNameComponent()
-  /*  this.sendNotify({
+    /*  this.sendNotify({
       square: true,
       duration: 60000,
       progress: 'auto',
-      text: `adasdad ${this.idcomponent}`, 
+      text: `adasdad ${this.idcomponent}`,
       color: 'warn',
       position: 'bottom-center',
       width: '50%'
     })*/
-  /*
+    /*
     this.sendNotify({
       square: true,
       duration: 600000,

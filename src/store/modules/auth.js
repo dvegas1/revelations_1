@@ -71,7 +71,7 @@ const actions = {
               text: 'Bienvenido.',
               color: 'success',
               position: null,
-              width:'100%'
+              width: '100%'
             })
             commit(types.SHOW_LOADING, false)
           }
@@ -144,7 +144,6 @@ const mutations = {
     state.user = user
   }
 }
-
 
 const state = {
   user: null,

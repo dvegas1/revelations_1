@@ -126,7 +126,7 @@
           v-if="isTokenSet"
           @click="view_ca"
           class="hidden-sm-and-down btnLogout icon_tolbar"
-          
+
         >
           <v-icon left>key</v-icon>
           MI CLAVE DE ACCESO
@@ -165,7 +165,7 @@
             </div>
      </div>
 -->
-         
+
      </v-card-text>
         <v-divider></v-divider>
       </v-card>
@@ -174,7 +174,7 @@
 </template>
 
   </div>
-  
+
 </template>
 
 <script>
@@ -369,7 +369,7 @@ export default {
             icon: 'mdi-home',
             status: 0,
             class: 'icon_tolbar'
-            
+
           },
          /* {
             title: this.$t('menuItems.MY_PROFILE'),
@@ -451,8 +451,8 @@ export default {
       ]
     }
   },
-  
-    
+
+
   methods: {
     ...mapActions(['sendNotify','sendNotify']),
 
@@ -463,9 +463,9 @@ export default {
       this.modal_ca = true
     },
     async copyText () {
-          let textToCopy = this.$refs.textToCopy.$el.querySelector('input')
+          const textToCopy = this.$refs.textToCopy.$el.querySelector('input')
           textToCopy.select()
-          document.execCommand("copy");
+          document.execCommand("copy")
        this.sendNotify({
                square: true,
                 duration: 6000,
@@ -476,7 +476,7 @@ export default {
                 position: 'bottom-center',
                 width: '50%'
             })
-            
+
         }
   },
    async mounted() {

@@ -158,7 +158,12 @@ export default {
   },
 
   methods: {
-    ...mapActions(['userLogin', 'getText_component', 'name_component', 'sendNotify']),
+    ...mapActions([
+      'userLogin',
+      'getText_component',
+      'name_component',
+      'sendNotify'
+    ]),
     openNotification() {
       this.$vs.notification(this.notify)
     },

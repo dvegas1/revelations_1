@@ -37,7 +37,6 @@ const actions = {
     })
   },
   editPeople_adm({ commit }, payload) {
-
     commit(types.NOTIFY, {
       square: true,
       duration: 6000,
@@ -75,7 +74,7 @@ const actions = {
             })
           }
           api
-            .getAllPeoples({sort:'updatedAt',order:-1})
+            .getAllPeoples({ sort: 'updatedAt', order: -1 })
             .then(response => {
               if (response.status === 200) {
                 commit(types.ADM_PEOPLE, response.data.docs)
@@ -93,7 +92,6 @@ const actions = {
     })
   },
   createPeople({ commit }, payload) {
-
     commit(types.NOTIFY, {
       square: true,
       duration: 6000,
@@ -120,28 +118,27 @@ const actions = {
               position: 'bottom-center',
               width: '50%'
             })
-          
-          api
-            .getAllPeoples({sort:'createdAt',order:-1})
-            .then(response => {
-              if (response.status === 200) {
-                commit(types.ADM_PEOPLE, response.data.docs)
-                commit(types.ADM_TOTAL_PEOPLE, response.data.totalDocs)
-              }
-              resolve({})
-            })
-            .catch(error => {
-              handleError_api(error, commit, reject)
-            })
-          }
 
+            api
+              .getAllPeoples({ sort: 'createdAt', order: -1 })
+              .then(response => {
+                if (response.status === 200) {
+                  commit(types.ADM_PEOPLE, response.data.docs)
+                  commit(types.ADM_TOTAL_PEOPLE, response.data.totalDocs)
+                }
+                resolve({})
+              })
+              .catch(error => {
+                handleError_api(error, commit, reject)
+              })
+          }
         })
         .catch(error => {
           handleError_api(error, commit, reject)
         })
     })
   },
-  /*ELIMINACION DE PERSONA PARA ADMINISTRADOR*/
+  /* ELIMINACION DE PERSONA PARA ADMINISTRADOR*/
   deletePeople_adm({ commit }, payload) {
     commit(types.NOTIFY, {
       square: true,
@@ -158,7 +155,6 @@ const actions = {
         .deletePeople_adm(payload._id)
         .then(response => {
           if (response.status === 200) {
-
             commit(types.NOTIFY, {
               square: true,
               duration: 6000,
@@ -171,7 +167,7 @@ const actions = {
             })
 
             api
-              .getAllPeoples({sort:'createdAt',order:-1})
+              .getAllPeoples({ sort: 'createdAt', order: -1 })
               .then(response => {
                 if (response.status === 200) {
                   commit(types.ADM_PEOPLE, response.data.docs)
