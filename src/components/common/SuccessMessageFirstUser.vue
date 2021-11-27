@@ -133,7 +133,7 @@ export default {
   watch: {
     SuccessMessageFirstUser() {
       setTimeout(() => {
-        this.showSuccessMessageFirstUser = this.SuccessMessageFirstUser !== ''
+        this.showSuccessMessageFirstUser = this.SuccessMessageFirstUser  !== null
       }, 100)
     }
   }
