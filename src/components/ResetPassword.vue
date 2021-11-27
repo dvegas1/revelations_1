@@ -122,9 +122,6 @@ export default {
     },
     getJson() {
       return this.$store.state.messages.message
-    },
-    getNameComponent() {
-      return this.$store.state.messages.name_components
     }
   },
 

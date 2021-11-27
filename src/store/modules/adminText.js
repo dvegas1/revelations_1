@@ -42,6 +42,8 @@ const actions = {
         component: payload.component,
         idcontents: payload.idcontents,
         contents: payload.contents,
+        language: payload.language,
+        idtext: payload.idtext,
         description: payload.description
       }
 

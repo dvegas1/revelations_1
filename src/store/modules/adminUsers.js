@@ -12,7 +12,7 @@
 
 import * as types from '@/store/mutation-types'
 import api from '@/services/api/adminUsers'
-import { buildSuccess, handleError } from '@/utils/utils.js'
+import { buildSuccess, handleError, handleError_api } from '@/utils/utils.js'
 
 const getters = {
   users: state => state.users,
@@ -32,87 +32,192 @@ const actions = {
           }
         })
         .catch(error => {
-          handleError(error, commit, reject)
+          handleError_api(error, commit, reject)
         })
     })
   },
-  editUser({ commit }, payload) {
+  editUser_admin({ commit }, payload) {
+    commit(types.NOTIFY, {
+      square: true,
+      duration: 6000,
+      progress: 'auto',
+      title: `<i class='bx bx-folder-open' >Editando usuario.</i><i class="fas fa-exclamation-circle"></i>`,
+      text: `<p class='p_textNotify' >Guardando usuario: ${payload.credentialuser} </p>`,
+      color: 'warn',
+      position: 'bottom-center',
+      width: '50%'
+    })
+
     return new Promise((resolve, reject) => {
       const data = {
-        username: payload.username,
-        email: payload.email,
-        password: payload.password,
         role: payload.role,
-        firstname: payload.firstname,
-        secondname: payload.secondname,
-        firstsurname: payload.firstsurname,
-        secondsurname: payload.secondsurname,
-        date: payload.date,
-        nroidentificacion: payload.nroidentificacion,
-        code: payload.code,
-        myphone: payload.myphone,
-        country: payload.country,
-        state: payload.state,
-        city: payload.city,
-        postalcode: payload.postalcode,
-        storename: payload.storename,
-        rif: payload.rif
+        id: payload.id,
+        credentialuser: payload.credentialuser
       }
       api
         .editUser(payload._id, data)
         .then(response => {
           if (response.status === 200) {
-            buildSuccess(
-              {
-                msg: 'common.SAVED_SUCCESSFULLY'
-              },
-              commit,
-              resolve
-            )
+            commit(types.NOTIFY, {
+              square: true,
+              duration: 6000,
+              progress: 'auto',
+              title: `<i class='bx bx-folder-open' >Usuario editado con éxito.</i><i class="fas fa-exclamation-circle"></i>`,
+              text: `<p class='p_textNotify' >Id: ${payload._id}. </p>`,
+              color: 'success',
+              position: 'bottom-center',
+              width: '50%'
+            })
+
+            api
+              .getUsers({sort:'updatedAt',order:-1})
+              .then(response => {
+                if (response.status === 200) {
+                  commit(types.USERS, response.data.docs)
+                  commit(types.TOTAL_USERS, response.data.totalDocs)
+                  resolve()
+                }
+              })
+              .catch(error => {
+                handleError_api(
+                  error,
+                  commit,
+                  reject
+                )
+              })
+              resolve({})
           }
         })
         .catch(error => {
-          handleError(error, commit, reject)
+          handleError_api(
+            error,
+            commit,
+            reject
+          )
         })
     })
   },
-  saveUser({ commit }, payload) {
+  saveUser_admin({ commit }, payload) {
+
+
+    commit(types.NOTIFY, {
+      square: true,
+      duration: 6000,
+      progress: 'auto',
+      title: `<i class='bx bx-folder-open' >Guardando usuario.</i><i class="fas fa-exclamation-circle"></i>`,
+      text: `<p class='p_textNotify' >Guardando usuario: ${payload.credentialuser} </p>`,
+      color: 'warn',
+      position: 'bottom-center',
+      width: '50%'
+    })
     return new Promise((resolve, reject) => {
       api
         .saveUser(payload)
         .then(response => {
           if (response.status === 201) {
-            buildSuccess(
-              {
-                msg: 'common.SAVED_SUCCESSFULLY'
-              },
-              commit,
-              resolve
-            )
+            commit(types.NOTIFY, {
+              square: true,
+              duration: 7000,
+              progress: 'auto',
+              title: `<i class='bx bx-folder-open' >Guardando usuario.</i><i class="fas fa-exclamation-circle"></i>`,
+              text: `<p class='p_textNotify' >Usuario guardado con éxito: Rol:${payload.role} Clave:${payload.credentialuser}. </p>`,
+              color: 'success',
+              position: 'bottom-center',
+              width: '50%'
+            })
+
+            api
+              .getUsers({sort:'createdAt',order:-1})
+              .then(response => {
+                if (response.status === 200) {
+                  commit(types.USERS, response.data.docs)
+                  commit(types.TOTAL_USERS, response.data.totalDocs)
+                  resolve()
+                }
+              })
+              .catch(error => {
+                handleError_api(
+                  error,
+                  commit,
+                  reject
+                )
+              })
           }
         })
         .catch(error => {
-          handleError(error, commit, reject)
+          handleError_api(
+            error,
+            commit,
+            reject
+          )
         })
     })
   },
-  deleteUser({ commit }, payload) {
+  /*ELIMINACION DE USUARIO PARA ADMINISTRADOR*/
+
+
+  deleteUser_adm({ commit }, payload) {
+
+    let msg = `<p class='p_textNotify' >Id: ${payload._id}. </p>`
+
+
+    commit(types.NOTIFY, {
+      square: true,
+      duration: 6000,
+      progress: 'auto',
+      title: `<i class='bx bx-folder-open' >Eliminación de usuario.</i><i class="fas fa-exclamation-circle"></i>`,
+      text: msg,
+      color: 'warn',
+      position: 'bottom-center',
+      width: '50%'
+    })
+
+
     return new Promise((resolve, reject) => {
       api
-        .deleteUser(payload)
+        .deleteUser_adm(payload._id)
         .then(response => {
           if (response.status === 200) {
-            buildSuccess(
-              {
-                msg: 'common.DELETED_SUCCESSFULLY'
-              },
-              commit,
-              resolve
-            )
+
+            commit(types.NOTIFY, {
+              square: true,
+              duration: 6000,
+              progress: 'auto',
+              title: `<i class='bx bx-folder-open' >Usuario elimado con éxito.</i><i class="fas fa-exclamation-circle"></i>`,
+              text: `<p class='p_textNotify' >Id: ${payload._id}. </p>`,
+              color: 'success',
+              position: 'bottom-center',
+              width: '50%'
+            })
+
+            /*   buildSuccess(
+                 {
+                   msg: 'common.DELETED_SUCCESSFULLY'
+                 },
+                 commit,
+                 resolve
+               )*/
+            api
+              .getUsers({sort:'createdAt',order:-1})
+              .then(response => {
+                if (response.status === 200) {
+                  commit(types.USERS, response.data.docs)
+                  commit(types.TOTAL_USERS, response.data.totalDocs)
+                  resolve()
+                }
+              })
+              .catch(error => {
+                handleError_api(
+                  error,
+                  commit,
+                  reject
+                )
+              })
+
           }
         })
         .catch(error => {
-          handleError(error, commit, reject)
+          handleError_api(error, commit, reject)
         })
     })
   }

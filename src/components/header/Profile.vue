@@ -1170,9 +1170,7 @@ export default {
       get() {
         // console.log(`CitySelect ${this.$store.state.profile.profile.country}`)
         if (this.$store.state.profile.profile.state !== undefined) {
-          this.getStateAllCities({
-            state: this.$store.state.profile.profile.state
-          })
+          
         }
         // eslint-disable-next-line vue/no-side-effects-in-computed-properties
         this.profile.state = this.$store.state.profile.profile.state
@@ -1341,30 +1339,11 @@ export default {
       'changeMyPassword',
       'getProfile',
       'getAllCoutry',
-      'getCountryAllStates',
-      'getStateAllCities',
       'addProfileData',
       'saveProfile',
       'setSwitch',
       'verifiRegisterUsernameProfile'
     ]),
-    /* async changeCountry() {
-      // console.log('Entrando a changeCountry.')
-     this.getCountryAllStates({
-        country: this.country
-      })
-    },
-    @change="this.changeCountry"
-*/
-    /* async changeState() {
-      console.log('Entrando a changeState.')
-      this.getStateAllCities({
-        state: this.state
-      })
-    },
-    @change="this.changeState"
-    */
-
     async validate_username() {
       if (!this.$v.profile.username.$dirty) {
         return

@@ -2,57 +2,60 @@
 
 <template>
   <div class="transparent">
-    <v-navigation-drawer v-model="sidebar" app disable-resize-watcher transparent >
-      <v-list class="transparent">
-        <v-list-tile class="transparent">
-          <v-list-tile-content>{{ appTitle }}</v-list-tile-content>
+    <v-navigation-drawer v-model="sidebar" app disable-resize-watcher transparent  >
+      <v-list class=" ">
+        <v-list-tile class="">
+          <v-list-tile-content class="">{{ appTitle }}</v-list-tile-content>
           <v-list-tile-action>
             <v-btn icon @click.stop="sidebar = !sidebar">
               <v-icon>mdi-chevron-left</v-icon>
             </v-btn>
           </v-list-tile-action>
         </v-list-tile>
-        <v-list-tile class="transparent"
+        <v-list-tile class=""
           v-for="(item, index) in menuItems"
           :key="index"
           :to="{ name: item.link }"
+          v-if="item.status == 0"
           exact
         >
-          <v-list-tile-action>
-            <v-icon>{{ item.icon }}</v-icon>
+          <v-list-tile-action class="icon_tolbar">
+            <v-icon class="icon_tolbar">{{ item.icon }}</v-icon>
           </v-list-tile-action>
-          <v-list-tile-content>{{ item.title }}</v-list-tile-content>
+          <v-list-tile-content class="icon_tolbar">{{ item.title }}</v-list-tile-content>
         </v-list-tile>
 
-        <v-list-group v-if="admin" prepend-icon="mdi-lock" no-action class="transparent">
-          <v-list-tile slot="activator">
-            <v-list-tile-title>{{ $t('adminItems.ADMIN') }}</v-list-tile-title>
+        <v-list-group v-if="admin" class="icon_tolbar" prepend-icon="mdi-lock" no-action>
+          <v-list-tile class="icon_tolbar" slot="activator">
+            <v-list-tile-title class="icon_tolbar">{{ $t('adminItems.ADMIN') }}</v-list-tile-title>
           </v-list-tile>
           <v-list-tile
             v-for="(item, index) in adminItems"
             :key="index"
             :to="{ name: item.link }"
             exact
+            v-if="item.status == 0"
+            class="icon_tolbar"
           >
-            <v-list-tile-content class="d-inline mt-3">
-              <v-icon>{{ item.icon }}</v-icon>
+            <v-list-tile-content v-if="item.status == 0" class="d-inline mt-3 icon_tolbar">
+              <v-icon class="icon_tolbar">{{ item.icon }}</v-icon>
               {{ item.title }}
             </v-list-tile-content>
           </v-list-tile>
         </v-list-group>
 
-        <v-list-tile v-if="isTokenSet" @click="view_ca">
+        <v-list-tile v-if="isTokenSet" @click="view_ca" class="icon_tolbar">
           <v-list-tile-action>
-            <v-icon>key</v-icon>
+            <v-icon left class="icon_tolbar">key</v-icon>
           </v-list-tile-action>
-          <v-list-tile-content>
+          <v-list-tile-content class="icon_tolbar">
             MI CLAVE DE ACCESO
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
       <v-list-tile v-if="isTokenSet" @click="userLogout">
           <v-list-tile-action>
-            <v-icon>mdi-exit-to-app</v-icon>
+            <v-icon class="icon_tolbar">mdi-exit-to-app</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
             {{ $t('menuItems.LOGOUT') }}
@@ -90,14 +93,15 @@
           :key="index"
           :to="{ name: item.link }"
           exact
-          :class="['hidden-sm-and-down', item.class]"
+          v-if="item.status == 0"
+          :class="['hidden-sm-and-down icon_tolbar', item.class]"
         >
           <v-icon>{{ item.icon }}</v-icon>
           &nbsp;{{ item.title }}
         </v-btn>
-        <v-menu v-if="admin" offset-y class="hidden-sm-and-down">
-          <v-btn slot="activator" flat class="">
-            <v-icon>mdi-lock</v-icon>
+        <v-menu v-if="admin" offset-y class="hidden-sm-and-down ">
+          <v-btn slot="activator" flat class="icon_tolbar">
+            <v-icon class="icon_tolbar">mdi-lock</v-icon>
             &nbsp;{{ $t('adminItems.ADMIN') }}
           </v-btn>
           <v-list>
@@ -108,9 +112,10 @@
               :to="{ name: item.link }"
               exact
               :class="[item.class]"
+              v-if="item.status == 0"
             >
-              <v-list-tile-title>
-                <v-icon>{{ item.icon }}</v-icon>
+              <v-list-tile-title v-if="item.status ==  0">
+                <v-icon class="icon_tolbar">{{ item.icon }}</v-icon>
                 {{ item.title }}
               </v-list-tile-title>
             </v-list-tile>
@@ -121,6 +126,7 @@
           v-if="isTokenSet"
           @click="view_ca"
           class="hidden-sm-and-down btnLogout icon_tolbar"
+          
         >
           <v-icon left>key</v-icon>
           MI CLAVE DE ACCESO
@@ -250,7 +256,7 @@ export default {
       bars: [
         { class: '' },
         { class: '', dark: true },
-        { class: 'primary', dark: true },
+        { class: 'icon_tolbar', dark: true },
         { class: 'elevation-0' }
       ]
     }
@@ -272,43 +278,56 @@ export default {
           title: this.$t('adminItems.USERS'),
           link: 'admin-users',
           icon: 'mdi-account-supervisor',
-          class: ''
+          status: 0,
+          class: 'transparent'
+        },{
+          title: this.$t('adminItems.INVITADOS'),
+          link: 'admin-peoples',
+          icon: 'mdi-account-supervisor',
+          status: 0,
+          class: 'transparent'
         },
         {
           title: this.$t('adminItems.COUNTRY'),
           link: 'admin-country',
           icon: 'mdi-flag',
-          class: ''
+          status: 1,
+          class: 'icon_tolbar'
         },
         {
           title: this.$t('adminItems.STATE'),
           link: 'admin-state',
           icon: 'mdi-map',
-          class: ''
+          status: 1,
+          class: 'icon_tolbar'
         },
         {
           title: this.$t('adminItems.CITIES'),
           link: 'admin-cities',
           icon: 'mdi-city',
-          class: ''
+          status: 1,
+          class: 'icon_tolbar'
         },
         {
           title: this.$t('adminItems.CONTENTS'),
           link: 'admin-text',
           icon: 'mdi-pencil',
-          class: ''
+          status: 1,
+          class: 'icon_tolbar'
         },
         {
           title: this.$t('adminItems.COMPONENTS'),
           link: 'admin-components',
           icon: 'mdi-folder',
-          class: ''
+          status: 1,
+          class: 'icon_tolbar'
         },
         {
           title: this.$t('adminItems.NATION'),
           link: 'admin-nation',
           icon: 'mdi-routes',
-          class: ''
+          status: 1,
+          class: 'icon_tolbar'
         }
       ]
     },
@@ -318,13 +337,15 @@ export default {
           title: this.$t('adminItems.PURCHASES'),
           link: 'history-mypurchases',
           icon: 'mdi-cart',
-          class: ''
+          status: 1,
+          class: 'icon_tolbar'
         },
         {
           title: this.$t('adminItems.SALES'),
           link: 'history-mysales',
           icon: 'mdi-cash-multiple',
-          class: ''
+          status: 1,
+          class: 'icon_tolbar'
         }
       ]
     },
@@ -334,7 +355,8 @@ export default {
           title: this.$t('myStoreItems.VIEW_STORE'),
           link: 'store',
           icon: 'mdi-store',
-          class: ''
+          status: 1,
+          class: 'icon_tolbar'
         }
       ]
     },
@@ -345,7 +367,9 @@ export default {
             title: 'REVELACIÓN',
             link: 'home',
             icon: 'mdi-home',
+            status: 0,
             class: 'icon_tolbar'
+            
           },
          /* {
             title: this.$t('menuItems.MY_PROFILE'),
@@ -384,12 +408,14 @@ export default {
           title: 'REVELACIÓN',
           link: 'revelations',
           icon: 'mdi-home',
+          status: 0,
           class: 'icon_tolbar'
         },
         {
           title: this.$t('menuItems.LOGIN'),
           link: 'login',
           icon: 'mdi-login',
+          status: 0,
           class: 'icon_tolbar'
         }
         /*  {
@@ -425,8 +451,10 @@ export default {
       ]
     }
   },
+  
+    
   methods: {
-    ...mapActions(['sendNotify']),
+    ...mapActions(['sendNotify','sendNotify']),
 
     userLogout() {
       this.$store.dispatch('userLogout')
@@ -438,78 +466,28 @@ export default {
           let textToCopy = this.$refs.textToCopy.$el.querySelector('input')
           textToCopy.select()
           document.execCommand("copy");
-          this.sendNotify({
-              duration: 6000,
-              progress: 'auto',
-              title: 'Clave de acceso.',
-              text: 'Clave copiada con exito.',
-              color: 'success',
-              position: 'bottom-center',
-              width: '50%'
+       this.sendNotify({
+               square: true,
+                duration: 6000,
+                progress: 'auto',
+                title: `<i class='bx bx-folder-open' >Clave de acceso.</i><i class="far fa-check-circle"></i>`,
+                text: `<p class='p_textNotify' >Clave copiada con exito.</p>`,
+                color: 'success',
+                position: 'bottom-center',
+                width: '50%'
             })
+            
         }
   },
    async mounted() {
- //   await this.name_component(this.idcomponent)
         const time = setInterval(() => {
           if(this.user !== null){
-            console.log("key:" + this.key)
               this.key = this.user.credentialuser
           }
-          }, 1000)
+          }, 3000)
   }
 }
 </script>
 <style>
-.v-toolbar__content {
-    background: linear-gradient(
-270deg, #3367d2, #811a92,#6e4390);
-    background-size: 400% 400%;
 
-    -webkit-animation: AnimationName 21s ease infinite;
-    -moz-animation: AnimationName 21s ease infinite;
-    animation: AnimationName 21s ease infinite;
-}
-
-@-webkit-keyframes AnimationName {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-}
-@-moz-keyframes AnimationName {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-}
-@keyframes AnimationName {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-}
-
-.key_cont {
-    display: flex;
-    line-height: 10px;
-    padding: 5px;
-    margin: 4px;
-}
-
-i.far.fa-copy.copyKey {
-    margin: 5px;
-    padding: 7px;
-    width: 30px;
-    height: 32px;
-    background: #f1f1f1;
-    line-height: 18px;
-    border: 1px solid #c1c1c1;
-    border-radius: 5px;
-    font-size: 13pt;
-    color: #5d596e;
-    cursor:pointer !important;
-}
-
-.it__Btn {
-    display: flex;
-    width: 100%;
-}
 </style>

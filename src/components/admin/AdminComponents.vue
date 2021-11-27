@@ -6,8 +6,8 @@
       <v-layout wrap>
         <v-flex xs12 sm12 md4 mt-3 pl-4>
           <v-toolbar-title>{{
-            refText.ADMINCOMPONENTS !== ''
-              ? refText.ADMINCOMPONENTS.title.contents
+            this.refText.ADMINCOMPONENTS !== undefined
+              ? this.refText.ADMINCOMPONENTS.title.contents
               : 'Sin label'
           }}</v-toolbar-title>
         </v-flex>
@@ -16,8 +16,8 @@
             v-model="search"
             append-icon="mdi-magnify"
             :label="
-              refText.ADMINCOMPONENTS !== undefined
-                ? refText.ADMINCOMPONENTS.search.contents
+             this.refText.ADMINCOMPONENTS !== undefined
+                ?this.refText.ADMINCOMPONENTS.search.contents
                 : 'Sin label'
             "
             single-line
@@ -38,8 +38,8 @@
                   <v-icon>mdi-folder</v-icon>
                 </div>
                 {{
-                  refText.ADMINCOMPONENTS !== undefined
-                    ? refText.ADMINCOMPONENTS.new_item.contents
+                  this.refText.ADMINCOMPONENTS !== undefined
+                    ?this.refText.ADMINCOMPONENTS.new_item.contents
                     : 'Sin label'
                 }}
               </v-btn>
@@ -54,8 +54,8 @@
                     <template v-if="editedItem._id">
                       <v-flex xs12 md6>
                         <label for="createdAt">{{
-                          refText.ADMINCOMPONENTS !== undefined
-                            ? refText.ADMINCOMPONENTS.created.contents
+                         this.refText.ADMINCOMPONENTS !== undefined
+                            ?this.refText.ADMINCOMPONENTS.created.contents
                             : 'Sin label'
                         }}</label>
                         <div name="createdAt">
@@ -64,8 +64,8 @@
                       </v-flex>
                       <v-flex xs12 md6>
                         <label for="updatedAt">{{
-                          refText.ADMINCOMPONENTS !== undefined
-                            ? refText.ADMINCOMPONENTS.updated.contents
+                         this.refText.ADMINCOMPONENTS !== undefined
+                            ?this.refText.ADMINCOMPONENTS.updated.contents
                             : 'Sin label'
                         }}</label>
                         <div name="updatedAt">
@@ -79,13 +79,13 @@
                         name="components"
                         v-model="editedItem.components"
                         :label="
-                          refText.ADMINCOMPONENTS !== undefined
-                            ? refText.ADMINCOMPONENTS.component.contents
+                         this.refText.ADMINCOMPONENTS !== undefined
+                            ?this.refText.ADMINCOMPONENTS.component.contents
                             : 'Sin label'
                         "
                         :data-vv-as="
-                          refText.ADMINCOMPONENTS !== undefined
-                            ? refText.ADMINCOMPONENTS.component.contents
+                         this.refText.ADMINCOMPONENTS !== undefined
+                            ?this.refText.ADMINCOMPONENTS.component.contents
                             : 'Sin label'
                         "
                         autocomplete="off"
@@ -103,8 +103,8 @@
                   @click="close"
                   class="btnCancel"
                   >{{
-                    refText.ADMINCOMPONENTS !== undefined
-                      ? refText.ADMINCOMPONENTS.cancel.contents
+                   this.refText.ADMINCOMPONENTS !== undefined
+                      ?this.refText.ADMINCOMPONENTS.cancel.contents
                       : 'Sin label'
                   }}</v-btn
                 >
@@ -114,8 +114,8 @@
                   @click="save"
                   class="btnSave"
                   >{{
-                    refText.ADMINCOMPONENTS !== undefined
-                      ? refText.ADMINCOMPONENTS.save.contents
+                   this.refText.ADMINCOMPONENTS !== undefined
+                      ?this.refText.ADMINCOMPONENTS.save.contents
                       : 'Sin label'
                   }}</v-btn
                 >
@@ -128,18 +128,18 @@
         must-sort
         :loading="dataTableLoading"
         :rows-per-page-text="
-          refText.ADMINCOMPONENTS !== undefined
-            ? refText.ADMINCOMPONENTS.rows_per_page.contents
+         this.refText.ADMINCOMPONENTS !== undefined
+            ?this.refText.ADMINCOMPONENTS.rows_per_page.contents
             : 'Sin label'
         "
         :no-data-text="
-          refText.ADMINCOMPONENTS !== undefined
-            ? refText.ADMINCOMPONENTS.no_data.contents
+         this.refText.ADMINCOMPONENTS !== undefined
+            ?this.refText.ADMINCOMPONENTS.no_data.contents
             : 'Sin label'
         "
         :no-results-text="
-          refText.ADMINCOMPONENTS !== undefined
-            ? refText.ADMINCOMPONENTS.no_result.contents
+         this.refText.ADMINCOMPONENTS !== undefined
+            ?this.refText.ADMINCOMPONENTS.no_result.contents
             : 'Sin label'
         "
         :rows-per-page-items="[5, 10, 25]"
@@ -164,8 +164,8 @@
                   </div>
                 </v-btn>
                 <span>{{
-                  refText.ADMINCOMPONENTS !== undefined
-                    ? refText.ADMINCOMPONENTS.edit.contents
+                 this.refText.ADMINCOMPONENTS !== undefined
+                    ?this.refText.ADMINCOMPONENTS.edit.contents
                     : 'Sin label'
                 }}</span>
               </v-tooltip>
@@ -181,8 +181,8 @@
                   </div>
                 </v-btn>
                 <span>{{
-                  refText.ADMINCOMPONENTS !== undefined
-                    ? refText.ADMINCOMPONENTS.delete.contents
+                 this.refText.ADMINCOMPONENTS !== undefined
+                    ?this.refText.ADMINCOMPONENTS.delete.contents
                     : 'Sin label'
                 }}</span>
               </v-tooltip>
@@ -195,20 +195,20 @@
         <template v-slot:pageText="props">
           {{ props.pageStart }} - {{ props.pageStop }}
           {{
-            refText.ADMINCOMPONENTS !== undefined
-              ? refText.ADMINCOMPONENTS.of.contents
+           this.refText.ADMINCOMPONENTS !== undefined
+              ?this.refText.ADMINCOMPONENTS.of.contents
               : 'Sin label'
           }}
           {{ props.itemsLength }}
         </template>
         <template v-slot:no-data>{{
-          refText.ADMINCOMPONENTS !== undefined
-            ? refText.ADMINCOMPONENTS.no_data.contents
+         this.refText.ADMINCOMPONENTS !== undefined
+            ?this.refText.ADMINCOMPONENTS.no_data.contents
             : 'Sin label'
         }}</template>
         <template v-slot:no-results>{{
-          refText.ADMINCOMPONENTS !== undefined
-            ? refText.ADMINCOMPONENTS.no_result.contents
+         this.refText.ADMINCOMPONENTS !== undefined
+            ?this.refText.ADMINCOMPONENTS.no_result.contents
             : 'Sin label'
         }}</template>
       </v-data-table>
@@ -260,13 +260,8 @@ export default {
     getJson() {
       return this.$store.state.messages.message
     },
-    getNameComponent() {
-      return this.$store.state.messages.name_components
-    },
     formTitle() {
       return this.editedItem._id
-        ? this.refText.ADMINCOMPONENTS.edit_item.contents
-        : this.refText.ADMINCOMPONENTS.new_item.contents
     },
     headers() {
       return [
@@ -316,6 +311,14 @@ export default {
     }
   },
   watch: {
+    getCred() {
+      return this.$store.state.peoples.set_User
+    },
+    getJson() {
+      this.refText = this.$store.state.messages.message
+
+      return this.$store.state.messages.message
+    },
     dialog(value) {
       return value ? true : this.close()
     },
@@ -350,6 +353,14 @@ export default {
       'saveComponents',
       'deleteComponents'
     ]),
+    isEmptyObject(obj, name) {
+      for (name in obj) {
+        if (obj.hasOwnProperty(name)) {
+          return false
+        }
+      }
+      return true
+    },
     getFormat(date) {
       window.__localeId__ = this.$store.getters.locale
       return getFormat(date, 'ddd, MMMM D YYYY, h:mm a')
@@ -452,6 +463,7 @@ export default {
 
   async mounted() {
     await this.name_component(this.idcomponent)
+    this.getNameComponent()
   }
 }
 </script>

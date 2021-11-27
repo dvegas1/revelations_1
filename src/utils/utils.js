@@ -104,63 +104,82 @@ export const handleError = (error, commit, reject) => {
 export const handleError_api = (error, commit, reject) => {
   // Resets errors in store
 
-  console.info("error.response:" + JSON.stringify(error.response))
-  console.info("error:" + JSON.stringify(error.response))
   let errMsg = ''
 
   if (error.response.status === 401) {
-    store.dispatch('userLogout')
+   /* store.dispatch('userLogout')*/
     commit(types.NOTIFY, {
+      square: true,
       duration: 6000,
       progress: 'auto',
-      title: 'Advertencia.',
-      text: 'Ingrese su clave de acceso para continuar esta operación.',
+      title: `<i class='bx bx-folder-open' >Advertencia.</i><i class="far fa-check-circle"></i>`,
+      text: `<p class='p_textNotify'>Ingrese su clave de acceso para continuar esta operación.</p>`,
       color: 'warn',
-      position: 'bottom-center'
+      position: 'bottom-center',
+      width: '50%'
     })
+
+    window.localStorage.removeItem('token')
+    window.localStorage.removeItem('tokenExpiration')
+    window.localStorage.removeItem('user')
+    commit(types.PEOPLES, [])
+    commit(types.LOGOUT)
+
   } else {
     try {
       if (typeof(error.response.data.errors) != 'undefined') {
         setTimeout(() => {
           error.response.data.errors.msg
-            ? commit(types.NOTIFY, {
+            ?
+            commit(types.NOTIFY, {
+              square: true,
               duration: 6000,
               progress: 'auto',
-              title: 'Advertencia.',
-              text: error.response.data.errors.msg,
+              title: `<i class='bx bx-folder-open' >Advertencia.</i><i class="far fa-check-circle"></i>`,
+              text: `<p class='p_textNotify'>${error.response.data.errors.msg}</p>`,
               color: 'warn',
-              position: null,
-              width: '100%',
-              icon: `<i class='bx bx-error' ></i>`
+              position: 'bottom-center',
+              width: '50%'
             })
-            : commit(types.NOTIFY, {
+
+            : 
+            commit(types.NOTIFY, {
+              square: true,
               duration: 6000,
               progress: 'auto',
-              title: 'Advertencia.',
-              text: 'No se logro realizar la operación por favor intente de nuevo.',
+              title: `<i class='bx bx-folder-open' >Advertencia.</i><i class="far fa-check-circle"></i>`,
+              text: `<p class='p_textNotify'>No se logro realizar la operación por favor intente de nuevo.</p>`,
               color: 'warn',
-              position: 'center'
+              position: 'bottom-center',
+              width: '50%'
             })
+
         }, 0)
       } else {
         setTimeout(() => {
           return error.response.data.message
             ? commit(types.NOTIFY, {
+              square: true,
               duration: 6000,
               progress: 'auto',
-              title: 'Advertencia.',
-              text: error.response.data.message,
+              title: `<i class='bx bx-folder-open' >Advertencia.</i><i class="far fa-check-circle"></i>`,
+              text: `<p class='p_textNotify' >${error.response.data.message}. </p>`,
               color: 'warn',
-              position: 'bottom-center'
+              position: 'bottom-center',
+              width: '50%'
             })
-            : commit(types.NOTIFY, {
+            :
+            commit(types.NOTIFY, {
+              square: true,
               duration: 6000,
               progress: 'auto',
-              title: 'Advertencia.',
-              text: 'No se logro realizar la operación por favor intente de nuevo.',
+              title: `<i class='bx bx-folder-open' >Advertencia.</i><i class="far fa-check-circle"></i>`,
+              text: `<p class='p_textNotify'>No se logro realizar la operación por favor intente de nuevo.</p>`,
               color: 'warn',
-              position: 'bottom-center'
+              position: 'bottom-center',
+              width: '50%'
             })
+
         }, 0)
       }
     } catch (error) {

@@ -4,17 +4,6 @@
       v-model="showSuccessMessageFirstUser"
       width="500"
     >
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          color="red lighten-2"
-          dark
-          v-bind="attrs"
-          v-on="on"
-        >
-          Click Me
-        </v-btn>
-      </template>
-
       <v-card>
         <v-card-title  class="text-h5  darken">
           <h5  text-light darken text-white>Notificación:<br/></h5>
@@ -101,14 +90,17 @@ export default {
        this.copyToClipboard(this.SuccessMessageFirstUser.key)
 
          this.sendNotify({
-              duration: 6000,
-              progress: 'auto',
-              title: 'Clave de acceso.',
-              text: 'Clave copiada con exito.',
-              color: 'success',
-              position: 'bottom-center',
-              width: '50%'
+               square: true,
+                duration: 6000,
+                progress: 'auto',
+                title: `<i class='bx bx-folder-open' >Clave de acceso.</i><i class="far fa-check-circle"></i>`,
+                text: `<p class='p_textNotify' >Clave copiada con exito.</p>`,
+                color: 'success',
+                position: 'bottom-center',
+                width: '50%'
             })
+
+
        /*
           let textToCopy = this.SuccessMessageFirstUser.key
           textToCopy.select()

@@ -10,13 +10,11 @@
         </div>
       </div>
       <form @submit.prevent="submit()">
-        <!--   <div class="ninaOnino"></div>-->
         <div class="Sera_ninaOnino__ center">
           <p class="nino__">Niño</p>
-          <p class="o__">Sera</p>
+          <p class="o__">O Será</p>
           <p class="nina__">Niña</p>
         </div>
-        <div class="line"></div>
 
         <div class="lugar">
           <div class="cont_flugar">
@@ -509,10 +507,6 @@ export default {
     getJson() {
       return this.$store.state.messages.message
     },
-
-    getNameComponent() {
-      return this.$store.state.messages.name_components
-    },
     formTitle() {
       return this.editedItem._id
     },
@@ -527,20 +521,20 @@ export default {
         {
           text: 'NOMBRE',
           value: '_id',
-          sortable: false,
+          sortable: true,
           width: 5
         },
         {
           text: 'APELLIDO',
           align: 'left',
-          sortable: false,
+          sortable: true,
           value: 'status',
           width: '50px'
         },
         {
-          text: 'Teams',
+          text: 'TEAMS',
           align: 'left',
-          sortable: false,
+          sortable: true,
           value: 'Teams',
           width: '50px'
         }
@@ -673,12 +667,7 @@ export default {
       this.voteItem = {}
     },
     openNotification() {
-      this.arrNotify[this.notify.id] = this.$vs.notification(this.notify)
-      let num = 0
-      setTimeout(() => {
-       // this.arrNotify.DDSADSAD.close()
-        num++
-      }, 1000)
+      this.$vs.notification(this.notify)
     },
     hiddeModal() {
       this.hiddde_modal__ = true
@@ -741,7 +730,7 @@ export default {
     },
     editItem(item) {
       this.editedItem = Object.assign({}, item)
-      this.deletedItem['cred'] = this.$store.state.auth.user.credentialuser
+      this.deletedItem['credentialuser'] = this.$store.state.auth.user.credentialuser
       this.dialog = true
     },
     deleteItem(item) {
@@ -757,7 +746,7 @@ export default {
       try {
         this.dataTableLoading = true
         this.dialog_eliminar = false
-        this.deletedItem['cred'] = this.$store.state.auth.user.credentialuser
+        this.deletedItem['credentialuser'] = this.$store.state.auth.user.credentialuser
         await this.deletePeople(this.deletedItem)
         this.dataTableLoading = false
         this.dialog_eliminar = false
@@ -876,10 +865,7 @@ export default {
   },
   validations: vaalid.validations,
   async mounted() {
-    console.log(
-      'dddddddddddddddddddddddddddddddddddd ' +
-        JSON.stringify(this.$store.state.auth)
-    )
+    this.getNameComponent()
     if (this.user()) {
       await this.getPeoples({
         id: this.$store.state.auth.user.credentialuser

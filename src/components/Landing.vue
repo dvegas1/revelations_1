@@ -39,9 +39,6 @@ export default {
   computed: {
     getJson() {
       return this.$store.state.messages.message
-    },
-    getNameComponent() {
-      return this.$store.state.messages.name_components
     }
   },
 
@@ -50,6 +47,7 @@ export default {
   },
   async mounted() {
    await this.name_component(this.idcomponent)
+   this.getNameComponent()
   }
 }
 </script>

@@ -80,7 +80,7 @@
 
             <v-flex text-xs-center mt-5>
               <SubmitButton
-                class="button"
+                class="primary"
                 :text="
                   refText.LOGIN !== undefined
                     ? refText.LOGIN.login.contents
@@ -148,9 +148,6 @@ export default {
     },
     getJson() {
       return this.$store.state.messages.message
-    },
-    getNameComponent() {
-      return this.$store.state.messages.name_components
     }
   },
   watch: {
@@ -204,6 +201,7 @@ export default {
 
   async mounted() {
     await this.name_component(this.idcomponent)
+    this.getNameComponent()
   }
 }
 </script>
