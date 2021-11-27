@@ -4,23 +4,12 @@
       v-model="showSuccessMessage"
       width="500"
     >
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          color="red lighten-2"
-          dark
-          v-bind="attrs"
-          v-on="on"
-        >
-          Click Me
-        </v-btn>
-      </template>
-
       <v-card>
         <v-card-title dark class="text-h5 darken">
           <h5 text-light darken text-white >Notificación:</h5>
         </v-card-title>
 
-        <v-card-text class="txt_notify text-success__" 
+        <v-card-text class="txt_notify text-success__"
         center container
           :timeout="successMessageTimeout">
        <div class="text-success" v-html="successMessage"></div>
@@ -40,9 +29,9 @@
 <!--<template>
   <v-container v-show="showSuccessMessage">
     <v-layout>
-    
+
       <v-flex>
-      
+
         <v-snackbar
           v-model="showSuccessMessage"
           color="success"
@@ -55,7 +44,7 @@
             {{ $t('common.CLOSE') }}
           </v-btn>
         </v-snackbar>
-        
+
       </v-flex>
     </v-layout>
   </v-container>
@@ -86,18 +75,18 @@ export default {
   name: 'SuccessMessage',
   methods: {
   copyKey(){
-      var copyText = document.getElementById("myInput");
-  copyText.select();
-  copyText.setSelectionRange(0, 99999);
-  navigator.clipboard.writeText(copyText.value);
+      const copyText = document.getElementById("myInput")
+  copyText.select()
+  copyText.setSelectionRange(0, 99999)
+  navigator.clipboard.writeText(copyText.value)
 
-  var tooltip = document.getElementById("st_text_copy");
-  tooltip.innerHTML = "Texto copiado.";
-    
+  const tooltip = document.getElementById("st_text_copy")
+  tooltip.innerHTML = "Texto copiado."
+
     },
     outFunc(){
-      var tooltip = document.getElementById("myTooltip");
-  tooltip.innerHTML = "Copy to clipboard";
+      const tooltip = document.getElementById("myTooltip")
+  tooltip.innerHTML = "Copy to clipboard"
 
     }
   },

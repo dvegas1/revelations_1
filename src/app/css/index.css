@@ -1,25 +1,141 @@
 @font-face {
   font-family: 'betty_molly_-_personal_useRg';
-  src: url('../../../src/app/fonts/betty_molly_-_personal_use-webfont.woff2') format('woff2'),
-       url('../../../src/app/fonts/betty_molly_-_personal_use-webfont.woff') format('woff');
+  src: url('../../../src/app/fonts/betty_molly_-_personal_use-webfont.woff2')
+      format('woff2'),
+    url('../../../src/app/fonts/betty_molly_-_personal_use-webfont.woff')
+      format('woff');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'the_humble-webfont';
   src: url('../../../src/app/fonts/the_humble-webfont.woff2') format('woff2'),
-       url('../../../src/app/fonts/the_humble-webfont.woff') format('woff');
+    url('../../../src/app/fonts/the_humble-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'bubbleshine-webfont';
   src: url('../../../src/app/fonts/bubbleshine-webfont.woff2') format('woff2'),
-       url('../../../src/app/fonts/bubbleshine-webfont.woff') format('woff');
+    url('../../../src/app/fonts/bubbleshine-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'bebasneue-regular-webfont';
+  src: url('../../../src/app/fonts/bebasneue-regular-webfont.woff2')
+      format('woff2'),
+    url('../../../src/app/fonts/bebasneue-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: Regular;
+}
+
+.grandient_header {
+  background: #091a40;
+  color: white;
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
+  background-image: url(https://firebasestorage.googleapis.com/v0/b/fir-gps-f49b1.appspot.com/o/multimodulepandsv4-01-01-01.png?alt=media&token=c87c4e56-a4a9-4e73-9719-3e0a0bdb6203);
+
+}
+
+.v-list.theme--light {
+  background: #ffffff00 !important;
+  color: white !important;
+}
+
+aside.v-navigation-drawer.v-navigation-drawer--fixed.v-navigation-drawer--is-mobile.v-navigation-drawer--open.theme--light {
+  background: #091a40;
+    color: white;
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;
+    background-image: url(https://firebasestorage.googleapis.com/v0/b/fir-gps-f49b1.appspot.com/o/multimodulepandsv4-01-01-01.png?alt=media&token=c87c4e56-a4a9-4e73-9719-3e0a0bdb6203);
+    -webkit-animation: AnimationName 60s ease infinite;
+    -moz-animation: AnimationName 60s ease infinite;
+    animation: AnimationName 60s ease infinite;
+    background-size: 400px;
+
+}
+
+.v-list.theme--light {
+  background: #091a40 !important;
+    color: white !important;
+    background-position: center!important;
+    background-repeat: repeat!important;
+    background-size: cover!important;
+    background-image: url(https://firebasestorage.googleapis.com/v0/b/fir-gps-f49b1.appspot.com/o/multimodulepandsv4-01-01-01.png?alt=media&token=c87c4e56-a4a9-4e73-9719-3e0a0bdb6203)!important;
+    -webkit-animation: AnimationName 60s ease infinite;
+    -moz-animation: AnimationName 60s ease infinite;
+    animation: AnimationName 60s ease infinite;
+    background-size: 400px;
+}
+
+
+.v-toolbar__content {
+  background: #091a40;
+  color: white;
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
+  background-image: url(https://firebasestorage.googleapis.com/v0/b/fir-gps-f49b1.appspot.com/o/multimodulepandsv4-01-01-01.png?alt=media&token=c87c4e56-a4a9-4e73-9719-3e0a0bdb6203);
+  -webkit-animation: AnimationName 60s ease infinite;
+  -moz-animation: AnimationName 60s ease infinite;
+  animation: AnimationName 60s ease infinite;
+  background-size: 400px;
+}
+
+@-webkit-keyframes AnimationName {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@-moz-keyframes AnimationName {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@keyframes AnimationName {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+.key_cont {
+  display: flex;
+  line-height: 10px;
+  padding: 5px;
+  margin: 4px;
+}
+
+i.far.fa-copy.copyKey {
+  margin: 5px;
+  padding: 7px;
+  width: 30px;
+  height: 32px;
+  background: #f1f1f1;
+  line-height: 18px;
+  border: 1px solid #c1c1c1;
+  border-radius: 5px;
+  font-size: 13pt;
+  color: #5d596e;
+  cursor:pointer !important;
+}
+
+.it__Btn {
+  display: flex;
+  width: 100%;
+}
+
+.p_textNotify {
+  font-size: 1.5em !important;
+}
+
+.vs-notification.vs-notification--color.vs-notification--square.vs-notification--warn.notification-enter-to {
+  border: 1px solid #e7e7e7 !important;
+}
 
 .v-overlay {
   filter: blur(80px);
@@ -32,24 +148,64 @@
 
 .application {
   background: transparent !important;
-  color: rgba(0,0,0,0.87) !important;
+  color: rgba(0, 0, 0, 0.87) !important;
 }
 .flex {
-    padding-right: 5px;
-    padding-left: 5px;
-    margin-right: -5px;
+  padding-right: 5px;
+  padding-left: 5px;
+  margin-right: -5px;
 }
 
-
-
-.hidden{
-  display:none !important;
+.hidden {
+  display: none !important;
 }
-
 
 a:hover {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
+}
+
+.v-card__actions {
+  box-shadow: 0px -2px 9px 4px #10234c1a !important;
+  margin: 0px !important;
+  border-top: 1px solid #10234c96 !important;
+  background: #091a401c !important;
+}
+
+.v-card__text {
+  /* padding: 5px !important; */
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
+  background-image: url(https://firebasestorage.googleapis.com/v0/b/fir-gps-f49b1.appspot.com/o/multimodulepandsv4-01-01-01.png?alt=media&token=c87c4e56-a4a9-4e73-9719-3e0a0bdb6203);
+  /* background-image: url(https://firebasestorage.googleapis.com/v0/b/fir-gps-f49b1.appspot.com/o/multimodulepandsv2-01.png?alt=media&token=657e3fbd-6071-4f28-bafb-d56717bca427);
+   /*background-image: url(https://firebasestorage.googleapis.com/v0/b/fir-gps-f49b1.appspot.com/o/multimodulepandsv2-01.png?alt=media&token=657e3fbd-6071-4f28-bafb-d56717bca427);
+  */
+  background-size: 600px;
+}
+
+.v-card__title.darken {
+  /* padding: 5px !important; */
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
+  background-image: url(https://firebasestorage.googleapis.com/v0/b/fir-gps-f49b1.appspot.com/o/multimodulepandsv4-01-01-01.png?alt=media&token=c87c4e56-a4a9-4e73-9719-3e0a0bdb6203);
+  /* background-image: url(https://firebasestorage.googleapis.com/v0/b/fir-gps-f49b1.appspot.com/o/multimodulepandsv2-01.png?alt=media&token=657e3fbd-6071-4f28-bafb-d56717bca427);/*background-image: url(https://firebasestorage.googleapis.com/v0/b/fir-gps-f49b1.appspot.com/o/multimodulepandsv2-01.png?alt=media&token=657e3fbd-6071-4f28-bafb-d56717bca427);
+   
+   background-size: 200px;*/
+}
+
+i.v-icon.mdi.mdi-lock.theme--light {
+  color: white !important;
+}
+
+.align_left {
+  text-align: left;
+}
+
+table {
+  padding: 5px !important;
+  margin: 10px !important;
 }
 
 .code {
@@ -61,18 +217,17 @@ a:hover {
   padding-top: 0px;
 }
 
-.img-perfile{
+.img-perfile {
   width: 100px;
   height: 100px;
   border-radius: 100px;
 }
 
 .vs-notification-parent.vs-notification-parent--bottom-center {
-  padding-bottom: 120px !important;
+  padding-bottom: 20px !important;
 }
 
-
-button.btnCancel.v-btn.v-btn--flat.theme--light.alert--text{
+button.btnCancel.v-btn.v-btn--flat.theme--light.alert--text {
   background: transparent !important;
   color: #bf510e !important;
   -webkit-box-shadow: 0px 0px 1px #bdbdbd !important;
@@ -80,7 +235,6 @@ button.btnCancel.v-btn.v-btn--flat.theme--light.alert--text{
   border-radius: 5px;
   border-bottom: 1px solid #bf510e;
   border-right: 1px solid #bf510e;
-  
 }
 button.v-btn.theme--light.primary {
   background: transparent !important;
@@ -107,7 +261,7 @@ button.v-btn.theme--light.primary {
 }
 
 .v-messages__message {
- /* background: #233448d9 !important;
+  /* background: #233448d9 !important;
   border-radius: 5px !important;
   padding: 5px !important;
   border: 1px solid #5b5b5b !important;
@@ -130,8 +284,7 @@ img.perfil_registro {
   border-radius: 120px;
 }
 
-.v-btn.theme--light{
-
+.v-btn.theme--light {
 }
 
 .file-uploads {
@@ -143,63 +296,61 @@ img.perfil_registro {
 }
 
 .button {
-   border-radius: 90px !important;
-   }
-
-   .menjErr {
-    animation-name: menjErr;
-    animation-duration: .5s;
-    animation-delay: 0.25s;
-    color: #ef6c00;
-  }
-  
-  .imagen:hover {
-    -webkit-transform:scale(1.2);
-    transform:scale(1.2);
-    transition-duration: 0.5s, 2s, 0.5s, 2s;
-  }
-  
-  @keyframes menjErr {
-      0% {
-        transform: translateX(0px);
-        timing-function: ease-in;
-      }
-      37% {
-        transform: translateX(5px);
-        timing-function: ease-out;
-      }
-      55% {
-        transform: translateX(-5px);
-        timing-function: ease-in;
-      }
-      73% {
-        transform: translateX(4px);
-        timing-function: ease-out;
-      }
-      82% {
-        transform: translateX(-4px);
-        timing-function: ease-in;
-      }
-      91% {
-        transform: translateX(2px);
-        timing-function: ease-out;
-      }
-      96% {
-        transform: translateX(-2px);
-        timing-function: ease-in;
-      }
-      100% {
-        transform: translateX(0px);
-        timing-function: ease-in;
-      }
-    }
-
-.iconTab {
-
-    margin-bottom: -15px !important;
-    padding-top: 22px;    
+  border-radius: 90px !important;
 }
 
+.menjErr {
+  animation-name: menjErr;
+  animation-duration: 0.5s;
+  animation-delay: 0.25s;
+  color: #ef6c00;
+}
+
+.imagen:hover {
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+  transition-duration: 0.5s, 2s, 0.5s, 2s;
+}
+
+@keyframes menjErr {
+  0% {
+    transform: translateX(0px);
+    timing-function: ease-in;
+  }
+  37% {
+    transform: translateX(5px);
+    timing-function: ease-out;
+  }
+  55% {
+    transform: translateX(-5px);
+    timing-function: ease-in;
+  }
+  73% {
+    transform: translateX(4px);
+    timing-function: ease-out;
+  }
+  82% {
+    transform: translateX(-4px);
+    timing-function: ease-in;
+  }
+  91% {
+    transform: translateX(2px);
+    timing-function: ease-out;
+  }
+  96% {
+    transform: translateX(-2px);
+    timing-function: ease-in;
+  }
+  100% {
+    transform: translateX(0px);
+    timing-function: ease-in;
+  }
+}
+
+.iconTab {
+  margin-bottom: -15px !important;
+  padding-top: 22px;
+}
 
 .application--wrap {
   background-image: url('https://firebasestorage.googleapis.com/v0/b/fir-gps-f49b1.appspot.com/o/backgroupMax992px.png?alt=media&token=d28aa9e4-9b34-41e4-b9cd-c6f9d32132e3');
@@ -274,8 +425,8 @@ h5.man {
   box-shadow: 1px 1px 1px 1px #1a62c7;
 }
 
-.text-success{
-  color: #0e401a!important;
+.text-success {
+  color: #0e401a !important;
 }
 
 .BtnVote__.theme--light {
@@ -285,9 +436,9 @@ h5.man {
   border-color: #11852b;
 }
 
-.center{
+.center {
   margin: 0 auto;
-  text-align:  center;
+  text-align: center;
 }
 .application--wrap {
   /* padding: 2px 8px 2px 8px !important; */
@@ -309,14 +460,17 @@ button.v-btn.v-btn--flat.theme--dark {
   background: #4c6297;
 }
 i.v-icon.mdi.mdi-pencil.theme--light {
-  COLOR: #af4daf;
+  color: #af4daf;
 }
 
 i.v-icon.mdi.mdi-delete.theme--light {
   color: #891818cc;
 }
 
-button, input, select, textarea {
+button,
+input,
+select,
+textarea {
   background-color: transparent;
   border-style: none;
   color: inherit;

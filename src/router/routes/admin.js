@@ -12,6 +12,18 @@ export default [
       )
   },
   {
+    path: '/admin/peoples',
+    name: 'admin-peoples',
+    meta: {
+      requiresAuth: true
+    },
+    component: () =>
+      import(
+        /* webpackChunkName: "admin-users" */
+        '@/components/admin/AdminPeoples.vue'
+      )
+  },
+  {
     path: '/admin/country',
     name: 'admin-country',
     meta: {

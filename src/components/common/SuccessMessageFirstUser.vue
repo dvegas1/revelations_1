@@ -4,23 +4,12 @@
       v-model="showSuccessMessageFirstUser"
       width="500"
     >
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          color="red lighten-2"
-          dark
-          v-bind="attrs"
-          v-on="on"
-        >
-          Click Me
-        </v-btn>
-      </template>
-
       <v-card>
         <v-card-title  class="text-h5  darken">
           <h5  text-light darken text-white>Notificación:<br/></h5>
           <h5 class="subtitle_notify" text-light text-white> Usuario creado con éxito.</h5>
 
-          
+
         </v-card-title>
         <v-card>
         <v-card-title class="text-h5 light">
@@ -39,9 +28,9 @@
             </div>
      </div>
 -->
-         
+
      </v-card-text>
-        
+
       </v-card>
         </v-snackbar>
         <v-card-actions>
@@ -86,29 +75,32 @@ export default {
       this.key
     },
      copyToClipboard(text) {
-    var dummy = document.createElement("textarea");
+    const dummy = document.createElement("textarea")
     // to avoid breaking orgain page when copying more words
     // cant copy when adding below this code
     // dummy.style.display = 'none'
-    document.body.appendChild(dummy);
-    //Be careful if you use texarea. setAttribute('value', value), which works with "input" does not work with "textarea". – Eduard
-    dummy.value = text;
-    dummy.select();
-    document.execCommand("copy");
-    document.body.removeChild(dummy);
+    document.body.appendChild(dummy)
+    // Be careful if you use texarea. setAttribute('value', value), which works with "input" does not work with "textarea". – Eduard
+    dummy.value = text
+    dummy.select()
+    document.execCommand("copy")
+    document.body.removeChild(dummy)
 },
      copyText () {
        this.copyToClipboard(this.SuccessMessageFirstUser.key)
 
          this.sendNotify({
-              duration: 6000,
-              progress: 'auto',
-              title: 'Clave de acceso.',
-              text: 'Clave copiada con exito.',
-              color: 'success',
-              position: 'bottom-center',
-              width: '50%'
+               square: true,
+                duration: 6000,
+                progress: 'auto',
+                title: `<i class='bx bx-folder-open' >Clave de acceso.</i><i class="far fa-check-circle"></i>`,
+                text: `<p class='p_textNotify' >Clave copiada con exito.</p>`,
+                color: 'success',
+                position: 'bottom-center',
+                width: '50%'
             })
+
+
        /*
           let textToCopy = this.SuccessMessageFirstUser.key
           textToCopy.select()

@@ -13,12 +13,11 @@ import vaalid from '@/plugins/vaalidate'
 import plumessag from '@/plugins/plumessag'
 import Vuesax from 'vuesax'
 
-import 'vuesax/dist/vuesax.css' //Vuesax styles
+import 'vuesax/dist/vuesax.css' // Vuesax styles
 
 Vue.config.productionTip = false
 
 Vue.use(Vuesax)
-
 
 Vue.use(Vuelidate)
 // Vue.use(VeeValidate)

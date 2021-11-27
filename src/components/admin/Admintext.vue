@@ -98,6 +98,42 @@
                         disable="'required'"
                         autocomplete="off"
                       />
+                      <v-autocomplete
+                        id="language"
+                        name="language"
+                        :label="
+                          refText.ADMINTEXT !== undefined
+                            ? refText.ADMINTEXT.component.contents
+                            : 'Sin label'
+                        "
+                        v-model="editedItem.language"
+                        :items="leng"
+                        clearable
+                        clear-icon="mdi-close"
+                        :no-data-text="
+                          refText.ADMINTEXT !== undefined
+                            ? refText.ADMINTEXT.no_results_found.contents
+                            : 'Sin label'
+                        "
+                        :data-vv-as="
+                          refText.ADMINTEXT !== undefined
+                            ? refText.ADMINTEXT.component.contents
+                            : 'Sin label'
+                        "
+                        disable="'required'"
+                        autocomplete="off"
+                      />
+                    </v-flex>
+
+                    <v-flex xs12>
+                      <v-text-field
+                        id="idtext"
+                        name="idtext"
+                        v-model="editedItem.idtext"
+                        label="idtext"
+                        data-vv-as="itext"
+                        autocomplete="off"
+                      ></v-text-field>
                     </v-flex>
 
                     <v-flex xs12>
@@ -293,6 +329,7 @@ export default {
   },
   data() {
     return {
+      leng: ['EN', 'ES', 'CN'],
       dataTableLoading: true,
       delayTimer: null,
       dialog: false,
@@ -301,7 +338,7 @@ export default {
       editedItem: {},
       defaultItem: {},
       fieldsToSearch: ['component', '_id', 'description'],
-      refText: '',
+      refText: {},
       idcomponent: 'ADMINTEXT'
     }
   },
@@ -518,7 +555,9 @@ export default {
             await this.saveText({
               component: this.editedItem.component,
               contents: this.editedItem.contents,
-              description: this.editedItem.description
+              description: this.editedItem.description,
+              idtext: this.editedItem.idtext,
+              language: this.editedItem.language
             })
             await this.getText(
               buildPayloadPagination(this.pagination, this.buildSearch())

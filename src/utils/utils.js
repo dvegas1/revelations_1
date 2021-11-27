@@ -79,7 +79,7 @@ export const buildPayloadPagination = (pagination, search) => {
 
 // Catches error connection or any other error (checks if error.response exists)
 export const handleError = (error, commit, reject) => {
-  console.error("error:" + JSON.stringify(error))
+  console.error(`error:${JSON.stringify(error)}`)
   let errMsg = ''
   // Resets errors in store
   commit(types.SHOW_LOADING, false)
@@ -104,63 +104,75 @@ export const handleError = (error, commit, reject) => {
 export const handleError_api = (error, commit, reject) => {
   // Resets errors in store
 
-  console.info("error.response:" + JSON.stringify(error.response))
-  console.info("error:" + JSON.stringify(error.response))
-  let errMsg = ''
+  const errMsg = ''
 
   if (error.response.status === 401) {
-    store.dispatch('userLogout')
+    /* store.dispatch('userLogout')*/
     commit(types.NOTIFY, {
+      square: true,
       duration: 6000,
       progress: 'auto',
-      title: 'Advertencia.',
-      text: 'Ingrese su clave de acceso para continuar esta operación.',
+      title: `<i class='bx bx-folder-open' >Advertencia.</i><i class="far fa-check-circle"></i>`,
+      text: `<p class='p_textNotify'>Ingrese su clave de acceso para continuar esta operación.</p>`,
       color: 'warn',
-      position: 'bottom-center'
+      position: 'bottom-center',
+      width: '50%'
     })
+
+    window.localStorage.removeItem('token')
+    window.localStorage.removeItem('tokenExpiration')
+    window.localStorage.removeItem('user')
+    commit(types.PEOPLES, [])
+    commit(types.LOGOUT)
   } else {
     try {
-      if (typeof(error.response.data.errors) != 'undefined') {
+      if (typeof error.response.data.errors != 'undefined') {
         setTimeout(() => {
           error.response.data.errors.msg
             ? commit(types.NOTIFY, {
-              duration: 6000,
-              progress: 'auto',
-              title: 'Advertencia.',
-              text: error.response.data.errors.msg,
-              color: 'warn',
-              position: null,
-              width: '100%',
-              icon: `<i class='bx bx-error' ></i>`
-            })
+                square: true,
+                duration: 6000,
+                progress: 'auto',
+                title: `<i class='bx bx-folder-open' >Advertencia.</i><i class="far fa-check-circle"></i>`,
+                text: `<p class='p_textNotify'>${error.response.data.errors.msg}</p>`,
+                color: 'warn',
+                position: 'bottom-center',
+                width: '50%'
+              })
             : commit(types.NOTIFY, {
-              duration: 6000,
-              progress: 'auto',
-              title: 'Advertencia.',
-              text: 'No se logro realizar la operación por favor intente de nuevo.',
-              color: 'warn',
-              position: 'center'
-            })
+                square: true,
+                duration: 6000,
+                progress: 'auto',
+                title: `<i class='bx bx-folder-open' >Advertencia.</i><i class="far fa-check-circle"></i>`,
+                text: `<p class='p_textNotify'>No se logro realizar la operación por favor intente de nuevo.</p>`,
+                color: 'warn',
+                position: 'bottom-center',
+                width: '50%'
+              })
         }, 0)
       } else {
         setTimeout(() => {
           return error.response.data.message
             ? commit(types.NOTIFY, {
-              duration: 6000,
-              progress: 'auto',
-              title: 'Advertencia.',
-              text: error.response.data.message,
-              color: 'warn',
-              position: 'bottom-center'
-            })
+                square: true,
+                duration: 6000,
+                progress: 'auto',
+                title: `<i class='bx bx-folder-open' >Advertencia.</i><i class="far fa-check-circle"></i>`,
+                text: `<p class='p_textNotify' >${error.response.data.message}. </p>`,
+                color: 'warn',
+                position: 'bottom-center',
+                width: '50%'
+              })
             : commit(types.NOTIFY, {
-              duration: 6000,
-              progress: 'auto',
-              title: 'Advertencia.',
-              text: 'No se logro realizar la operación por favor intente de nuevo.',
-              color: 'warn',
-              position: 'bottom-center'
-            })
+                square: true,
+                duration: 6000,
+                progress: 'auto',
+                title: `<i class='bx bx-folder-open' >Advertencia.</i><i class="far fa-check-circle"></i>`,
+                text: `<p class='p_textNotify'>No se logro realizar la operación por favor intente de nuevo.</p>`,
+                color: 'warn',
+                position: 'bottom-center',
+                width: '50%'
+              })
         }, 0)
       }
     } catch (error) {
@@ -174,7 +186,6 @@ export const handleError_api1 = (error, commit, reject) => {
   // Resets errors in store
   commit(types.SHOW_LOADING, false)
   commit(types.ERROR, null)
-
 
   // Checks if unauthorized
   if (error.status === 401) {
@@ -190,12 +201,7 @@ export const handleError_api1 = (error, commit, reject) => {
   reject(error)
 }
 
-export const buildSuccess = (
-  msg,
-  commit,
-  resolve,
-  resolveParam
-) => {
+export const buildSuccess = (msg, commit, resolve, resolveParam) => {
   commit(types.SHOW_LOADING, false)
   commit(types.SUCCESS, null)
   setTimeout(() => {
@@ -205,16 +211,13 @@ export const buildSuccess = (
   resolve(resolveParam)
 }
 
-export const buildSuccessFirst = (
-  msg,
-  commit,
-  resolve,
-  resolveParam
-) => {
+export const buildSuccessFirst = (msg, commit, resolve, resolveParam) => {
   commit(types.SHOW_SUCCESS_FIRSUSER, false)
   commit(types.SUCCESS_FIRST_USER, null)
   setTimeout(() => {
-    return msg ? commit(types.SUCCESS_FIRST_USER, msg) : commit(types.SHOW_SUCCESS_FIRSUSER, false)
+    return msg
+      ? commit(types.SUCCESS_FIRST_USER, msg)
+      : commit(types.SHOW_SUCCESS_FIRSUSER, false)
   }, 0)
   commit(types.ERROR, null)
   resolve(resolveParam)

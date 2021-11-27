@@ -217,6 +217,7 @@
     "VISITS": "VISITAS",
     "NUSERS": "11.582.647",
     "USERS": "USUARIOS",
+    "INVITADOS": "INVITADOS",
     "NSTORES": "2.355",
     "STORES": "TIENDAS",
     "TESTIMONIALS": "Testimonios",
@@ -244,15 +245,16 @@
     "VIEW_STORE": "Ver mi tienda"
   },
   "adminItems": {
-    "ADMIN": "Administrador",
+    "ADMIN": "ADMINISTRADOR",
     "MYSTORE": "Mi Tienda",
-    "USERS": "Usuarios",
+    "USERS": "USUARIOS",
     "COUNTRY": "Paises",
     "STATE": "Estados",
     "CITIES": "Ciudades",
     "NATION": "Nación",
     "CONTENTS": "Contenidos",
-    "COMPONENTS": "Componentes"
+    "COMPONENTS": "Componentes",
+    "INVITADOS": "INVITADOS"
   },
   "dataTable": {
     "NEW_ITEM": "Nuevo Registro",
@@ -270,12 +272,12 @@
     "SEARCH": "Buscar"
   },
   "roles": {
-    "ADMIN": "Administrador",
+    "ADMIN": "ADMINISTRADOR",
     "STORE": "Tienda",
     "USER": "Usuario"
   },
   "users": {
-    "TITLE": "Usuarios",
+    "TITLE": "USUARIOS",
     "headers": {
       "USERNAME": "Usuario",
       "EMAIL": "Correo electronico",

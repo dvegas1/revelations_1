@@ -1,7 +1,7 @@
 <template class="transparent ">
   <v-app class="transparent container_peoples">
-    <Toolbar class="transparent"/>
-    <loading class="transparent"/>
+    <Toolbar class="transparent" />
+    <loading class="transparent" />
     <transition name="fade" mode="out-in">
       <router-view />
     </transition>

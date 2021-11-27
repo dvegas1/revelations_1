@@ -331,9 +331,6 @@ export default {
     getJson() {
       return this.$store.state.messages.message
     },
-    getNameComponent() {
-      return this.$store.state.messages.name_components
-    },
     formTitle() {
       return this.editedItem._id
         ? this.refText.ADMINSTATE.edit_item.contents
@@ -578,6 +575,7 @@ export default {
   async mounted() {
     await this.name_component(this.idcomponent)
     await this.getAllID()
+    this.getNameComponent()
   }
 }
 </script>

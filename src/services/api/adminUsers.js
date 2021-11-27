@@ -24,7 +24,7 @@ export default {
   saveUser(payload) {
     return axios.post('/users/', payload)
   },
-  deleteUser(id) {
+  deleteUser_adm(id) {
     return axios.delete(`/users/${id}`)
   }
 }

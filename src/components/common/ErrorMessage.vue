@@ -4,23 +4,12 @@
       v-model="showErrorMessage"
       width="500"
     >
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          color="red lighten-2"
-          dark
-          v-bind="attrs"
-          v-on="on"
-        >
-          Click Me
-        </v-btn>
-      </template>
-
       <v-card>
         <v-card-title dark class="text-h5  showErrorMessage_title">
           <h5 text-light darken text-white>Alerta:</h5>
         </v-card-title>
 
-        <v-card-text class="txt_notify text-error__" 
+        <v-card-text class="txt_notify text-error__"
         center container
           timeout="0">
        <div v-html="error"></div>

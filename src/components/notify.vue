@@ -8,8 +8,8 @@
         :multi-line="snackbar.multiline === true"
         :color="snackbar.color"
       >
-        {{ snackbar.text }} </v-snackbar
-      >
+        {{ snackbar.text }}
+      </v-snackbar>
     </v-container>
   </v-layout>
 </template>
@@ -24,8 +24,6 @@ export default {
   methods: {
     ...mapMutations(['closeAlert'])
   },
-  async mounted() {
-    
-  }
+  async mounted() {}
 }
 </script>

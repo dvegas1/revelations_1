@@ -11,7 +11,7 @@
             :label="
               refText.ADMINUSERS !== undefined
                 ? refText.ADMINUSERS.search.contents
-                : 'Busqueda'
+                : 'Sin label'
             "
             single-line
             hide-details
@@ -19,12 +19,13 @@
             clear-icon="mdi-close"
           ></v-text-field>
         </v-flex>
+
         <v-flex xs12 sm6 md4 text-xs-right mb-2 mt-2 pr-2>
           <v-dialog
             v-model="dialog"
             max-width="800px"
             content-class="dlgNewEditItem "
-            class="backmultiPand"
+            class=""
           >
             <v-card>
               <v-card-title class="darken">
@@ -38,7 +39,7 @@
                         <label for="createdAt">{{
                           refText.ADMINUSERS !== undefined
                             ? refText.ADMINUSERS.created.contents
-                            : 'Creado'
+                            : 'Sin label'
                         }}</label>
                         <div name="createdAt">
                           {{ getFormat(editedItem.createdAt) }}
@@ -48,7 +49,7 @@
                         <label for="updatedAt">{{
                           refText.ADMINUSERS !== undefined
                             ? refText.ADMINUSERS.updated.contents
-                            : 'Actualizado'
+                            : 'Sin label'
                         }}</label>
                         <div name="updatedAt">
                           {{ getFormat(editedItem.updatedAt) }}
@@ -58,7 +59,7 @@
                         <label for="verified">{{
                           refText.ADMINUSERS !== undefined
                             ? refText.ADMINUSERS.verified.contents
-                            : 'Verificado'
+                            : 'Sin label'
                         }}</label>
                         <div
                           name="verified"
@@ -67,37 +68,79 @@
                       </v-flex>
                     </template>
                     <v-flex xs12 md6>
+                      <v-text-field
+                        id="nombre"
+                        name="nombre"
+                        v-model="editedItem.nombre"
+                        label="nombre"
+                        data-vv-as="nombre"
+                        autocomplete="off"
+                      ></v-text-field>
+                    </v-flex>
+                    <v-flex xs12 md6>
+                      <v-text-field
+                        id="apellido"
+                        name="apellido"
+                        v-model="editedItem.apellido"
+                        label="apellido"
+                        data-vv-as="apellido"
+                        autocomplete="off"
+                      ></v-text-field>
+                    </v-flex>
+                    <v-flex xs12 md6>
                       <v-select
                         clearable
-                        id="role"
-                        name="role"
-                        v-model="editedItem.role"
-                        :items="roles"
+                        id="autorizeVote"
+                        name="autorizeVote"
+                        v-model="editedItem.autorizeVote"
+                        :items="autorizeVotes"
                         item-text="name"
                         item-value="value"
-                        :label="
-                          refText.ADMINUSERS !== undefined
-                            ? refText.ADMINUSERS.role.contents
-                            : 'Rol'
-                        "
-                        :data-vv-as="
-                          refText.ADMINUSERS !== undefined
-                            ? refText.ADMINUSERS.role.contents
-                            : 'Rol'
-                        "
+                        label="Autorizado a votar ?"
+                        data-vv-as="Autorizado a votar"
                         class="inputRole"
                       ></v-select>
                     </v-flex>
                     <v-flex xs12 md6>
-                      <v-text-field
-                        id="credentialuser"
-                        name="credentialuser"
-                        v-model="editedItem.credentialuser"
-                        label="Credencial"
-                        data-vv-as="Credencial"
-                        autocomplete="off"
-                      ></v-text-field>
+                      <v-select
+                        clearable
+                        id="vote"
+                        name="vote"
+                        v-model="editedItem.vote"
+                        :items="items_vote"
+                        item-text="name"
+                        item-value="value"
+                        label="Ya voto ?"
+                        data-vv-as="vote"
+                        class="inputRole"
+                      ></v-select>
                     </v-flex>
+                    <v-flex xs12 md6>
+                      <v-select
+                        clearable
+                        id="team"
+                        name="team"
+                        v-model="editedItem.team"
+                        :items="items_teams"
+                        item-text="name"
+                        item-value="value"
+                        label="team"
+                        data-vv-as="team"
+                        class="inputRole"
+                      ></v-select>
+                    </v-flex>
+                    <v-text-field
+                      id="credentialuser"
+                      name="credentialuser"
+                      v-model="editedItem.credentialuser"
+                      label="Clave de acceso"
+                      @click:append="show1 = !show1"
+                      :type="show1 ? 'text' : 'password'"
+                      :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                      prepend-icon="mdi-lock-outline"
+                      ref="credentialuser"
+                      autocomplete="off"
+                    ></v-text-field>
                   </v-layout>
                 </v-container>
               </v-card-text>
@@ -109,10 +152,10 @@
                     ? refText.ADMINUSERS.cancel.contents
                     : 'CANCELAR'
                 }}</v-btn>
-                <v-btn color="" flat @click="submit" class="primary">{{
+                <v-btn color="primary" flat @click="submit" class="primary">{{
                   refText.ADMINUSERS !== undefined
                     ? refText.ADMINUSERS.save.contents
-                    : 'CANCELAR'
+                    : 'GUARDAR'
                 }}</v-btn>
               </v-card-actions>
             </v-card>
@@ -156,7 +199,7 @@
             {{
               refText.ADMINUSERS != undefined
                 ? refText.ADMINUSERS.new_item.contents
-                : 'NUEVO'
+                : 'Sin label'
             }}
           </v-btn>
         </v-flex>
@@ -167,17 +210,17 @@
         :rows-per-page-text="
           refText.ADMINUSERS !== undefined
             ? refText.ADMINUSERS.rows_per_page.contents
-            : 'Registro por pagina'
+            : 'Sin label'
         "
         :no-data-text="
           refText.ADMINUSERS !== undefined
             ? refText.ADMINUSERS.no_data.contents
-            : 'Sin registros'
+            : 'Sin label'
         "
         :no-results-text="
           refText.ADMINUSERS !== undefined
             ? refText.ADMINUSERS.no_results.contents
-            : 'Sin registros'
+            : 'Sin label'
         "
         :rows-per-page-items="[5, 10, 25]"
         :headers="headers"
@@ -188,10 +231,7 @@
       >
         <template v-slot:items="props">
           <td class="fill-height px-0">
-            <v-layout
-              v-if="!user(props.item.credentialuser)"
-              class="justify-center"
-            >
+            <v-layout>
               <v-tooltip top>
                 <v-btn
                   icon
@@ -219,19 +259,18 @@
                 <span>{{
                   refText.ADMINUSERS !== undefined
                     ? refText.ADMINUSERS.delete.contents
-                    : 'ELIMINAR'
+                    : 'Sin label'
                 }}</span>
               </v-tooltip>
             </v-layout>
-            <v-layout v-else>
-              <v-btn icon class="primary center" disabled slot="activator"
-                >Yo
-              </v-btn>
-            </v-layout>
           </td>
           <td>{{ props.item._id }}</td>
-          <td>{{ roleName(props.item.role) }}</td>
-          <td style="text-align:left">{{ props.item.credentialuser }}</td>
+          <td>{{ props.item.nombre }}</td>
+          <td>{{ props.item.apellido }}</td>
+          <td>{{ props.item.autorizeVote }}</td>
+          <td>{{ props.item.vote }}</td>
+          <td>{{ props.item.team }}</td>
+          <td>{{ props.item.credentialuser }}</td>
           <td>{{ getFormat(props.item.createdAt) }}</td>
           <td>{{ getFormat(props.item.updatedAt) }}</td>
         </template>
@@ -287,8 +326,9 @@ export default {
   },
   data() {
     return {
-      deletedItem: {},
       dialog_eliminar: false,
+      deletedItem: {},
+      show1: false,
       refText: {},
       idcomponent: 'ADMINUSERS',
       dataTableLoading: true,
@@ -301,7 +341,7 @@ export default {
       editedItem: {},
       defaultItem: {},
       fieldsToSearch: [
-        'credentialuser'
+        'nombre'
         /* ,  'email',
         // 'password',
         'role',
@@ -335,20 +375,23 @@ export default {
         { name: this.$t('roles.USER'), value: 'user' }
       ]
     },
-    allCountryName() {
-      return this.$store.state.adminCountry.allcountrysname
+    autorizeVotes() {
+      return [
+        { name: 'AUTORIZADO', value: true },
+        { name: 'NO AUTORIZADO', value: false }
+      ]
     },
-    allCountryCode() {
-      return this.$store.state.adminCountry.allcountryscode
+    items_vote() {
+      return [
+        { name: 'SI', value: true },
+        { name: 'NO', value: false }
+      ]
     },
-    allCountry() {
-      return this.$store.state.adminCountry.allcountrys
-    },
-    CountryAllStates() {
-      return this.$store.state.allid.allstatesContry
-    },
-    StateAllCities() {
-      return this.$store.state.allid.allcitiesStates
+    items_teams() {
+      return [
+        { name: 'NIÑA', value: 'woman' },
+        { name: 'NIÑO', value: 'man' }
+      ]
     },
     formTitle() {
       if (this.editedItem._id != undefined) {
@@ -365,14 +408,38 @@ export default {
           width: 100
         },
         {
-          text: 'Id',
-          value: '_id',
+          text: 'id',
+          value: 'id',
           sortable: false,
           width: 100
         },
         {
-          text: 'Rol',
-          value: 'role',
+          text: 'Nombre',
+          value: 'nombre',
+          sortable: false,
+          width: 100
+        },
+        {
+          text: 'Apellido',
+          value: 'apellido',
+          sortable: false,
+          width: 100
+        },
+        {
+          text: 'Autorizado votar ?',
+          value: 'autorizeVote',
+          sortable: false,
+          width: 100
+        },
+        {
+          text: 'Ya voto ?',
+          value: 'vote',
+          sortable: false,
+          width: 100
+        },
+        {
+          text: 'Team',
+          value: 'team',
           sortable: false,
           width: 100
         },
@@ -380,28 +447,27 @@ export default {
           text: 'Clave',
           value: 'credentialuser',
           sortable: false,
-          align: 'left',
           width: 100
         },
         {
           text: 'Creado',
           value: 'createdAt',
-          sortable: true,
+          sortable: false,
           width: 100
         },
         {
           text: 'Actualizado',
           value: 'updatedAt',
-          sortable: true,
+          sortable: false,
           width: 100
         }
       ]
     },
     items() {
-      return this.$store.state.adminUsers.users
+      return this.$store.state.adminPeoples.adm_peoples
     },
     totalItems() {
-      return this.$store.state.adminUsers.totalUsers
+      return this.$store.state.adminPeoples.adm_totalPeoples
     }
   },
   watch: {
@@ -414,6 +480,7 @@ export default {
     },
     getJson() {
       this.refText = this.$store.state.messages.message
+
       return this.$store.state.messages.message
     },
     dialog(value) {
@@ -423,7 +490,7 @@ export default {
       async handler() {
         try {
           this.dataTableLoading = true
-          await this.getUsers(
+          await this.getAllPeoples(
             buildPayloadPagination(this.pagination, this.buildSearch())
           )
           this.dataTableLoading = false
@@ -443,14 +510,13 @@ export default {
   },
   methods: {
     ...mapActions([
-      'getUsers',
-      'editUser_admin',
-      'saveUser_admin',
-      'deleteUser_adm',
+      'getAllPeoples',
+      'editPeople_adm',
+      'createPeople',
+      'deletePeople_adm',
       'getText_component',
       'name_component',
-      'sendNotify',
-      'user'
+      'sendNotify'
     ]),
     user(cred) {
       try {
@@ -466,17 +532,12 @@ export default {
     openNotification() {
       this.$vs.notification(this.notify)
     },
-    close_delete() {
-      this.dialog_eliminar = false
-      setTimeout(() => {
-        this.deletedItem = Object.assign({}, this.defaultItem)
-      }, 300)
-    },
     async confirm_eliminar() {
       try {
         this.dataTableLoading = true
         this.dialog_eliminar = true
-        await this.deleteUser_adm(this.deletedItem)
+
+        await this.deletePeople_adm(this.deletedItem)
         this.dataTableLoading = false
         this.dialog_eliminar = false
       } catch (error) {
@@ -506,16 +567,17 @@ export default {
         ? '<i aria-hidden="true" class="v-icon mdi mdi-check green--text" style="font-size: 16px;"></i>'
         : '<i aria-hidden="true" class="v-icon mdi mdi-close red--text" style="font-size: 16px;"></i>'
     },
+    async changeCountry() {
+      // console.log('Entrando a changeCountry.')
+    },
     async changeState() {
-      this.getStateAllCities({
-        state: this.editedItem.state
-      })
+      // console.log('Entrando a changeState.')
     },
 
     async doSearch() {
       try {
         this.dataTableLoading = true
-        await this.getUsers(
+        await this.getAllPeoples(
           buildPayloadPagination(this.pagination, this.buildSearch())
         )
         this.dataTableLoading = false
@@ -561,6 +623,12 @@ export default {
         this.editedItem = Object.assign({}, this.defaultItem)
       }, 300)
     },
+    close_delete() {
+      this.dialog_eliminar = false
+      setTimeout(() => {
+        this.deletedItem = Object.assign({}, this.defaultItem)
+      }, 300)
+    },
     async submit() {
       try {
         // const valid = await this.$validator.validateAll()
@@ -568,18 +636,26 @@ export default {
           this.dataTableLoading = true
           // Updating item
           if (this.editedItem._id) {
-            await this.editUser_admin(this.editedItem)
+            await this.editPeople_adm(this.editedItem)
+            await this.getAllPeoples(
+              buildPayloadPagination(this.pagination, this.buildSearch())
+            )
             this.dataTableLoading = false
           } else {
             // Creating new item
-            await this.saveUser_admin({
-              role: this.editedItem.role,
+
+            await this.createPeople({
+              nombre: this.editedItem.nombre,
+              apellido: this.editedItem.apellido,
+              autorizeVote: this.editedItem.autorizeVote,
+              vote: this.editedItem.vote,
+              team: this.editedItem.team,
               credentialuser: this.editedItem.credentialuser
             })
             this.dataTableLoading = false
           }
           this.close()
-          return
+          resolve({})
         }
         // eslint-disable-next-line no-unused-vars
       } catch (error) {
@@ -589,28 +665,8 @@ export default {
     }
   },
   async mounted() {
-    this.getNameComponent()
-    /*  this.sendNotify({
-      square: true,
-      duration: 60000,
-      progress: 'auto',
-      text: `adasdad ${this.idcomponent}`,
-      color: 'warn',
-      position: 'bottom-center',
-      width: '50%'
-    })*/
-    /*
-    this.sendNotify({
-      square: true,
-      duration: 600000,
-      progress: 'auto',
-      title: `<i class='bx bx-folder-open' >Advertencia </i> <i class="fas fa-check-circle"></i>`,
-      text: `<p class='p_textNotify' >Usuario o contraseña errados. </p>`,
-      color: 'success',
-      position: 'bottom-center',
-      width: '50%'
-    })*/
     await this.name_component(this.idcomponent)
+    this.getNameComponent()
   }
 }
 </script>
