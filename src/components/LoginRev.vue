@@ -205,6 +205,7 @@ export default {
   },
 
   async mounted() {
+    
     await this.name_component(this.idcomponent)
     this.getNameComponent()
   }

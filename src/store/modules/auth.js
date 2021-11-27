@@ -28,6 +28,7 @@ const actions = {
   userLogin({ commit }, payload) {
     return new Promise((resolve, reject) => {
       commit(types.SHOW_LOADING, true)
+      commit(types.SHOW_SUCCESS_FIRSUSER, false)
       api
         .userLogin(payload)
         .then(response => {
@@ -116,6 +117,7 @@ const actions = {
     commit(types.SAVE_TOKEN, JSON.parse(localStorage.getItem('token')))
     commit(types.SET_LOCALE, JSON.parse(localStorage.getItem('locale')))
     commit(types.EMAIL_VERIFIED, user.verified)
+    commit(types.SHOW_SUCCESS_FIRSUSER, false)
   },
   userLogout({ commit }) {
     window.localStorage.removeItem('token')
@@ -123,6 +125,7 @@ const actions = {
     window.localStorage.removeItem('user')
     commit(types.PEOPLES, [])
     commit(types.LOGOUT)
+    commit(types.SHOW_SUCCESS_FIRSUSER, false)
     // alert(JSON.stringify(router))
     router.push({
       name: 'revelations'

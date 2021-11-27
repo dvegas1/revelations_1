@@ -134,7 +134,7 @@ export default {
     SuccessMessageFirstUser() {
       setTimeout(() => {
         this.showSuccessMessageFirstUser = this.SuccessMessageFirstUser  !== null
-      }, 100)
+      }, 1000)
     }
   }
 }
