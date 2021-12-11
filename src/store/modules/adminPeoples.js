@@ -160,7 +160,7 @@ const actions = {
               duration: 6000,
               progress: 'auto',
               title: `<i class='bx bx-folder-open' >Eliminado Invitado.</i><i class="far fa-check-circle"></i>`,
-              text: `<p class='p_textNotify' >invitado eliminado con éxito.</p>`,
+              text: `<p class='p_textNotify' >Invitado eliminado con éxito.</p>`,
               color: 'success',
               position: 'bottom-center',
               width: '50%'

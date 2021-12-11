@@ -218,6 +218,7 @@
     "NUSERS": "11.582.647",
     "USERS": "USUARIOS",
     "INVITADOS": "INVITADOS",
+    "GANADOR": "GANADOR",
     "NSTORES": "2.355",
     "STORES": "TIENDAS",
     "TESTIMONIALS": "Testimonios",
@@ -254,7 +255,8 @@
     "NATION": "Nación",
     "CONTENTS": "Contenidos",
     "COMPONENTS": "Componentes",
-    "INVITADOS": "INVITADOS"
+    "INVITADOS": "INVITADOS",
+    "GANADOR": "GANADOR"
   },
   "dataTable": {
     "NEW_ITEM": "Nuevo Registro",

@@ -84,3 +84,13 @@ export const NOTIFY = 'NOTIFY'
 export const VOTE = 'VOTE'
 export const SHOW_SUCCESS_FIRSUSER = 'SHOW_SUCCESS_FIRSUSER'
 export const SUCCESS_FIRST_USER = 'SUCCESS_FIRST_USER'
+
+export const WINNER = 'WINNER'
+export const TOTALWINNER = 'TOTALWINNER'
+
+export const SET_CONFIG = 'SET_CONFIG'
+
+export const CONFIG = 'CONFIG'
+
+export const ADD_CONFIG_DATA = 'ADD_CONFIG_DATA'
+
