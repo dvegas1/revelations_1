@@ -286,6 +286,12 @@ export default {
           icon: 'mdi-account-supervisor',
           status: 0,
           class: 'transparent'
+        },{
+          title: this.$t('adminItems.GANADOR'),
+          link: 'admin-winner',
+          icon: 'mdi-account-supervisor',
+          status: 0,
+          class: 'transparent'
         },
         {
           title: this.$t('adminItems.COUNTRY'),

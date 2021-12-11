@@ -74,6 +74,12 @@ aside.v-navigation-drawer.v-navigation-drawer--fixed.v-navigation-drawer--is-mob
 }
 
 
+.primary--text {
+  color: #4c8b5e !important;
+  caret-color: #3d8a41 !important;
+}
+
+
 .v-toolbar__content {
   background: #091a40;
   color: white;

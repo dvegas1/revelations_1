@@ -22,6 +22,17 @@ export default [
         /* webpackChunkName: "admin-users" */
         '@/components/admin/AdminPeoples.vue'
       )
+  },{
+    path: '/admin/winner',
+    name: 'admin-winner',
+    meta: {
+      requiresAuth: true
+    },
+    component: () =>
+      import(
+        /* webpackChunkName: "admin-users" */
+        '@/components/admin/Adminwinner.vue'
+      )
   },
   {
     path: '/admin/country',
